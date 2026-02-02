@@ -44,6 +44,7 @@ jobs:
       - name: Fetch bus data from API
         env:
           BUS_API_KEY: ${{ secrets.BUS_API_KEY }}
+          BUS_ARR_API_KEY: ${{ secrets.BUS_ARR_API_KEY }}
         run: npm run fetch-data
 
       - name: Upload data artifact

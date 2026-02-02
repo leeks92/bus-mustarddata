@@ -12,6 +12,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const SERVICE_KEY = process.env.BUS_API_KEY || '';
+const ARR_SERVICE_KEY = process.env.BUS_ARR_API_KEY || SERVICE_KEY;
 
 // API 엔드포인트
 const EXPRESS_INFO_URL = 'http://apis.data.go.kr/1613000/ExpBusInfoService';
@@ -109,16 +110,16 @@ function delay(ms: number): Promise<void> {
 
 // ===== ExpBusArrInfoService API (도착정보 서비스) =====
 
-// 고속버스 터미널 목록 조회 (3자리 코드 버전)
+// 고속버스 터미널 목록 조회 (3자리 코드 버전) - ExpBusArrInfoService 사용
 async function getExpBusTmnList(): Promise<TerminalShort[]> {
   console.log('Fetching express terminals (ExpBusArrInfoService)...');
-  const url = `${EXPRESS_ARR_URL}/getExpBusTmnList?serviceKey=${SERVICE_KEY}&numOfRows=500&pageNo=1&_type=json`;
+  const url = `${EXPRESS_ARR_URL}/getExpBusTmnList?serviceKey=${ARR_SERVICE_KEY}&numOfRows=500&pageNo=1&_type=json`;
   return fetchApi<TerminalShort>(url);
 }
 
-// 출발지 기준 도착지 목록 조회
+// 출발지 기준 도착지 목록 조회 - ExpBusArrInfoService 사용
 async function getArrTmnFromDepTmn(depTmnCd: string): Promise<ArrivalTerminal[]> {
-  const url = `${EXPRESS_ARR_URL}/getArrTmnFromDepTmn?serviceKey=${SERVICE_KEY}&depTmnCd=${depTmnCd}&numOfRows=500&pageNo=1&_type=json`;
+  const url = `${EXPRESS_ARR_URL}/getArrTmnFromDepTmn?serviceKey=${ARR_SERVICE_KEY}&depTmnCd=${depTmnCd}&numOfRows=500&pageNo=1&_type=json`;
   return fetchApi<ArrivalTerminal>(url, true);
 }
 
