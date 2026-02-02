@@ -47,40 +47,6 @@ export default function IntercityClient({ terminals }: Props) {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mt-8">
-        {/* 안내 메시지 */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-12 shadow-sm">
-          <div className="flex items-start gap-4">
-            <div className="text-3xl">⚠️</div>
-            <div>
-              <h3 className="font-bold text-yellow-800 text-lg mb-1">시외버스 예매 안내</h3>
-              <p className="text-yellow-700 mb-4">
-                시외버스 시간표는 운수사의 사정에 따라 수시로 변경될 수 있습니다. 
-                정확한 시간표 확인 및 예매는 공식 예매 사이트를 이용해 주세요.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://txbus.t-money.co.kr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-white border border-yellow-300 rounded-lg text-yellow-800 hover:bg-yellow-100 transition font-medium text-sm"
-                >
-                  티머니 시외버스 예매
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-                <a
-                  href="https://www.bustago.or.kr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-white border border-yellow-300 rounded-lg text-yellow-800 hover:bg-yellow-100 transition font-medium text-sm"
-                >
-                  버스타고 예매
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* 검색 결과 없음 */}
         {filteredTerminals.length === 0 && (
           <div className="text-center py-12">
