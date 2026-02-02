@@ -1,6 +1,10 @@
 /**
  * 공공 API에서 전체 버스 시간표 데이터를 수집하여 JSON 파일로 저장
  * 빌드 전에 실행하여 data/ 폴더에 저장
+ * 
+ * API 문서 참고:
+ * - 고속버스: ExpBusInfoService
+ * - 시외버스: SuburbsBusInfoService
  */
 
 import * as fs from 'fs';
@@ -46,19 +50,15 @@ async function fetchApi<T>(url: string, silent: boolean = false): Promise<T[]> {
     const response = await fetch(url);
     const text = await response.text();
     
-    // 에러 응답 체크
-    if (text.includes('API not found') || text.includes('SERVICE_KEY_IS_NOT_REGISTERED')) {
-      if (!silent) console.error('API not available for this request');
+    // 에러 응답 체크 (XML 에러 메시지)
+    if (text.includes('OpenAPI_ServiceResponse') || text.includes('SERVICE_ERROR')) {
+      if (!silent) console.error('API Service Error');
       return [];
     }
     
-    // XML 응답 체크 (에러 응답일 수 있음)
+    // XML 응답 체크
     if (text.startsWith('<?xml') || text.startsWith('<')) {
-      // XML 에러 메시지 파싱 시도
-      if (text.includes('SERVICE_ERROR') || text.includes('ERROR')) {
-        if (!silent) console.error('API returned XML error');
-        return [];
-      }
+      if (!silent) console.error('Unexpected XML response');
       return [];
     }
     
@@ -69,9 +69,10 @@ async function fetchApi<T>(url: string, silent: boolean = false): Promise<T[]> {
     
     const data = JSON.parse(text);
     
+    // API 에러 코드 체크
     if (data.response?.header?.resultCode !== '00') {
       if (!silent) {
-        console.error('API Error:', data.response?.header?.resultMsg);
+        console.error('API Error:', data.response?.header?.resultCode, data.response?.header?.resultMsg);
       }
       return [];
     }
@@ -81,7 +82,7 @@ async function fetchApi<T>(url: string, silent: boolean = false): Promise<T[]> {
     
     return Array.isArray(items) ? items : [items];
   } catch (error) {
-    // JSON 파싱 에러는 조용히 처리 (API가 없는 노선)
+    // JSON 파싱 에러는 조용히 처리 (노선이 없는 경우)
     if (!silent && !(error instanceof SyntaxError)) {
       console.error('Fetch error:', error);
     }
@@ -97,51 +98,44 @@ function delay(ms: number): Promise<void> {
 // 고속버스 터미널 목록 조회
 async function getExpressTerminals(): Promise<Terminal[]> {
   console.log('Fetching express terminals...');
-  const url = `${EXPRESS_BASE_URL}/getExpBusTrminlList?serviceKey=${SERVICE_KEY}&numOfRows=500&_type=json`;
+  const url = `${EXPRESS_BASE_URL}/getExpBusTrminlList?serviceKey=${SERVICE_KEY}&numOfRows=500&pageNo=1&_type=json`;
   return fetchApi<Terminal>(url);
 }
 
 // 시외버스 터미널 목록 조회
 async function getIntercityTerminals(): Promise<Terminal[]> {
   console.log('Fetching intercity terminals...');
-  const url = `${INTERCITY_BASE_URL}/getSuberbsBusTrminlList?serviceKey=${SERVICE_KEY}&numOfRows=1000&_type=json`;
+  const url = `${INTERCITY_BASE_URL}/getSuberbsBusTrminlList?serviceKey=${SERVICE_KEY}&numOfRows=1000&pageNo=1&_type=json`;
   return fetchApi<Terminal>(url);
 }
 
-// 고속버스 도착지 목록 조회
-async function getExpressArrivalTerminals(depTerminalId: string): Promise<Terminal[]> {
-  const url = `${EXPRESS_BASE_URL}/getArrTrminlList?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&numOfRows=500&_type=json`;
-  return fetchApi<Terminal>(url, true); // silent mode - 없는 터미널은 조용히 스킵
-}
-
-// 시외버스 도착지 목록 조회  
-async function getIntercityArrivalTerminals(depTerminalId: string): Promise<Terminal[]> {
-  const url = `${INTERCITY_BASE_URL}/getArrTrminlList?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&numOfRows=500&_type=json`;
-  return fetchApi<Terminal>(url);
-}
-
-// 고속버스 시간표 조회
+// 고속버스 시간표 조회 (출발-도착 기준)
 async function getExpressSchedules(
   depTerminalId: string,
   arrTerminalId: string,
   depDate: string
 ): Promise<BusSchedule[]> {
-  const url = `${EXPRESS_BASE_URL}/getStrtpntAlocFndExpbusInfo?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&arrTerminalId=${arrTerminalId}&depPlandTime=${depDate}&numOfRows=100&_type=json`;
-  return fetchApi<BusSchedule>(url, true); // silent mode
+  const url = `${EXPRESS_BASE_URL}/getStrtpntAlocFndExpbusInfo?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&arrTerminalId=${arrTerminalId}&depPlandTime=${depDate}&numOfRows=100&pageNo=1&_type=json`;
+  return fetchApi<BusSchedule>(url, true); // silent mode - 노선 없으면 조용히 스킵
+}
+
+// 시외버스 시간표 조회 (출발-도착 기준) - 당일만 조회 가능
+async function getIntercitySchedules(
+  depTerminalId: string,
+  arrTerminalId: string,
+  depDate: string
+): Promise<BusSchedule[]> {
+  const url = `${INTERCITY_BASE_URL}/getStrtpntAlocFndSuberbsBusInfo?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&arrTerminalId=${arrTerminalId}&depPlandTime=${depDate}&numOfRows=100&pageNo=1&_type=json`;
+  return fetchApi<BusSchedule>(url, true);
 }
 
 // 시간 문자열 변환 (202301011030 -> 10:30)
 function formatTime(timeStr: string): string {
   if (!timeStr || timeStr.length < 12) return '';
-  const hour = timeStr.substring(8, 10);
-  const minute = timeStr.substring(10, 12);
+  const str = String(timeStr);
+  const hour = str.substring(8, 10);
+  const minute = str.substring(10, 12);
   return `${hour}:${minute}`;
-}
-
-// 터미널 ID에서 slug 생성
-function createSlug(terminalId: string, terminalName: string): string {
-  // 한글 이름 기반 slug 생성
-  return terminalId;
 }
 
 async function main() {
@@ -152,6 +146,7 @@ async function main() {
   }
 
   console.log('=== 버스 데이터 수집 시작 ===\n');
+  console.log(`API Key: ${SERVICE_KEY.substring(0, 10)}...`);
   
   const dataDir = path.join(process.cwd(), 'data');
   if (!fs.existsSync(dataDir)) {
@@ -162,7 +157,12 @@ async function main() {
   const expressTerminals = await getExpressTerminals();
   console.log(`고속버스 터미널: ${expressTerminals.length}개`);
   
-  await delay(500);
+  if (expressTerminals.length === 0) {
+    console.error('Error: 고속버스 터미널 목록을 가져올 수 없습니다. API 키를 확인하세요.');
+    process.exit(1);
+  }
+  
+  await delay(300);
   
   const intercityTerminals = await getIntercityTerminals();
   console.log(`시외버스 터미널: ${intercityTerminals.length}개`);
@@ -178,33 +178,35 @@ async function main() {
   );
 
   // 2. 고속버스 노선별 시간표 수집
+  // 모든 터미널 조합을 시도 (도착지 목록 API가 없으므로)
   console.log('\n=== 고속버스 노선 수집 ===');
   const expressRoutes: RouteData[] = [];
   const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
   console.log(`조회 날짜: ${today}`);
   
-  let expressCount = 0;
-  let terminalIndex = 0;
-  const totalTerminals = expressTerminals.length;
+  const totalCombinations = expressTerminals.length * expressTerminals.length;
+  console.log(`총 조합 수: ${totalCombinations} (${expressTerminals.length} x ${expressTerminals.length})`);
+  
+  let checkedCount = 0;
+  let foundCount = 0;
   
   for (const depTerminal of expressTerminals) {
-    terminalIndex++;
-    await delay(150); // API 호출 제한 대응
-    
-    const arrivals = await getExpressArrivalTerminals(depTerminal.terminalId);
-    
-    if (arrivals.length > 0) {
-      console.log(`[${terminalIndex}/${totalTerminals}] ${depTerminal.terminalNm}: ${arrivals.length}개 도착지`);
-    }
-    
-    for (const arrTerminal of arrivals) {
-      await delay(80);
+    for (const arrTerminal of expressTerminals) {
+      // 같은 터미널은 스킵
+      if (depTerminal.terminalId === arrTerminal.terminalId) {
+        checkedCount++;
+        continue;
+      }
+      
+      await delay(50); // API 호출 제한 대응 (초당 30 TPS)
       
       const schedules = await getExpressSchedules(
         depTerminal.terminalId,
         arrTerminal.terminalId,
         today
       );
+      
+      checkedCount++;
       
       if (schedules.length > 0) {
         expressRoutes.push({
@@ -219,21 +221,24 @@ async function main() {
             charge: s.charge || 0,
           })),
         });
-        expressCount++;
+        foundCount++;
       }
-    }
-    
-    // 중간 저장 (100개 터미널마다)
-    if (terminalIndex % 50 === 0) {
-      console.log(`진행 현황: ${terminalIndex}/${totalTerminals} 터미널, ${expressCount}개 노선 수집됨`);
-      fs.writeFileSync(
-        path.join(dataDir, 'express-routes.json'),
-        JSON.stringify(expressRoutes, null, 2)
-      );
+      
+      // 진행 상황 출력 (1000개마다)
+      if (checkedCount % 1000 === 0) {
+        const progress = ((checkedCount / totalCombinations) * 100).toFixed(1);
+        console.log(`진행: ${checkedCount}/${totalCombinations} (${progress}%) - 발견된 노선: ${foundCount}개`);
+        
+        // 중간 저장
+        fs.writeFileSync(
+          path.join(dataDir, 'express-routes.json'),
+          JSON.stringify(expressRoutes, null, 2)
+        );
+      }
     }
   }
   
-  console.log(`고속버스 총 노선: ${expressRoutes.length}개`);
+  console.log(`\n고속버스 총 노선: ${expressRoutes.length}개`);
   
   // 고속버스 노선 데이터 저장
   fs.writeFileSync(
@@ -257,6 +262,8 @@ async function main() {
 
   console.log('\n=== 데이터 수집 완료 ===');
   console.log(`저장 위치: ${dataDir}`);
+  console.log(`고속버스 터미널: ${metadata.expressTerminalCount}개`);
+  console.log(`고속버스 노선: ${metadata.expressRouteCount}개`);
   console.log(`최종 업데이트: ${metadata.lastUpdated}`);
 }
 
