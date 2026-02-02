@@ -40,10 +40,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="google-adsense-account" content="ca-pub-9325661912203986" />
-        {/* 구글 서치 콘솔 인증 태그 (필요시 주석 해제 후 입력) */}
-        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
-        {/* 네이버 서치 어드바이저 인증 태그 (필요시 주석 해제 후 입력) */}
-        {/* <meta name="naver-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
+        <meta name="naver-site-verification" content="ba1ae0526ca8b81db47476c81df03aff8de31f39" />
       </head>
       <body className="min-h-screen flex flex-col">
         <Header />
