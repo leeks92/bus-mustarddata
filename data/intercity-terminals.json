@@ -1,0 +1,14 @@
+[
+  {
+    "terminalId": "NAI0010",
+    "terminalNm": "서울남부터미널",
+    "cityName": "서울특별시",
+    "cityCode": 11
+  },
+  {
+    "terminalId": "NAI0020",
+    "terminalNm": "상봉시외버스터미널",
+    "cityName": "서울특별시",
+    "cityCode": 11
+  }
+]

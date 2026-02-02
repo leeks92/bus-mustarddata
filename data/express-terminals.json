@@ -1,0 +1,62 @@
+[
+  {
+    "terminalId": "NAEK010",
+    "terminalNm": "서울고속버스터미널(경부 영동선)",
+    "cityName": "서울특별시",
+    "cityCode": 11
+  },
+  {
+    "terminalId": "NAEK020",
+    "terminalNm": "동서울종합터미널",
+    "cityName": "서울특별시",
+    "cityCode": 11
+  },
+  {
+    "terminalId": "NAEK030",
+    "terminalNm": "센트럴시티터미널(호남선)",
+    "cityName": "서울특별시",
+    "cityCode": 11
+  },
+  {
+    "terminalId": "NAEK300",
+    "terminalNm": "부산종합버스터미널",
+    "cityName": "부산광역시",
+    "cityCode": 21
+  },
+  {
+    "terminalId": "NAEK310",
+    "terminalNm": "동대구터미널",
+    "cityName": "대구광역시",
+    "cityCode": 22
+  },
+  {
+    "terminalId": "NAEK320",
+    "terminalNm": "대전복합터미널",
+    "cityName": "대전광역시",
+    "cityCode": 25
+  },
+  {
+    "terminalId": "NAEK330",
+    "terminalNm": "광주종합버스터미널",
+    "cityName": "광주광역시",
+    "cityCode": 24
+  },
+  {
+    "terminalId": "NAEK340",
+    "terminalNm": "울산고속버스터미널",
+    "cityName": "울산광역시",
+    "cityCode": 26
+  },
+  {
+    "terminalId": "NAEK400",
+    "terminalNm": "강릉고속버스터미널",
+    "cityName": "강원특별자치도",
+    "cityCode": 32
+  },
+  {
+    "terminalId": "NAEK410",
+    "terminalNm": "속초고속버스터미널",
+    "cityName": "강원특별자치도",
+    "cityCode": 32
+  }
+]
