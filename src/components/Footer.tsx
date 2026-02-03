@@ -8,8 +8,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold mb-3">버스 시간표</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <h3 className="font-bold mb-3 text-gray-900">버스 시간표</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
               <li>
                 <Link href="/express" className="hover:text-blue-600">
                   고속버스 시간표
@@ -23,8 +23,8 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-bold mb-3">예매 사이트</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <h3 className="font-bold mb-3 text-gray-900">예매 사이트</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
               <li>
                 <a
                   href="https://www.kobus.co.kr"
@@ -58,8 +58,8 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-bold mb-3">관련 서비스</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
+            <h3 className="font-bold mb-3 text-gray-900">관련 서비스</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
               <li>
                 <a
                   href="https://calc.mustarddata.com"
@@ -83,7 +83,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t text-center text-sm text-gray-500">
+        <div className="mt-8 pt-6 border-t text-center text-sm text-gray-600">
           <p>
             © {currentYear} MustardData. 본 사이트의 시간표 정보는 공공데이터를
             기반으로 제공되며, 실제 운행 정보와 다를 수 있습니다.

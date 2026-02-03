@@ -126,12 +126,12 @@ export default async function TerminalPage({ params }: Props) {
       </section>
 
       {/* 터미널 안내 */}
-      <section className="mt-12 bg-gray-50 rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">터미널 안내</h2>
+      <section className="mt-12 bg-gray-100 rounded-lg p-6">
+        <h2 className="text-xl font-bold mb-4 text-gray-900">터미널 안내</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="font-medium mb-2">예매 안내</h3>
-            <ul className="text-sm text-gray-600 space-y-2">
+            <h3 className="font-medium mb-2 text-gray-800">예매 안내</h3>
+            <ul className="text-sm text-gray-700 space-y-2">
               <li>
                 <a
                   href="https://www.kobus.co.kr"
@@ -155,8 +155,8 @@ export default async function TerminalPage({ params }: Props) {
             </ul>
           </div>
           <div>
-            <h3 className="font-medium mb-2">이용 안내</h3>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <h3 className="font-medium mb-2 text-gray-800">이용 안내</h3>
+            <ul className="text-sm text-gray-700 space-y-1">
               <li>• 출발 30분 전 도착 권장</li>
               <li>• 신분증 필수 지참</li>
               <li>• 성수기 사전 예매 필수</li>
