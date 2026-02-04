@@ -76,10 +76,10 @@ export default function ExpressClient({ terminals, routes }: Props) {
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* 헤더 섹션 */}
-      <div className="bg-blue-600 text-white py-12 px-4 shadow-md">
+      <div className="bg-indigo-700 text-white py-12 px-4 shadow-md">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">고속버스 시간표</h1>
-          <p className="text-blue-100 text-lg mb-8">
+          <p className="text-indigo-200 text-lg mb-8">
             전국 <strong className="text-white">{terminals.length}</strong>개 터미널, <strong className="text-white">{routes.length}</strong>개 노선의 운행 정보를 확인하세요
           </p>
           
@@ -90,7 +90,7 @@ export default function ExpressClient({ terminals, routes }: Props) {
               placeholder="터미널 이름 검색 (예: 서울, 부산)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 text-lg placeholder-gray-500"
+              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-400 text-lg placeholder-gray-500"
             />
             <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
