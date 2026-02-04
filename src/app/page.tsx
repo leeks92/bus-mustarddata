@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getExpressTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
 import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd } from '@/components/JsonLd';
+import SearchForm from '@/components/SearchForm';
 
 // 인기 노선 (하드코딩 - 추후 트래픽 기반으로 변경 가능)
 const popularRoutes = [
@@ -76,51 +77,7 @@ export default function HomePage() {
           <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
             <span className="text-2xl">🔍</span> 시간표 검색
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative">
-              <label className="block text-sm font-bold text-gray-700 mb-2">
-                출발지
-              </label>
-              <div className="relative">
-                <select className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg">
-                  <option value="">터미널 선택</option>
-                  {terminals.map(t => (
-                    <option key={t.terminalId} value={t.terminalId}>
-                      {t.terminalNm}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <label className="block text-sm font-bold text-gray-700 mb-2">
-                도착지
-              </label>
-              <div className="relative">
-                <select className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg">
-                  <option value="">터미널 선택</option>
-                  {terminals.map(t => (
-                    <option key={t.terminalId} value={t.terminalId}>
-                      {t.terminalNm}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-end">
-              <button className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0">
-                시간표 조회하기
-              </button>
-            </div>
-          </div>
+          <SearchForm terminals={terminals} />
 
           {/* 통계 */}
           <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-8 md:gap-16 text-sm text-gray-600">
