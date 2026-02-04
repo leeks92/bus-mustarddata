@@ -23,6 +23,7 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     const name = terminal.terminalNm;
     const city = terminal.cityName || '';
 
+    // 광역시/특별시 (cityName에서 "서울특별시", "부산광역시" 등 매칭)
     if (name.includes('서울') || city.includes('서울')) region = '서울';
     else if (name.includes('부산') || city.includes('부산')) region = '부산';
     else if (name.includes('대구') || city.includes('대구')) region = '대구';
@@ -31,14 +32,15 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     else if (name.includes('울산') || city.includes('울산')) region = '울산';
     else if (name.includes('인천') || city.includes('인천')) region = '인천';
     else if (name.includes('세종') || city.includes('세종')) region = '세종';
+    // 도 단위 (약어 + 전체 이름 모두 매칭)
     else if (city.includes('경기')) region = '경기';
     else if (city.includes('강원')) region = '강원';
-    else if (city.includes('충북')) region = '충북';
-    else if (city.includes('충남')) region = '충남';
-    else if (city.includes('경북')) region = '경북';
-    else if (city.includes('경남')) region = '경남';
-    else if (city.includes('전북')) region = '전북';
-    else if (city.includes('전남')) region = '전남';
+    else if (city.includes('충청북') || city.includes('충북')) region = '충북';
+    else if (city.includes('충청남') || city.includes('충남')) region = '충남';
+    else if (city.includes('경상북') || city.includes('경북')) region = '경북';
+    else if (city.includes('경상남') || city.includes('경남')) region = '경남';
+    else if (city.includes('전라북') || city.includes('전북')) region = '전북';
+    else if (city.includes('전라남') || city.includes('전남')) region = '전남';
     else if (city.includes('제주')) region = '제주';
 
     if (!regions[region]) {
