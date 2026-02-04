@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getExpressTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
+import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd } from '@/components/JsonLd';
 
 // 인기 노선 (하드코딩 - 추후 트래픽 기반으로 변경 가능)
 const popularRoutes = [
@@ -14,6 +15,23 @@ const popularRoutes = [
   { dep: '서울고속버스터미널(경부 영동선)', arr: '울산고속버스터미널' },
 ];
 
+const BASE_URL = 'https://bus.mustarddata.com';
+
+const faqItems = [
+  {
+    question: '고속버스와 시외버스의 차이점은 무엇인가요?',
+    answer: '고속버스는 고속도로를 이용하여 주요 도시 간을 빠르게 연결하며, 시외버스는 일반 국도를 이용하여 중소도시와 읍면 지역까지 연결합니다. 고속버스가 더 빠르지만 시외버스는 더 많은 지역을 커버합니다.',
+  },
+  {
+    question: '버스 예매는 어디서 할 수 있나요?',
+    answer: '고속버스는 고속버스통합예매(KOBUS), 시외버스는 버스타고(bustago.or.kr)에서 예매할 수 있습니다. 터미널 현장에서도 예매 가능합니다.',
+  },
+  {
+    question: '버스 시간표는 얼마나 자주 업데이트되나요?',
+    answer: '본 서비스의 시간표는 매주 업데이트됩니다. 명절이나 공휴일에는 임시 배차가 있을 수 있으므로 공식 예매 사이트에서 최종 확인을 권장합니다.',
+  },
+];
+
 export default function HomePage() {
   const terminals = getExpressTerminals();
   const routes = getExpressRoutes();
@@ -21,6 +39,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* JSON-LD 구조화 데이터 */}
+      <WebSiteJsonLd
+        name="전국 고속버스·시외버스 시간표"
+        url={BASE_URL}
+        description="전국 고속버스, 시외버스 시간표와 요금 정보를 무료로 조회하세요."
+      />
+      <OrganizationJsonLd />
+      <FAQJsonLd items={faqItems} />
       {/* 히어로 섹션 */}
       <section className="relative h-[400px] flex flex-col justify-center items-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">

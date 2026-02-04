@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getExpressRoute, getExpressRoutes, formatCharge } from '@/lib/data';
+import { BusTripJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/JsonLd';
+
+const BASE_URL = 'https://bus.mustarddata.com';
 
 interface Props {
   params: Promise<{
@@ -32,6 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const depName = route.depTerminalName.replace('터미널', '').replace('종합버스', '');
   const arrName = route.arrTerminalName.replace('터미널', '').replace('종합버스', '');
 
+  const minCharge = Math.min(...route.schedules.map(s => s.charge));
+
   return {
     title: `${depName} → ${arrName} 고속버스 시간표 - 요금, 소요시간`,
     description: `${route.depTerminalName}에서 ${route.arrTerminalName} 가는 고속버스 시간표. ${route.schedules.length}회 운행, 요금 ${formatCharge(route.schedules[0]?.charge || 0)}부터.`,
@@ -41,6 +46,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${route.depTerminalName} 시간표`,
       `${route.arrTerminalName} 시간표`,
     ],
+    alternates: {
+      canonical: `${BASE_URL}/express/${departure}/${arrival}`,
+    },
+    openGraph: {
+      title: `${depName} → ${arrName} 고속버스 시간표`,
+      description: `${route.depTerminalName}에서 ${route.arrTerminalName} 가는 고속버스. ${route.schedules.length}회/일 운행, ${formatCharge(minCharge)}부터.`,
+      url: `${BASE_URL}/express/${departure}/${arrival}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${depName} → ${arrName} 고속버스 시간표`,
+      description: `${route.schedules.length}회/일 운행, ${formatCharge(minCharge)}부터`,
+    },
   };
 }
 
@@ -88,8 +107,38 @@ export default async function RoutePage({ params }: Props) {
     {} as Record<string, typeof schedules>
   );
 
+  // 브레드크럼 데이터
+  const breadcrumbItems = [
+    { name: '홈', url: BASE_URL },
+    { name: '고속버스', url: `${BASE_URL}/express` },
+    { name: `${route.depTerminalName} → ${route.arrTerminalName}`, url: `${BASE_URL}/express/${departure}/${arrival}` },
+  ];
+
+  // FAQ 데이터
+  const faqItems = [
+    {
+      question: `${route.depTerminalName}에서 ${route.arrTerminalName}까지 버스 요금은 얼마인가요?`,
+      answer: `${route.depTerminalName}에서 ${route.arrTerminalName}까지 고속버스 요금은 ${formatCharge(minCharge)}${minCharge !== maxCharge ? `부터 ${formatCharge(maxCharge)}` : ''}입니다. 버스 등급(일반, 우등, 프리미엄)에 따라 요금이 다릅니다.`,
+    },
+    {
+      question: `${route.depTerminalName}에서 ${route.arrTerminalName}까지 첫차와 막차 시간은?`,
+      answer: `첫차는 ${schedules[0]?.depTime || '-'}에 출발하고, 막차는 ${schedules[schedules.length - 1]?.depTime || '-'}에 출발합니다. 하루 총 ${schedules.length}회 운행됩니다.`,
+    },
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
+      {/* JSON-LD 구조화 데이터 */}
+      <BusTripJsonLd
+        departureStation={route.depTerminalName}
+        arrivalStation={route.arrTerminalName}
+        departureTime={schedules[0]?.depTime}
+        price={minCharge}
+        url={`${BASE_URL}/express/${departure}/${arrival}`}
+      />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+      <FAQJsonLd items={faqItems} />
+
       {/* 브레드크럼 */}
       <nav className="text-sm text-gray-600 mb-6">
         <Link href="/" className="hover:text-blue-600">

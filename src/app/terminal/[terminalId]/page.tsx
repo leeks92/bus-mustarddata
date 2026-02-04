@@ -8,6 +8,9 @@ import {
   formatCharge,
 } from '@/lib/data';
 import { getTerminalInfo } from '@/lib/terminal-info';
+import { BusStationJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
+
+const BASE_URL = 'https://bus.mustarddata.com';
 
 interface Props {
   params: Promise<{
@@ -41,6 +44,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${terminal.terminalNm} 시간표 - 버스 노선, 요금 안내`,
     description: `${terminal.terminalNm} 고속버스, 시외버스 시간표와 요금 정보. 출발 노선 및 운행 시간 조회.`,
+    alternates: {
+      canonical: `${BASE_URL}/terminal/${terminalId}`,
+    },
+    openGraph: {
+      title: `${terminal.terminalNm} 버스 시간표`,
+      description: `${terminal.terminalNm} 고속버스, 시외버스 시간표와 요금 정보를 확인하세요.`,
+      url: `${BASE_URL}/terminal/${terminalId}`,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${terminal.terminalNm} 버스 시간표`,
+      description: `${terminal.terminalNm} 고속버스, 시외버스 시간표와 요금 정보를 확인하세요.`,
+    },
   };
 }
 
@@ -66,8 +83,23 @@ export default async function TerminalPage({ params }: Props) {
     a.arrTerminalName.localeCompare(b.arrTerminalName)
   );
 
+  const breadcrumbItems = [
+    { name: '홈', url: BASE_URL },
+    { name: '고속버스', url: `${BASE_URL}/express` },
+    { name: terminal.terminalNm, url: `${BASE_URL}/terminal/${terminalId}` },
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
+      {/* JSON-LD 구조화 데이터 */}
+      <BusStationJsonLd
+        name={terminal.terminalNm}
+        address={terminalInfo?.address}
+        telephone={terminalInfo?.phone}
+        url={`${BASE_URL}/terminal/${terminalId}`}
+      />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+
       {/* 브레드크럼 */}
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-blue-600">
