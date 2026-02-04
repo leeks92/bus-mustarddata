@@ -14,6 +14,47 @@ interface Props {
   intercityTerminals: Terminal[];
 }
 
+// 터미널을 지역별로 그룹화하는 함수
+function groupTerminalsByRegion(terminals: Terminal[]) {
+  const regions: Record<string, Terminal[]> = {};
+
+  terminals.forEach(terminal => {
+    let region = '기타';
+    const name = terminal.terminalNm;
+    const city = terminal.cityName || '';
+
+    if (name.includes('서울') || city.includes('서울')) region = '서울';
+    else if (name.includes('부산') || city.includes('부산')) region = '부산';
+    else if (name.includes('대구') || city.includes('대구')) region = '대구';
+    else if (name.includes('대전') || city.includes('대전')) region = '대전';
+    else if (name.includes('광주') || city.includes('광주')) region = '광주';
+    else if (name.includes('울산') || city.includes('울산')) region = '울산';
+    else if (name.includes('인천') || city.includes('인천')) region = '인천';
+    else if (name.includes('세종') || city.includes('세종')) region = '세종';
+    else if (city.includes('경기')) region = '경기';
+    else if (city.includes('강원')) region = '강원';
+    else if (city.includes('충북')) region = '충북';
+    else if (city.includes('충남')) region = '충남';
+    else if (city.includes('경북')) region = '경북';
+    else if (city.includes('경남')) region = '경남';
+    else if (city.includes('전북')) region = '전북';
+    else if (city.includes('전남')) region = '전남';
+    else if (city.includes('제주')) region = '제주';
+
+    if (!regions[region]) {
+      regions[region] = [];
+    }
+    regions[region].push(terminal);
+  });
+
+  return regions;
+}
+
+const regionOrder = [
+  '서울', '경기', '인천', '부산', '대구', '대전', '광주', '울산', '세종',
+  '강원', '충북', '충남', '경북', '경남', '전북', '전남', '제주', '기타'
+];
+
 export default function TerminalClient({ expressTerminals, intercityTerminals }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<'all' | 'express' | 'intercity'>('all');
@@ -27,6 +68,10 @@ export default function TerminalClient({ expressTerminals, intercityTerminals }:
 
   const filteredExpress = filterTerminals(expressTerminals);
   const filteredIntercity = filterTerminals(intercityTerminals);
+  
+  // 지역별 그룹화
+  const groupedExpress = groupTerminalsByRegion(filteredExpress);
+  const groupedIntercity = groupTerminalsByRegion(filteredIntercity);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
@@ -99,77 +144,80 @@ export default function TerminalClient({ expressTerminals, intercityTerminals }:
           </div>
         )}
 
-        {/* 고속버스 터미널 */}
-        {(activeTab === 'all' || activeTab === 'express') && filteredExpress.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800">
-              <span className="text-blue-600">🚌</span> 고속버스 터미널
-              <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                {filteredExpress.length}개
-              </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredExpress.map(terminal => (
-                <Link
-                  key={terminal.terminalId}
-                  href={`/terminal/${terminal.terminalId}`}
-                  className="group bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all duration-200"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                        {terminal.terminalNm}
-                      </h3>
-                      {terminal.cityName && (
-                        <p className="text-sm text-gray-600 mt-1 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                          {terminal.cityName}
-                        </p>
-                      )}
-                    </div>
-                    <span className="text-xs font-semibold bg-blue-50 text-blue-600 px-2 py-1 rounded">고속</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* 지역별 터미널 목록 */}
+        <div className="space-y-12">
+          {regionOrder.map(region => {
+            const expressInRegion = (activeTab === 'all' || activeTab === 'express') ? (groupedExpress[region] || []) : [];
+            const intercityInRegion = (activeTab === 'all' || activeTab === 'intercity') ? (groupedIntercity[region] || []) : [];
+            const totalInRegion = expressInRegion.length + intercityInRegion.length;
+            
+            if (totalInRegion === 0) return null;
 
-        {/* 시외버스 터미널 */}
-        {(activeTab === 'all' || activeTab === 'intercity') && filteredIntercity.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800">
-              <span className="text-green-600">🚐</span> 시외버스 터미널
-              <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                {filteredIntercity.length}개
-              </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredIntercity.map(terminal => (
-                <Link
-                  key={terminal.terminalId}
-                  href={`/terminal/${terminal.terminalId}`}
-                  className="group bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-green-300 transition-all duration-200"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors">
-                        {terminal.terminalNm}
-                      </h3>
+            return (
+              <section key={region} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800 border-b pb-4">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-700 text-lg">
+                    {region.substring(0, 1)}
+                  </span>
+                  {region}
+                  <span className="text-sm font-normal text-gray-500 ml-auto bg-gray-50 px-3 py-1 rounded-full">
+                    {totalInRegion}개 터미널
+                  </span>
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* 고속버스 터미널 */}
+                  {expressInRegion.map(terminal => (
+                    <Link
+                      key={`express-${terminal.terminalId}`}
+                      href={`/terminal/${terminal.terminalId}`}
+                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-blue-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          {terminal.terminalNm}
+                        </h3>
+                        <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                          고속
+                        </span>
+                      </div>
                       {terminal.cityName && (
-                        <p className="text-sm text-gray-600 mt-1 flex items-center">
+                        <p className="text-sm text-gray-600 flex items-center">
                           <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                           {terminal.cityName}
                         </p>
                       )}
-                    </div>
-                    <span className="text-xs font-semibold bg-green-50 text-green-600 px-2 py-1 rounded">시외</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+                    </Link>
+                  ))}
+                  
+                  {/* 시외버스 터미널 */}
+                  {intercityInRegion.map(terminal => (
+                    <Link
+                      key={`intercity-${terminal.terminalId}`}
+                      href={`/terminal/${terminal.terminalId}`}
+                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-green-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors">
+                          {terminal.terminalNm}
+                        </h3>
+                        <span className="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">
+                          시외
+                        </span>
+                      </div>
+                      {terminal.cityName && (
+                        <p className="text-sm text-gray-600 flex items-center">
+                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                          {terminal.cityName}
+                        </p>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
