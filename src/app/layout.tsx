@@ -57,9 +57,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Google Search Console에서 발급받은 코드로 교체
-  },
 };
 
 export default function RootLayout({
