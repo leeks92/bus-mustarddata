@@ -88,9 +88,9 @@ export default function ExpressClient({ terminals, routes }: Props) {
               placeholder="터미널 이름 검색 (예: 서울, 부산)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 text-lg placeholder-gray-400"
+              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 text-lg placeholder-gray-500"
             />
-            <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function ExpressClient({ terminals, routes }: Props) {
         {/* 검색 결과 없음 */}
         {filteredTerminals.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-500">검색 결과가 없습니다.</p>
+            <p className="text-xl text-gray-600">검색 결과가 없습니다.</p>
           </div>
         )}
 
@@ -118,7 +118,7 @@ export default function ExpressClient({ terminals, routes }: Props) {
                     {region.substring(0, 1)}
                   </span>
                   {region}
-                  <span className="text-sm font-normal text-gray-400 ml-auto bg-gray-50 px-3 py-1 rounded-full">
+                  <span className="text-sm font-normal text-gray-500 ml-auto bg-gray-50 px-3 py-1 rounded-full">
                     {regionTerminals.length}개 터미널
                   </span>
                 </h2>
@@ -144,15 +144,15 @@ export default function ExpressClient({ terminals, routes }: Props) {
                               운행중
                             </span>
                           ) : (
-                            <span className="text-xs font-semibold bg-gray-200 text-gray-500 px-2 py-1 rounded">
+                            <span className="text-xs font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
                               정보없음
                             </span>
                           )}
                         </div>
-                        <div className="flex items-center text-sm text-gray-500 mt-2">
-                          <svg className="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
+                        <div className="flex items-center text-sm text-gray-600 mt-2">
+                          <svg className="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
                           {routeCount > 0 ? (
-                            <span><strong className="text-gray-700">{routeCount}</strong>개 노선 운행</span>
+                            <span><strong className="text-gray-800">{routeCount}</strong>개 노선 운행</span>
                           ) : (
                             <span>노선 정보 준비중</span>
                           )}

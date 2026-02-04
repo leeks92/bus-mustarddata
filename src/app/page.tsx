@@ -38,7 +38,7 @@ export default function HomePage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
             전국 고속버스·시외버스 시간표
           </h1>
-          <p className="text-lg md:text-xl text-gray-100 mb-8 drop-shadow-md max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white mb-8 drop-shadow-md max-w-2xl mx-auto">
             출발지와 도착지를 선택하여 가장 빠르고 정확한 버스 시간표와 요금을 확인하세요
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
                     </option>
                   ))}
                 </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function HomePage() {
                     </option>
                   ))}
                 </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
               </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
           </div>
 
           {/* 통계 */}
-          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-8 md:gap-16 text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-8 md:gap-16 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
               <span>터미널 <strong className="text-gray-900 text-lg ml-1">{terminals.length}</strong>개</span>
@@ -131,8 +131,8 @@ export default function HomePage() {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">고속버스 시간표</h3>
-              <p className="text-gray-600 mb-4">전국 주요 도시를 연결하는 고속버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-blue-600 font-medium">
+              <p className="text-gray-700 mb-4">전국 주요 도시를 연결하는 고속버스 운행정보를 확인하세요.</p>
+              <div className="flex items-center text-blue-700 font-medium">
                 바로가기 
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
@@ -151,8 +151,8 @@ export default function HomePage() {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">시외버스 시간표</h3>
-              <p className="text-gray-600 mb-4">전국 방방곡곡을 연결하는 시외버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-green-600 font-medium">
+              <p className="text-gray-700 mb-4">전국 방방곡곡을 연결하는 시외버스 운행정보를 확인하세요.</p>
+              <div className="flex items-center text-green-700 font-medium">
                 준비 중
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
@@ -212,9 +212,9 @@ export default function HomePage() {
         </section>
 
         {/* SEO 텍스트 */}
-        <section className="mt-16 bg-gray-100 rounded-xl p-6 text-gray-600 text-sm leading-relaxed">
-          <h2 className="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
-            <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <section className="mt-16 bg-gray-100 rounded-xl p-6 text-gray-700 text-sm leading-relaxed">
+          <h2 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             전국 버스 시간표 서비스 안내
           </h2>
           <div className="space-y-2">
@@ -224,7 +224,7 @@ export default function HomePage() {
             </p>
             <p>
               제공되는 정보는 운수사의 사정에 따라 변경될 수 있으며, 명절이나 공휴일에는 임시 차량이 배치될 수 있습니다. 
-              정확한 예매 및 좌석 확인은 <span className="font-semibold text-gray-700">고속버스통합예매(KOBUS)</span>, <span className="font-semibold text-gray-700">티머니 시외버스</span>, <span className="font-semibold text-gray-700">버스타고</span> 등 공식 예매 사이트 및 앱을 이용해 주시기 바랍니다.
+              정확한 예매 및 좌석 확인은 <span className="font-semibold text-gray-900">고속버스통합예매(KOBUS)</span>, <span className="font-semibold text-gray-900">티머니 시외버스</span>, <span className="font-semibold text-gray-900">버스타고</span> 등 공식 예매 사이트 및 앱을 이용해 주시기 바랍니다.
             </p>
           </div>
         </section>

@@ -48,11 +48,13 @@ a {
   padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
+  color: #374151; /* gray-700 */
 }
 
 .schedule-table th {
   background-color: #f9fafb;
   font-weight: 600;
+  color: #111827; /* gray-900 */
 }
 
 .schedule-table tr:hover {

@@ -91,7 +91,7 @@ export default async function RoutePage({ params }: Props) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* 브레드크럼 */}
-      <nav className="text-sm text-gray-500 mb-6">
+      <nav className="text-sm text-gray-600 mb-6">
         <Link href="/" className="hover:text-blue-600">
           홈
         </Link>
@@ -159,7 +159,7 @@ export default async function RoutePage({ params }: Props) {
       {/* 시간표 테이블 */}
       <section className="bg-white rounded-xl shadow overflow-hidden">
         <div className="p-4 border-b bg-gray-50">
-          <h2 className="text-lg font-bold">시간표</h2>
+          <h2 className="text-lg font-bold text-gray-900">시간표</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="schedule-table">
@@ -203,7 +203,7 @@ export default async function RoutePage({ params }: Props) {
               <p className="text-2xl font-bold text-blue-600">
                 {formatCharge(items[0].charge)}
               </p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-600 mt-1">
                 {items.length}회 운행
               </p>
             </div>
@@ -223,7 +223,7 @@ export default async function RoutePage({ params }: Props) {
       </section>
 
       {/* SEO 텍스트 */}
-      <section className="mt-12 text-sm text-gray-500">
+      <section className="mt-12 text-sm text-gray-600">
         <p>
           {route.depTerminalName}에서 {route.arrTerminalName}까지 고속버스는 하루{' '}
           {schedules.length}회 운행됩니다. 첫차는 {schedules[0]?.depTime}, 막차는{' '}
