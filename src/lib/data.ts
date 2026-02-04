@@ -61,12 +61,22 @@ export function getExpressRoutes(): RouteData[] {
   return loadJson<RouteData[]>('express-routes.json') || [];
 }
 
+// 시외버스 노선 목록
+export function getIntercityRoutes(): RouteData[] {
+  return loadJson<RouteData[]>('intercity-routes.json') || [];
+}
+
+// 모든 노선 (고속 + 시외)
+export function getAllRoutes(): RouteData[] {
+  return [...getExpressRoutes(), ...getIntercityRoutes()];
+}
+
 // 메타데이터
 export function getMetadata(): Metadata | null {
   return loadJson<Metadata>('metadata.json');
 }
 
-// 특정 노선 조회
+// 특정 노선 조회 (고속버스)
 export function getExpressRoute(
   depTerminalId: string,
   arrTerminalId: string
@@ -79,10 +89,34 @@ export function getExpressRoute(
   );
 }
 
-// 터미널별 출발 노선 목록
+// 특정 노선 조회 (시외버스)
+export function getIntercityRoute(
+  depTerminalId: string,
+  arrTerminalId: string
+): RouteData | null {
+  const routes = getIntercityRoutes();
+  return (
+    routes.find(
+      r => r.depTerminalId === depTerminalId && r.arrTerminalId === arrTerminalId
+    ) || null
+  );
+}
+
+// 특정 노선 조회 (고속 + 시외)
+export function getRoute(
+  depTerminalId: string,
+  arrTerminalId: string
+): RouteData | null {
+  return getExpressRoute(depTerminalId, arrTerminalId) || 
+         getIntercityRoute(depTerminalId, arrTerminalId);
+}
+
+// 터미널별 출발 노선 목록 (고속 + 시외)
 export function getRoutesFromTerminal(terminalId: string): RouteData[] {
-  const routes = getExpressRoutes();
-  return routes.filter(r => r.depTerminalId === terminalId);
+  const expressRoutes = getExpressRoutes();
+  const intercityRoutes = getIntercityRoutes();
+  const allRoutes = [...expressRoutes, ...intercityRoutes];
+  return allRoutes.filter(r => r.depTerminalId === terminalId);
 }
 
 // 터미널 정보 조회
@@ -93,9 +127,18 @@ export function getTerminal(terminalId: string): Terminal | null {
   return all.find(t => t.terminalId === terminalId) || null;
 }
 
-// 모든 노선 조합 (정적 페이지 생성용)
+// 모든 고속버스 노선 조합 (정적 페이지 생성용)
 export function getAllRouteParams(): { departure: string; arrival: string }[] {
   const routes = getExpressRoutes();
+  return routes.map(r => ({
+    departure: r.depTerminalId,
+    arrival: r.arrTerminalId,
+  }));
+}
+
+// 모든 시외버스 노선 조합 (정적 페이지 생성용)
+export function getAllIntercityRouteParams(): { departure: string; arrival: string }[] {
+  const routes = getIntercityRoutes();
   return routes.map(r => ({
     departure: r.depTerminalId,
     arrival: r.arrTerminalId,

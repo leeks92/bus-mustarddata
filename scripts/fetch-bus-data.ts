@@ -181,6 +181,16 @@ async function getIntercityTerminals(): Promise<Terminal[]> {
   return fetchApi<Terminal>(url);
 }
 
+// 시외버스 시간표 조회 (당일만 가능)
+async function getIntercitySchedules(
+  depTerminalId: string,
+  arrTerminalId: string,
+  depDate: string
+): Promise<BusSchedule[]> {
+  const url = `${INTERCITY_URL}/getStrtpntAlocFndSuberbsBusInfo?serviceKey=${SERVICE_KEY}&depTerminalId=${depTerminalId}&arrTerminalId=${arrTerminalId}&depPlandTime=${depDate}&numOfRows=100&pageNo=1&_type=json`;
+  return fetchApi<BusSchedule>(url, true);
+}
+
 // 시간 문자열 변환 (202301011030 -> 10:30)
 function formatTime(timeStr: string): string {
   if (!timeStr || timeStr.length < 12) return '';
@@ -326,13 +336,87 @@ async function main() {
     JSON.stringify(expressRoutes, null, 2)
   );
 
-  // 5. 메타데이터 저장
+  // 5. 시외버스 노선 수집 (주요 터미널 간)
+  console.log('\n=== 시외버스 노선 수집 ===');
+  console.log('※ 시외버스 API는 당일 배차정보만 제공합니다.');
+  
+  const intercityRoutes: RouteData[] = [];
+  
+  // 주요 시외버스 터미널 선별 (이름에 '터미널', '종합' 포함된 것 우선)
+  const majorIntercityTerminals = intercityTerminals.filter(t => 
+    t.terminalNm.includes('터미널') || 
+    t.terminalNm.includes('종합') ||
+    t.terminalNm.includes('서울') ||
+    t.terminalNm.includes('부산') ||
+    t.terminalNm.includes('대구') ||
+    t.terminalNm.includes('대전') ||
+    t.terminalNm.includes('광주') ||
+    t.terminalNm.includes('인천')
+  ).slice(0, 100); // 상위 100개 터미널만
+  
+  console.log(`주요 시외버스 터미널: ${majorIntercityTerminals.length}개`);
+  
+  let intercityIndex = 0;
+  const totalIntercityTerminals = majorIntercityTerminals.length;
+  
+  for (const depTerminal of majorIntercityTerminals) {
+    intercityIndex++;
+    
+    // 다른 주요 터미널로의 노선 조회
+    for (const arrTerminal of majorIntercityTerminals) {
+      if (depTerminal.terminalId === arrTerminal.terminalId) continue;
+      
+      await delay(100);
+      
+      const schedules = await getIntercitySchedules(
+        depTerminal.terminalId,
+        arrTerminal.terminalId,
+        today
+      );
+      
+      if (schedules.length > 0) {
+        intercityRoutes.push({
+          depTerminalId: depTerminal.terminalId,
+          depTerminalName: depTerminal.terminalNm,
+          arrTerminalId: arrTerminal.terminalId,
+          arrTerminalName: arrTerminal.terminalNm,
+          schedules: schedules.map(s => ({
+            depTime: formatTime(String(s.depPlandTime)),
+            arrTime: formatTime(String(s.arrPlandTime)),
+            grade: s.gradeNm || '일반',
+            charge: s.charge || 0,
+          })),
+        });
+      }
+    }
+    
+    // 진행 상황 (10개 터미널마다)
+    if (intercityIndex % 10 === 0) {
+      console.log(`진행: ${intercityIndex}/${totalIntercityTerminals} - 수집된 시외버스 노선: ${intercityRoutes.length}개`);
+      
+      // 중간 저장
+      fs.writeFileSync(
+        path.join(dataDir, 'intercity-routes.json'),
+        JSON.stringify(intercityRoutes, null, 2)
+      );
+    }
+  }
+  
+  console.log(`\n시외버스 총 노선: ${intercityRoutes.length}개`);
+  
+  // 시외버스 노선 저장
+  fs.writeFileSync(
+    path.join(dataDir, 'intercity-routes.json'),
+    JSON.stringify(intercityRoutes, null, 2)
+  );
+
+  // 6. 메타데이터 저장
   const metadata = {
     lastUpdated: new Date().toISOString(),
     expressTerminalCount: expressTerminals.length,
     intercityTerminalCount: intercityTerminals.length,
     expressRouteCount: expressRoutes.length,
-    intercityRouteCount: 0,
+    intercityRouteCount: intercityRoutes.length,
   };
   
   fs.writeFileSync(
