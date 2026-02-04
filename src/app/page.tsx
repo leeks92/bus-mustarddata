@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getExpressTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
+import { getExpressTerminals, getIntercityTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
 import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd } from '@/components/JsonLd';
 import SearchForm from '@/components/SearchForm';
 
@@ -34,7 +34,8 @@ const faqItems = [
 ];
 
 export default function HomePage() {
-  const terminals = getExpressTerminals();
+  const expressTerminals = getExpressTerminals();
+  const intercityTerminals = getIntercityTerminals();
   const routes = getExpressRoutes();
   const metadata = getMetadata();
 
@@ -77,13 +78,17 @@ export default function HomePage() {
           <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
             <span className="text-2xl">🔍</span> 시간표 검색
           </h2>
-          <SearchForm terminals={terminals} />
+          <SearchForm expressTerminals={expressTerminals} intercityTerminals={intercityTerminals} />
 
           {/* 통계 */}
-          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-8 md:gap-16 text-sm text-gray-600">
+          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span>터미널 <strong className="text-gray-900 text-lg ml-1">{terminals.length}</strong>개</span>
+              <span>고속 터미널 <strong className="text-gray-900 text-lg ml-1">{expressTerminals.length}</strong>개</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span>시외 터미널 <strong className="text-gray-900 text-lg ml-1">{intercityTerminals.length.toLocaleString()}</strong>개</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>

@@ -9,22 +9,34 @@ interface Terminal {
 }
 
 interface Props {
-  terminals: Terminal[];
+  expressTerminals: Terminal[];
+  intercityTerminals: Terminal[];
 }
 
-export default function SearchForm({ terminals }: Props) {
+export default function SearchForm({ expressTerminals, intercityTerminals }: Props) {
   const router = useRouter();
+  const [busType, setBusType] = useState<'express' | 'intercity'>('express');
   const [departure, setDeparture] = useState('');
   const [arrival, setArrival] = useState('');
   const [error, setError] = useState('');
 
+  // 현재 선택된 버스 유형에 따른 터미널 목록
+  const currentTerminals = busType === 'express' ? expressTerminals : intercityTerminals;
+
   // 이름 기준 중복 제거 (같은 이름의 터미널은 첫 번째만 표시)
-  const uniqueTerminals = terminals.reduce<Terminal[]>((acc, terminal) => {
+  const uniqueTerminals = currentTerminals.reduce<Terminal[]>((acc, terminal) => {
     if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
       acc.push(terminal);
     }
     return acc;
   }, []);
+
+  const handleBusTypeChange = (type: 'express' | 'intercity') => {
+    setBusType(type);
+    setDeparture('');
+    setArrival('');
+    setError('');
+  };
 
   const handleSearch = () => {
     if (!departure) {
@@ -41,11 +53,41 @@ export default function SearchForm({ terminals }: Props) {
     }
     
     setError('');
-    router.push(`/express/${departure}/${arrival}`);
+    
+    if (busType === 'express') {
+      router.push(`/express/${departure}/${arrival}`);
+    } else {
+      // 시외버스는 터미널 페이지로 이동 (노선 페이지가 아직 없으므로)
+      router.push(`/terminal/${departure}`);
+    }
   };
 
   return (
     <div>
+      {/* 버스 유형 선택 탭 */}
+      <div className="flex mb-6">
+        <button
+          onClick={() => handleBusTypeChange('express')}
+          className={`flex-1 py-3 px-4 text-center font-bold rounded-l-xl border transition-all ${
+            busType === 'express'
+              ? 'bg-blue-600 text-white border-blue-600'
+              : 'bg-gray-50 text-gray-600 border-gray-300 hover:bg-gray-100'
+          }`}
+        >
+          🚌 고속버스
+        </button>
+        <button
+          onClick={() => handleBusTypeChange('intercity')}
+          className={`flex-1 py-3 px-4 text-center font-bold rounded-r-xl border-t border-r border-b transition-all ${
+            busType === 'intercity'
+              ? 'bg-teal-600 text-white border-teal-600'
+              : 'bg-gray-50 text-gray-600 border-gray-300 hover:bg-gray-100'
+          }`}
+        >
+          🚐 시외버스
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="relative">
           <label className="block text-sm font-bold text-gray-700 mb-2">
@@ -58,7 +100,11 @@ export default function SearchForm({ terminals }: Props) {
                 setDeparture(e.target.value);
                 setError('');
               }}
-              className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg"
+              className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
+                busType === 'express' 
+                  ? 'focus:ring-blue-500 focus:border-blue-500' 
+                  : 'focus:ring-teal-500 focus:border-teal-500'
+              }`}
             >
               <option value="">터미널 선택</option>
               {uniqueTerminals.map(t => (
@@ -84,7 +130,11 @@ export default function SearchForm({ terminals }: Props) {
                 setArrival(e.target.value);
                 setError('');
               }}
-              className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg"
+              className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
+                busType === 'express' 
+                  ? 'focus:ring-blue-500 focus:border-blue-500' 
+                  : 'focus:ring-teal-500 focus:border-teal-500'
+              }`}
             >
               <option value="">터미널 선택</option>
               {uniqueTerminals.map(t => (
@@ -102,7 +152,11 @@ export default function SearchForm({ terminals }: Props) {
         <div className="flex items-end">
           <button 
             onClick={handleSearch}
-            className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+            className={`w-full text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 ${
+              busType === 'express'
+                ? 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-teal-600 hover:bg-teal-700'
+            }`}
           >
             시간표 조회하기
           </button>
@@ -113,6 +167,13 @@ export default function SearchForm({ terminals }: Props) {
         <div className="mt-4 text-red-600 text-sm font-medium flex items-center gap-2">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           {error}
+        </div>
+      )}
+
+      {busType === 'intercity' && (
+        <div className="mt-4 text-amber-600 text-sm flex items-center gap-2 bg-amber-50 p-3 rounded-lg">
+          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>시외버스는 출발 터미널 정보 페이지로 이동합니다. 노선 상세 페이지는 준비 중입니다.</span>
         </div>
       )}
     </div>
