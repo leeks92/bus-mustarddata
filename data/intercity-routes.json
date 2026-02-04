@@ -1,1 +1,4148 @@
-[]
+[
+  {
+    "depTerminalId": "NAI6193701",
+    "depTerminalName": "광주(유·스퀘어)",
+    "arrTerminalId": "NAI4248201",
+    "arrTerminalName": "대구서부",
+    "schedules": [
+      {
+        "depTime": "07:50",
+        "arrTime": "10:20",
+        "grade": "프리미엄",
+        "charge": 27200
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "14:30",
+        "grade": "프리미엄",
+        "charge": 27200
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "16:30",
+        "grade": "우등",
+        "charge": 20900
+      },
+      {
+        "depTime": "18:10",
+        "arrTime": "20:40",
+        "grade": "프리미엄",
+        "charge": 27200
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI6193701",
+    "depTerminalName": "광주(유·스퀘어)",
+    "arrTerminalId": "NAI3455101",
+    "arrTerminalName": "대전복합",
+    "schedules": [
+      {
+        "depTime": "14:00",
+        "arrTime": "15:30",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0511601",
+    "depTerminalName": "동서울",
+    "arrTerminalId": "NAI2812001",
+    "arrTerminalName": "청주북부터미널",
+    "schedules": [
+      {
+        "depTime": "06:20",
+        "arrTime": "08:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "10:40",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "12:20",
+        "arrTime": "14:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "13:10",
+        "arrTime": "14:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "16:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "17:20",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "18:20",
+        "arrTime": "20:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "19:40",
+        "arrTime": "21:20",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "20:30",
+        "arrTime": "22:10",
+        "grade": "우등",
+        "charge": 12800
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0511601",
+    "depTerminalName": "동서울",
+    "arrTerminalId": "NAI2224201",
+    "arrTerminalName": "인천",
+    "schedules": [
+      {
+        "depTime": "07:20",
+        "arrTime": "08:30",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "09:30",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "09:10",
+        "arrTime": "10:20",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "10:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "10:10",
+        "arrTime": "11:20",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "10:40",
+        "arrTime": "11:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "11:20",
+        "arrTime": "12:30",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "13:10",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "12:40",
+        "arrTime": "13:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "14:40",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "14:30",
+        "arrTime": "15:40",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "16:20",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "16:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "16:10",
+        "arrTime": "17:20",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "16:40",
+        "arrTime": "17:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "17:30",
+        "arrTime": "18:40",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "19:10",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "18:50",
+        "arrTime": "20:00",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "19:40",
+        "arrTime": "20:50",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "20:20",
+        "arrTime": "21:30",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "21:00",
+        "arrTime": "22:10",
+        "grade": "일반",
+        "charge": 5700
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0511601",
+    "depTerminalName": "동서울",
+    "arrTerminalId": "NAI3403801",
+    "arrTerminalName": "북대전IC",
+    "schedules": [
+      {
+        "depTime": "06:10",
+        "arrTime": "08:00",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "06:35",
+        "arrTime": "08:25",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "07:30",
+        "arrTime": "09:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "08:00",
+        "arrTime": "09:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "08:30",
+        "arrTime": "10:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "10:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "11:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "12:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "12:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "13:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "13:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "12:30",
+        "arrTime": "14:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "14:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "15:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "15:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "14:30",
+        "arrTime": "16:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "15:30",
+        "arrTime": "17:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "17:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "18:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "18:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "17:30",
+        "arrTime": "19:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "20:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "20:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "19:30",
+        "arrTime": "21:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "21:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "20:30",
+        "arrTime": "22:20",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "21:00",
+        "arrTime": "22:50",
+        "grade": "우등",
+        "charge": 17200
+      },
+      {
+        "depTime": "21:30",
+        "arrTime": "23:20",
+        "grade": "우등",
+        "charge": 17200
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0671801",
+    "depTerminalName": "서울남부",
+    "arrTerminalId": "NAI2812001",
+    "arrTerminalName": "청주북부터미널",
+    "schedules": [
+      {
+        "depTime": "06:20",
+        "arrTime": "07:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "08:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "09:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "11:10",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "10:20",
+        "arrTime": "11:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "12:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "13:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "13:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "14:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "15:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "15:30",
+        "arrTime": "17:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "16:40",
+        "arrTime": "18:10",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "18:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "19:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "18:20",
+        "arrTime": "20:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "19:20",
+        "arrTime": "20:50",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "21:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "20:30",
+        "arrTime": "22:00",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "21:00",
+        "arrTime": "22:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "21:50",
+        "arrTime": "23:30",
+        "grade": "우등",
+        "charge": 12800
+      },
+      {
+        "depTime": "22:20",
+        "arrTime": "23:50",
+        "grade": "심야우등",
+        "charge": 15300
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0671801",
+    "depTerminalName": "서울남부",
+    "arrTerminalId": "NAI4696901",
+    "arrTerminalName": "부산서부(사상)",
+    "schedules": [
+      {
+        "depTime": "07:50",
+        "arrTime": "12:30",
+        "grade": "우등",
+        "charge": 30000
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "16:10",
+        "grade": "우등",
+        "charge": 30000
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "18:40",
+        "grade": "우등",
+        "charge": 30000
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "00:40",
+        "grade": "우등",
+        "charge": 30000
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0671801",
+    "depTerminalName": "서울남부",
+    "arrTerminalId": "NAI3455101",
+    "arrTerminalName": "대전복합",
+    "schedules": [
+      {
+        "depTime": "11:30",
+        "arrTime": "13:30",
+        "grade": "우등",
+        "charge": 15800
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "18:30",
+        "grade": "우등",
+        "charge": 15800
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2224201",
+    "depTerminalName": "인천",
+    "arrTerminalId": "NAI2812001",
+    "arrTerminalName": "청주북부터미널",
+    "schedules": [
+      {
+        "depTime": "07:25",
+        "arrTime": "09:05",
+        "grade": "우등",
+        "charge": 15300
+      },
+      {
+        "depTime": "10:35",
+        "arrTime": "12:15",
+        "grade": "일반",
+        "charge": 11700
+      },
+      {
+        "depTime": "13:40",
+        "arrTime": "15:20",
+        "grade": "우등",
+        "charge": 15300
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "17:40",
+        "grade": "일반",
+        "charge": 11700
+      },
+      {
+        "depTime": "17:55",
+        "arrTime": "19:35",
+        "grade": "일반",
+        "charge": 11700
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "21:40",
+        "grade": "우등",
+        "charge": 15300
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2224201",
+    "depTerminalName": "인천",
+    "arrTerminalId": "NAI0511601",
+    "arrTerminalName": "동서울",
+    "schedules": [
+      {
+        "depTime": "05:40",
+        "arrTime": "07:05",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "07:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "06:35",
+        "arrTime": "08:00",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "07:10",
+        "arrTime": "08:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "07:40",
+        "arrTime": "09:05",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "08:10",
+        "arrTime": "09:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "08:50",
+        "arrTime": "10:15",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "10:55",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "11:55",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "11:10",
+        "arrTime": "12:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "13:25",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "12:40",
+        "arrTime": "14:05",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "13:10",
+        "arrTime": "14:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "13:40",
+        "arrTime": "15:05",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "16:05",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "16:35",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "15:50",
+        "arrTime": "17:15",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "17:55",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "17:30",
+        "arrTime": "18:55",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "18:20",
+        "arrTime": "19:45",
+        "grade": "일반",
+        "charge": 5700
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "20:25",
+        "grade": "일반",
+        "charge": 5700
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2224201",
+    "depTerminalName": "인천",
+    "arrTerminalId": "NAI4248201",
+    "arrTerminalName": "대구서부",
+    "schedules": [
+      {
+        "depTime": "06:50",
+        "arrTime": "12:00",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "18:40",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2224201",
+    "depTerminalName": "인천",
+    "arrTerminalId": "NAI3403801",
+    "arrTerminalName": "북대전IC",
+    "schedules": [
+      {
+        "depTime": "06:10",
+        "arrTime": "08:05",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "07:10",
+        "arrTime": "09:05",
+        "grade": "일반",
+        "charge": 12900
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "11:35",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "11:20",
+        "arrTime": "13:15",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "14:55",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "16:35",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "16:15",
+        "arrTime": "18:10",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "17:10",
+        "arrTime": "19:05",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "18:50",
+        "arrTime": "20:45",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "20:30",
+        "arrTime": "22:25",
+        "grade": "우등",
+        "charge": 16800
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI0671801",
+    "arrTerminalName": "서울남부",
+    "schedules": [
+      {
+        "depTime": "06:29",
+        "arrTime": "09:17",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "06:59",
+        "arrTime": "09:47",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "07:49",
+        "arrTime": "10:37",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "08:39",
+        "arrTime": "11:27",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "09:24",
+        "arrTime": "12:12",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "10:09",
+        "arrTime": "12:57",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "10:44",
+        "arrTime": "13:32",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "11:24",
+        "arrTime": "14:12",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "11:59",
+        "arrTime": "14:47",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "12:29",
+        "arrTime": "15:17",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "13:09",
+        "arrTime": "15:57",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "13:49",
+        "arrTime": "16:37",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "14:29",
+        "arrTime": "17:17",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "15:14",
+        "arrTime": "18:02",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "15:59",
+        "arrTime": "18:47",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "16:44",
+        "arrTime": "19:32",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "17:29",
+        "arrTime": "20:17",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "18:04",
+        "arrTime": "20:52",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "18:39",
+        "arrTime": "21:27",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "19:19",
+        "arrTime": "22:07",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "19:59",
+        "arrTime": "22:47",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "20:39",
+        "arrTime": "23:27",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "21:19",
+        "arrTime": "00:07",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "21:59",
+        "arrTime": "00:47",
+        "grade": "우등",
+        "charge": 17000
+      },
+      {
+        "depTime": "22:49",
+        "arrTime": "01:37",
+        "grade": "우등",
+        "charge": 17000
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI2224201",
+    "arrTerminalName": "인천",
+    "schedules": [
+      {
+        "depTime": "07:40",
+        "arrTime": "08:40",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "09:40",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "10:40",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "11:40",
+        "arrTime": "12:40",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "13:25",
+        "arrTime": "14:25",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "14:50",
+        "arrTime": "15:50",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "16:15",
+        "arrTime": "17:15",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "17:55",
+        "arrTime": "18:55",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "20:00",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "19:55",
+        "arrTime": "20:55",
+        "grade": "일반",
+        "charge": 8000
+      },
+      {
+        "depTime": "21:10",
+        "arrTime": "22:10",
+        "grade": "일반",
+        "charge": 8000
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI2238201",
+    "arrTerminalName": "인천공항1터미널",
+    "schedules": [
+      {
+        "depTime": "00:10",
+        "arrTime": "00:20",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:10",
+        "arrTime": "00:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:20",
+        "arrTime": "00:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:30",
+        "arrTime": "00:50",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:40",
+        "arrTime": "01:00",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "00:45",
+        "arrTime": "01:05",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "01:10",
+        "arrTime": "01:30",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "01:20",
+        "arrTime": "01:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "01:20",
+        "arrTime": "01:40",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "01:25",
+        "arrTime": "01:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "01:50",
+        "arrTime": "02:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:20",
+        "arrTime": "03:40",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:25",
+        "arrTime": "03:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:30",
+        "arrTime": "03:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:40",
+        "arrTime": "04:00",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:10",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:00",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:00",
+        "arrTime": "04:20",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:20",
+        "arrTime": "04:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:20",
+        "arrTime": "04:40",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:30",
+        "arrTime": "04:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:00",
+        "arrTime": "05:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:00",
+        "arrTime": "05:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:09",
+        "arrTime": "05:29",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:15",
+        "arrTime": "05:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:19",
+        "arrTime": "05:39",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:20",
+        "arrTime": "05:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:24",
+        "arrTime": "05:34",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:29",
+        "arrTime": "05:49",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "05:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "05:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "05:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:39",
+        "arrTime": "05:59",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:39",
+        "arrTime": "05:59",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:40",
+        "arrTime": "06:00",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:40",
+        "arrTime": "06:00",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:45",
+        "arrTime": "05:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "05:45",
+        "arrTime": "06:05",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:49",
+        "arrTime": "05:59",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:50",
+        "arrTime": "06:10",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:50",
+        "arrTime": "06:10",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:50",
+        "arrTime": "06:10",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:54",
+        "arrTime": "06:14",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:55",
+        "arrTime": "06:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:55",
+        "arrTime": "06:15",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "05:55",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:59",
+        "arrTime": "06:19",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:10",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "06:04",
+        "arrTime": "06:24",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:05",
+        "arrTime": "06:30",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "06:05",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:09",
+        "arrTime": "06:29",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:20",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:15",
+        "arrTime": "06:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "06:15",
+        "arrTime": "06:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:15",
+        "arrTime": "06:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:19",
+        "arrTime": "06:29",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:19",
+        "arrTime": "06:39",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:40",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "06:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:24",
+        "arrTime": "06:44",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:24",
+        "arrTime": "06:44",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:25",
+        "arrTime": "06:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:25",
+        "arrTime": "06:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:25",
+        "arrTime": "06:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:25",
+        "arrTime": "06:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:29",
+        "arrTime": "06:39",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:29",
+        "arrTime": "06:39",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "06:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "06:50",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI4171101",
+    "arrTerminalName": "대구북부",
+    "schedules": [
+      {
+        "depTime": "06:10",
+        "arrTime": "11:05",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "08:10",
+        "arrTime": "12:50",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "08:50",
+        "arrTime": "13:45",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "16:10",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "19:20",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "16:50",
+        "arrTime": "21:45",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "17:40",
+        "arrTime": "22:20",
+        "grade": "우등",
+        "charge": 41500
+      },
+      {
+        "depTime": "20:50",
+        "arrTime": "01:45",
+        "grade": "우등",
+        "charge": 41500
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI4696901",
+    "arrTerminalName": "부산서부(사상)",
+    "schedules": [
+      {
+        "depTime": "06:40",
+        "arrTime": "12:20",
+        "grade": "우등",
+        "charge": 49400
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "23:00",
+        "grade": "우등",
+        "charge": 49400
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI3455101",
+    "arrTerminalName": "대전복합",
+    "schedules": [
+      {
+        "depTime": "00:10",
+        "arrTime": "03:30",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "05:00",
+        "arrTime": "08:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "08:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "09:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "06:20",
+        "arrTime": "09:40",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "09:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "06:40",
+        "arrTime": "10:00",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "07:00",
+        "arrTime": "10:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "10:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "07:40",
+        "arrTime": "11:00",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "08:00",
+        "arrTime": "11:20",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "08:10",
+        "arrTime": "11:30",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "11:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "12:00",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "12:20",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "09:20",
+        "arrTime": "12:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "12:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "13:00",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:50",
+        "arrTime": "13:10",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "10:10",
+        "arrTime": "13:30",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "10:20",
+        "arrTime": "13:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "13:50",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "10:50",
+        "arrTime": "14:10",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "14:20",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "11:10",
+        "arrTime": "14:30",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:20",
+        "arrTime": "14:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "14:50",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "11:50",
+        "arrTime": "15:10",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:10",
+        "arrTime": "15:30",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:30",
+        "arrTime": "15:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:50",
+        "arrTime": "16:10",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "16:40",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "16:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "13:50",
+        "arrTime": "17:10",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "14:10",
+        "arrTime": "17:30",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "14:30",
+        "arrTime": "17:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "18:00",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "18:30",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "15:30",
+        "arrTime": "18:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "19:00",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "19:20",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "16:20",
+        "arrTime": "19:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "16:40",
+        "arrTime": "20:00",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "16:50",
+        "arrTime": "20:10",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "20:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "20:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "17:40",
+        "arrTime": "21:00",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "21:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "18:20",
+        "arrTime": "21:40",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "21:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "18:40",
+        "arrTime": "22:00",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "22:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "19:20",
+        "arrTime": "22:40",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "19:50",
+        "arrTime": "23:10",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "23:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "20:20",
+        "arrTime": "23:40",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "20:30",
+        "arrTime": "23:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "21:00",
+        "arrTime": "00:20",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "21:30",
+        "arrTime": "00:50",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "22:00",
+        "arrTime": "01:20",
+        "grade": "심야프리",
+        "charge": 43100
+      },
+      {
+        "depTime": "22:30",
+        "arrTime": "01:50",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "23:00",
+        "arrTime": "02:20",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "23:30",
+        "arrTime": "02:50",
+        "grade": "심야우등",
+        "charge": 33200
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI3498701",
+    "arrTerminalName": "대전서남부",
+    "schedules": [
+      {
+        "depTime": "20:10",
+        "arrTime": "23:35",
+        "grade": "우등",
+        "charge": 27700
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI2238202",
+    "depTerminalName": "인천공항2터미널",
+    "arrTerminalId": "NAI4809501",
+    "arrTerminalName": "부산해운대",
+    "schedules": [
+      {
+        "depTime": "06:00",
+        "arrTime": "12:00",
+        "grade": "프리미엄",
+        "charge": 69600
+      },
+      {
+        "depTime": "07:30",
+        "arrTime": "13:30",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "14:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "15:30",
+        "grade": "프리미엄",
+        "charge": 69600
+      },
+      {
+        "depTime": "10:10",
+        "arrTime": "16:10",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "10:50",
+        "arrTime": "16:50",
+        "grade": "프리미엄",
+        "charge": 69600
+      },
+      {
+        "depTime": "11:50",
+        "arrTime": "17:50",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "12:50",
+        "arrTime": "18:50",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "13:40",
+        "arrTime": "19:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "20:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "21:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "16:40",
+        "arrTime": "22:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "19:20",
+        "arrTime": "01:20",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "20:40",
+        "arrTime": "02:40",
+        "grade": "우등",
+        "charge": 53500
+      },
+      {
+        "depTime": "22:00",
+        "arrTime": "04:00",
+        "grade": "심야우등",
+        "charge": 64200
+      },
+      {
+        "depTime": "23:30",
+        "arrTime": "05:30",
+        "grade": "심야프리",
+        "charge": 76600
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0162503",
+    "depTerminalName": "수락터미널(도심공항)",
+    "arrTerminalId": "NAI2238201",
+    "arrTerminalName": "인천공항1터미널",
+    "schedules": [
+      {
+        "depTime": "23:00",
+        "arrTime": "00:03",
+        "grade": "우등",
+        "charge": 18000
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI0162503",
+    "depTerminalName": "수락터미널(도심공항)",
+    "arrTerminalId": "NAI2238202",
+    "arrTerminalName": "인천공항2터미널",
+    "schedules": [
+      {
+        "depTime": "23:00",
+        "arrTime": "00:17",
+        "grade": "우등",
+        "charge": 18000
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI4248201",
+    "depTerminalName": "대구서부",
+    "arrTerminalId": "NAI6193701",
+    "arrTerminalName": "광주(유·스퀘어)",
+    "schedules": [
+      {
+        "depTime": "08:00",
+        "arrTime": "10:17",
+        "grade": "프리미엄",
+        "charge": 27200
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "13:47",
+        "grade": "프리미엄",
+        "charge": 27200
+      },
+      {
+        "depTime": "12:28",
+        "arrTime": "17:48",
+        "grade": "일반",
+        "charge": 16100
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "15:40",
+        "grade": "우등",
+        "charge": 20900
+      },
+      {
+        "depTime": "15:20",
+        "arrTime": "17:37",
+        "grade": "프리미엄",
+        "charge": 27200
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "19:37",
+        "grade": "우등",
+        "charge": 20900
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI4248201",
+    "depTerminalName": "대구서부",
+    "arrTerminalId": "NAI2224201",
+    "arrTerminalName": "인천",
+    "schedules": [
+      {
+        "depTime": "07:10",
+        "arrTime": "12:36",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:50",
+        "arrTime": "20:16",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI4248201",
+    "depTerminalName": "대구서부",
+    "arrTerminalId": "NAI4171101",
+    "arrTerminalName": "대구북부",
+    "schedules": [
+      {
+        "depTime": "15:00",
+        "arrTime": "15:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "18:30",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI4248201",
+    "depTerminalName": "대구서부",
+    "arrTerminalId": "NAI4696901",
+    "arrTerminalName": "부산서부(사상)",
+    "schedules": [
+      {
+        "depTime": "07:00",
+        "arrTime": "08:55",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "08:00",
+        "arrTime": "10:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "11:00",
+        "grade": "일반",
+        "charge": 12900
+      },
+      {
+        "depTime": "10:00",
+        "arrTime": "12:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "13:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "14:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "14:55",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "16:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "15:00",
+        "arrTime": "17:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "18:00",
+        "grade": "일반",
+        "charge": 12900
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "19:00",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "19:55",
+        "grade": "우등",
+        "charge": 16800
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "21:00",
+        "grade": "우등",
+        "charge": 16800
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI4620401",
+    "depTerminalName": "부산동부",
+    "arrTerminalId": "NAI4773401",
+    "arrTerminalName": "부산동래",
+    "schedules": [
+      {
+        "depTime": "05:50",
+        "arrTime": "06:07",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "06:00",
+        "arrTime": "06:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:25",
+        "arrTime": "06:42",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "06:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "06:50",
+        "arrTime": "07:07",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:55",
+        "arrTime": "07:12",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:00",
+        "arrTime": "07:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "07:00",
+        "arrTime": "07:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "07:10",
+        "arrTime": "07:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:25",
+        "arrTime": "07:42",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:30",
+        "arrTime": "07:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "07:50",
+        "arrTime": "08:07",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "08:00",
+        "arrTime": "08:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "08:37",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "08:57",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "09:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:10",
+        "arrTime": "09:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:20",
+        "arrTime": "09:37",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "09:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "09:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "09:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:00",
+        "arrTime": "10:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:20",
+        "arrTime": "10:37",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "10:47",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "10:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "10:47",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:50",
+        "arrTime": "11:07",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "11:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "11:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "11:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "11:47",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:40",
+        "arrTime": "11:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:10",
+        "arrTime": "12:27",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:20",
+        "arrTime": "12:37",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:35",
+        "arrTime": "12:52",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "13:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "13:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "13:37",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "13:47",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:45",
+        "arrTime": "14:02",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "14:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "14:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:10",
+        "arrTime": "14:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "14:37",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:30",
+        "arrTime": "14:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:00",
+        "arrTime": "15:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "15:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "15:27",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:30",
+        "arrTime": "15:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "16:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "16:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "16:10",
+        "arrTime": "16:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "16:35",
+        "arrTime": "16:52",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "16:40",
+        "arrTime": "16:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "17:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "17:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "17:37",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "18:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:10",
+        "arrTime": "18:27",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "18:47",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:40",
+        "arrTime": "18:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:00",
+        "arrTime": "19:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "19:10",
+        "arrTime": "19:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "19:10",
+        "arrTime": "19:27",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:20",
+        "arrTime": "19:37",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:30",
+        "arrTime": "19:47",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "19:40",
+        "arrTime": "19:57",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "20:00",
+        "arrTime": "20:17",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "20:40",
+        "arrTime": "20:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "20:40",
+        "arrTime": "20:57",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "21:00",
+        "arrTime": "21:17",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "21:10",
+        "arrTime": "21:27",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "21:10",
+        "arrTime": "21:27",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "22:00",
+        "arrTime": "22:17",
+        "grade": "심야일반",
+        "charge": 0
+      },
+      {
+        "depTime": "23:20",
+        "arrTime": "23:37",
+        "grade": "심야일반",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI2812001",
+    "arrTerminalName": "청주북부터미널",
+    "schedules": [
+      {
+        "depTime": "06:35",
+        "arrTime": "07:26",
+        "grade": "우등",
+        "charge": 5200
+      },
+      {
+        "depTime": "07:10",
+        "arrTime": "08:01",
+        "grade": "우등",
+        "charge": 5200
+      },
+      {
+        "depTime": "07:30",
+        "arrTime": "08:21",
+        "grade": "우등",
+        "charge": 5200
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "12:51",
+        "grade": "우등",
+        "charge": 5200
+      },
+      {
+        "depTime": "16:20",
+        "arrTime": "17:11",
+        "grade": "우등",
+        "charge": 5200
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "17:21",
+        "grade": "우등",
+        "charge": 5200
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI6193701",
+    "arrTerminalName": "광주(유·스퀘어)",
+    "schedules": [
+      {
+        "depTime": "11:15",
+        "arrTime": "14:01",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:45",
+        "arrTime": "17:31",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "16:50",
+        "arrTime": "19:36",
+        "grade": "일반",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI2238202",
+    "arrTerminalName": "인천공항2터미널",
+    "schedules": [
+      {
+        "depTime": "02:50",
+        "arrTime": "06:04",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "03:00",
+        "arrTime": "06:14",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "03:10",
+        "arrTime": "06:24",
+        "grade": "심야프리",
+        "charge": 43100
+      },
+      {
+        "depTime": "03:20",
+        "arrTime": "06:34",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "03:30",
+        "arrTime": "06:44",
+        "grade": "심야프리",
+        "charge": 43100
+      },
+      {
+        "depTime": "03:40",
+        "arrTime": "06:54",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "07:04",
+        "grade": "심야우등",
+        "charge": 33200
+      },
+      {
+        "depTime": "04:00",
+        "arrTime": "07:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "04:20",
+        "arrTime": "07:34",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "04:30",
+        "arrTime": "07:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "04:40",
+        "arrTime": "07:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "04:50",
+        "arrTime": "08:04",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "05:00",
+        "arrTime": "08:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "05:10",
+        "arrTime": "08:24",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "05:20",
+        "arrTime": "08:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "08:44",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "05:40",
+        "arrTime": "08:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "05:50",
+        "arrTime": "09:04",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "09:24",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "09:44",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "06:50",
+        "arrTime": "10:04",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "07:00",
+        "arrTime": "10:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "10:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "07:40",
+        "arrTime": "10:54",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "11:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "11:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "12:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "09:10",
+        "arrTime": "12:24",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "12:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "12:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "10:00",
+        "arrTime": "13:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "10:20",
+        "arrTime": "13:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "13:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "10:50",
+        "arrTime": "14:04",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "14:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:20",
+        "arrTime": "14:34",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "14:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "11:40",
+        "arrTime": "14:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "15:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "12:20",
+        "arrTime": "15:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:30",
+        "arrTime": "15:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:40",
+        "arrTime": "15:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "12:50",
+        "arrTime": "16:04",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "16:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "13:10",
+        "arrTime": "16:24",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "16:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "16:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "13:40",
+        "arrTime": "16:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "17:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "17:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "17:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "15:00",
+        "arrTime": "18:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "18:24",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "15:20",
+        "arrTime": "18:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "18:54",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "19:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "19:44",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "20:14",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "20:34",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "17:40",
+        "arrTime": "20:54",
+        "grade": "프리미엄",
+        "charge": 35900
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "21:14",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "18:10",
+        "arrTime": "21:24",
+        "grade": "우등",
+        "charge": 27700
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "21:44",
+        "grade": "우등",
+        "charge": 27700
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI3463901",
+    "arrTerminalName": "대전신흥",
+    "schedules": [
+      {
+        "depTime": "06:30",
+        "arrTime": "06:45",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "06:50",
+        "arrTime": "07:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "07:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "07:40",
+        "arrTime": "07:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "08:10",
+        "arrTime": "08:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "08:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "09:15",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:10",
+        "arrTime": "09:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "09:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:10",
+        "arrTime": "10:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "10:45",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "10:40",
+        "arrTime": "10:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "11:10",
+        "arrTime": "11:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "11:45",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "11:50",
+        "arrTime": "12:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:20",
+        "arrTime": "12:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:40",
+        "arrTime": "12:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "12:50",
+        "arrTime": "13:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "13:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "13:50",
+        "arrTime": "14:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "14:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "14:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "14:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:00",
+        "arrTime": "15:15",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:20",
+        "arrTime": "15:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "15:50",
+        "arrTime": "16:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "16:20",
+        "arrTime": "16:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "16:50",
+        "arrTime": "17:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "17:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "17:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "17:50",
+        "arrTime": "18:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:10",
+        "arrTime": "18:25",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "18:45",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "18:50",
+        "arrTime": "19:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:20",
+        "arrTime": "19:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:40",
+        "arrTime": "19:55",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "19:50",
+        "arrTime": "20:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "20:20",
+        "arrTime": "20:35",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "20:50",
+        "arrTime": "21:05",
+        "grade": "일반",
+        "charge": 0
+      },
+      {
+        "depTime": "21:30",
+        "arrTime": "21:45",
+        "grade": "일반",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI3520501",
+    "arrTerminalName": "대전청사",
+    "schedules": [
+      {
+        "depTime": "06:30",
+        "arrTime": "06:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "07:40",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "08:10",
+        "arrTime": "08:30",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "15:30",
+        "arrTime": "15:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "17:10",
+        "arrTime": "17:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "18:50",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "18:40",
+        "arrTime": "19:00",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "19:40",
+        "arrTime": "20:00",
+        "grade": "일반",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI3520502",
+    "arrTerminalName": "대전청사(공항선)",
+    "schedules": [
+      {
+        "depTime": "02:50",
+        "arrTime": "03:05",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:00",
+        "arrTime": "03:15",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:10",
+        "arrTime": "03:25",
+        "grade": "심야프리",
+        "charge": 0
+      },
+      {
+        "depTime": "03:20",
+        "arrTime": "03:35",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:30",
+        "arrTime": "03:45",
+        "grade": "심야프리",
+        "charge": 0
+      },
+      {
+        "depTime": "03:40",
+        "arrTime": "03:55",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "03:50",
+        "arrTime": "04:05",
+        "grade": "심야우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:00",
+        "arrTime": "04:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:20",
+        "arrTime": "04:35",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "04:30",
+        "arrTime": "04:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:40",
+        "arrTime": "04:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "04:50",
+        "arrTime": "05:05",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "05:00",
+        "arrTime": "05:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:10",
+        "arrTime": "05:25",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "05:20",
+        "arrTime": "05:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:30",
+        "arrTime": "05:45",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "05:40",
+        "arrTime": "05:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "05:50",
+        "arrTime": "06:05",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:10",
+        "arrTime": "06:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "06:30",
+        "arrTime": "06:45",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "06:50",
+        "arrTime": "07:05",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:00",
+        "arrTime": "07:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:20",
+        "arrTime": "07:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "07:40",
+        "arrTime": "07:55",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "08:20",
+        "arrTime": "08:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "08:40",
+        "arrTime": "08:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:00",
+        "arrTime": "09:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "09:10",
+        "arrTime": "09:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:30",
+        "arrTime": "09:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "09:40",
+        "arrTime": "09:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:00",
+        "arrTime": "10:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "10:20",
+        "arrTime": "10:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:30",
+        "arrTime": "10:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "10:50",
+        "arrTime": "11:05",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:00",
+        "arrTime": "11:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:20",
+        "arrTime": "11:35",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "11:30",
+        "arrTime": "11:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "11:40",
+        "arrTime": "11:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "12:00",
+        "arrTime": "12:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "12:20",
+        "arrTime": "12:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "12:30",
+        "arrTime": "12:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "12:40",
+        "arrTime": "12:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "12:50",
+        "arrTime": "13:05",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "13:00",
+        "arrTime": "13:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:10",
+        "arrTime": "13:25",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "13:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:30",
+        "arrTime": "13:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "13:40",
+        "arrTime": "13:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:00",
+        "arrTime": "14:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "14:20",
+        "arrTime": "14:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "14:40",
+        "arrTime": "14:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "15:00",
+        "arrTime": "15:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "15:10",
+        "arrTime": "15:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "15:20",
+        "arrTime": "15:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "15:40",
+        "arrTime": "15:55",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "16:00",
+        "arrTime": "16:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "16:30",
+        "arrTime": "16:45",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "17:00",
+        "arrTime": "17:15",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "17:20",
+        "arrTime": "17:35",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "17:40",
+        "arrTime": "17:55",
+        "grade": "프리미엄",
+        "charge": 0
+      },
+      {
+        "depTime": "18:00",
+        "arrTime": "18:15",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "18:10",
+        "arrTime": "18:25",
+        "grade": "우등",
+        "charge": 0
+      },
+      {
+        "depTime": "18:30",
+        "arrTime": "18:45",
+        "grade": "우등",
+        "charge": 0
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3455101",
+    "depTerminalName": "대전복합",
+    "arrTerminalId": "NAI4809501",
+    "arrTerminalName": "부산해운대",
+    "schedules": [
+      {
+        "depTime": "08:20",
+        "arrTime": "12:10",
+        "grade": "우등",
+        "charge": 29500
+      },
+      {
+        "depTime": "13:20",
+        "arrTime": "17:10",
+        "grade": "우등",
+        "charge": 29500
+      },
+      {
+        "depTime": "18:20",
+        "arrTime": "22:10",
+        "grade": "우등",
+        "charge": 29500
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3498701",
+    "depTerminalName": "대전서남부",
+    "arrTerminalId": "NAI2238202",
+    "arrTerminalName": "인천공항2터미널",
+    "schedules": [
+      {
+        "depTime": "09:10",
+        "arrTime": "12:38",
+        "grade": "우등",
+        "charge": 27700
+      }
+    ]
+  },
+  {
+    "depTerminalId": "NAI3498701",
+    "depTerminalName": "대전서남부",
+    "arrTerminalId": "NAI3520501",
+    "arrTerminalName": "대전청사",
+    "schedules": [
+      {
+        "depTime": "06:55",
+        "arrTime": "07:20",
+        "grade": "일반",
+        "charge": 1900
+      }
+    ]
+  }
+]
