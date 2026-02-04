@@ -68,10 +68,10 @@ export default function IntercityClient({ terminals }: Props) {
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* 헤더 섹션 */}
-      <div className="bg-green-600 text-white py-12 px-4 shadow-md">
+      <div className="bg-teal-600 text-white py-12 px-4 shadow-md">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">시외버스 시간표</h1>
-          <p className="text-green-100 text-lg mb-8">
+          <p className="text-teal-100 text-lg mb-8">
             전국 <strong className="text-white">{terminals.length}</strong>개 시외버스 터미널 운행 정보
           </p>
           
@@ -82,7 +82,7 @@ export default function IntercityClient({ terminals }: Props) {
               placeholder="터미널 이름 검색 (예: 서울, 부산)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-green-400 text-lg placeholder-gray-500"
+              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-teal-400 text-lg placeholder-gray-500"
             />
             <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -108,7 +108,7 @@ export default function IntercityClient({ terminals }: Props) {
             return (
               <section key={region} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800 border-b pb-4">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-green-50 text-green-600 text-lg">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-teal-50 text-teal-600 text-lg">
                     {region.substring(0, 1)}
                   </span>
                   {region}
@@ -122,13 +122,13 @@ export default function IntercityClient({ terminals }: Props) {
                     <Link
                       key={terminal.terminalId}
                       href={`/terminal/${terminal.terminalId}`}
-                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-green-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-teal-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
                           {terminal.terminalNm}
                         </h3>
-                        <span className="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded">
+                        <span className="text-xs font-semibold bg-teal-100 text-teal-700 px-2 py-1 rounded">
                           시외
                         </span>
                       </div>
