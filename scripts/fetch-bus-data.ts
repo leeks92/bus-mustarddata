@@ -254,6 +254,7 @@ async function main() {
   // 3. 터미널 코드 매핑 생성 (3자리 코드 <-> NAEK 형식)
   // ExpBusArrInfoService의 tmnNm과 ExpBusInfoService의 terminalNm을 매칭
   const terminalMap = new Map<string, string>(); // 3자리코드 -> NAEK형식
+  const reverseTerminalMap = new Map<string, string>(); // NAEK형식 -> 3자리코드
   
   for (const short of shortTerminals) {
     // 이름으로 매칭 시도
@@ -262,6 +263,7 @@ async function main() {
     );
     if (matched) {
       terminalMap.set(short.tmnCd, matched.terminalId);
+      reverseTerminalMap.set(matched.terminalId, short.tmnCd);
     } else {
       // 매칭 안되면 NAEK 형식으로 변환 시도
       terminalMap.set(short.tmnCd, shortCodeToFullId(short.tmnCd));
@@ -270,12 +272,15 @@ async function main() {
   
   console.log(`터미널 코드 매핑: ${terminalMap.size}개`);
 
-  // 4. 고속버스 노선 수집 (도착지 목록 API 활용)
+  // 4. 고속버스 노선 수집 (두 가지 방식 병행)
   console.log('\n=== 고속버스 노선 수집 ===');
   const expressRoutes: RouteData[] = [];
+  const routeSet = new Set<string>(); // 중복 방지
   const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
   console.log(`조회 날짜: ${today}`);
   
+  // 방식 1: ExpBusArrInfoService의 도착지 목록 API 활용
+  console.log('\n--- 방식 1: 도착지 목록 API 활용 ---');
   let terminalIndex = 0;
   const totalTerminals = shortTerminals.length;
   
@@ -297,9 +302,13 @@ async function main() {
         const depFullId = terminalMap.get(depTerminal.tmnCd) || shortCodeToFullId(depTerminal.tmnCd);
         const arrFullId = terminalMap.get(arrival.arrTmnCd) || shortCodeToFullId(arrival.arrTmnCd);
         
+        const routeKey = `${depFullId}-${arrFullId}`;
+        if (routeSet.has(routeKey)) continue;
+        
         const schedules = await getExpressSchedules(depFullId, arrFullId, today);
         
         if (schedules.length > 0) {
+          routeSet.add(routeKey);
           expressRoutes.push({
             depTerminalId: depFullId,
             depTerminalName: depTerminal.tmnNm,
@@ -319,6 +328,80 @@ async function main() {
     // 진행 상황 (10개 터미널마다)
     if (terminalIndex % 10 === 0) {
       console.log(`진행: ${terminalIndex}/${totalTerminals} - 수집된 노선: ${expressRoutes.length}개`);
+    }
+  }
+  
+  console.log(`방식 1 완료: ${expressRoutes.length}개 노선`);
+  
+  // 중간 저장
+  fs.writeFileSync(
+    path.join(dataDir, 'express-routes.json'),
+    JSON.stringify(expressRoutes, null, 2)
+  );
+  
+  // 방식 2: 주요 터미널 간 직접 조회 (누락된 노선 보완)
+  console.log('\n--- 방식 2: 주요 터미널 직접 조회 ---');
+  
+  // 주요 터미널 선별 (서울, 부산, 대구, 대전, 광주 등 대도시 터미널)
+  const majorTerminals = expressTerminals.filter(t => 
+    t.terminalNm.includes('서울') ||
+    t.terminalNm.includes('부산') ||
+    t.terminalNm.includes('대구') ||
+    t.terminalNm.includes('대전') ||
+    t.terminalNm.includes('광주') ||
+    t.terminalNm.includes('인천') ||
+    t.terminalNm.includes('울산') ||
+    t.terminalNm.includes('센트럴') ||
+    t.terminalNm.includes('동서울') ||
+    t.terminalNm.includes('수원') ||
+    t.terminalNm.includes('성남') ||
+    t.terminalNm.includes('청주') ||
+    t.terminalNm.includes('전주') ||
+    t.terminalNm.includes('천안') ||
+    t.terminalNm.includes('창원') ||
+    t.terminalNm.includes('포항') ||
+    t.terminalNm.includes('경주') ||
+    t.terminalNm.includes('강릉') ||
+    t.terminalNm.includes('춘천') ||
+    t.terminalNm.includes('원주') ||
+    t.terminalNm.includes('제주')
+  );
+  
+  console.log(`주요 터미널: ${majorTerminals.length}개`);
+  
+  let majorIndex = 0;
+  for (const depTerminal of majorTerminals) {
+    majorIndex++;
+    
+    for (const arrTerminal of expressTerminals) {
+      if (depTerminal.terminalId === arrTerminal.terminalId) continue;
+      
+      const routeKey = `${depTerminal.terminalId}-${arrTerminal.terminalId}`;
+      if (routeSet.has(routeKey)) continue;
+      
+      await delay(30);
+      
+      const schedules = await getExpressSchedules(depTerminal.terminalId, arrTerminal.terminalId, today);
+      
+      if (schedules.length > 0) {
+        routeSet.add(routeKey);
+        expressRoutes.push({
+          depTerminalId: depTerminal.terminalId,
+          depTerminalName: depTerminal.terminalNm,
+          arrTerminalId: arrTerminal.terminalId,
+          arrTerminalName: arrTerminal.terminalNm,
+          schedules: schedules.map(s => ({
+            depTime: formatTime(String(s.depPlandTime)),
+            arrTime: formatTime(String(s.arrPlandTime)),
+            grade: s.gradeNm || '일반',
+            charge: s.charge || 0,
+          })),
+        });
+      }
+    }
+    
+    if (majorIndex % 5 === 0) {
+      console.log(`주요 터미널 진행: ${majorIndex}/${majorTerminals.length} - 총 노선: ${expressRoutes.length}개`);
       
       // 중간 저장
       fs.writeFileSync(
