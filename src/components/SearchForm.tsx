@@ -18,6 +18,14 @@ export default function SearchForm({ terminals }: Props) {
   const [arrival, setArrival] = useState('');
   const [error, setError] = useState('');
 
+  // 이름 기준 중복 제거 (같은 이름의 터미널은 첫 번째만 표시)
+  const uniqueTerminals = terminals.reduce<Terminal[]>((acc, terminal) => {
+    if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
+      acc.push(terminal);
+    }
+    return acc;
+  }, []);
+
   const handleSearch = () => {
     if (!departure) {
       setError('출발지를 선택해주세요');
@@ -53,7 +61,7 @@ export default function SearchForm({ terminals }: Props) {
               className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg"
             >
               <option value="">터미널 선택</option>
-              {terminals.map(t => (
+              {uniqueTerminals.map(t => (
                 <option key={t.terminalId} value={t.terminalId}>
                   {t.terminalNm}
                 </option>
@@ -79,7 +87,7 @@ export default function SearchForm({ terminals }: Props) {
               className="w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-gray-50 hover:bg-white text-lg"
             >
               <option value="">터미널 선택</option>
-              {terminals.map(t => (
+              {uniqueTerminals.map(t => (
                 <option key={t.terminalId} value={t.terminalId}>
                   {t.terminalNm}
                 </option>
