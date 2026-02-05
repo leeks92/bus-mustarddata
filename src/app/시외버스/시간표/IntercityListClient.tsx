@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { createTerminalSlug } from '@/lib/slug-utils';
 
 interface Terminal {
   terminalId: string;
@@ -9,8 +10,14 @@ interface Terminal {
   cityName?: string;
 }
 
+interface Route {
+  depTerminalId: string;
+  arrTerminalId: string;
+}
+
 interface Props {
   terminals: Terminal[];
+  routes: Route[];
 }
 
 // 터미널을 지역별로 그룹화하는 함수
@@ -22,7 +29,7 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     const name = terminal.terminalNm;
     const city = terminal.cityName || '';
 
-    // 광역시/특별시 (cityName에서 "서울특별시", "부산광역시" 등 매칭)
+    // 광역시/특별시
     if (name.includes('서울') || city.includes('서울')) region = '서울';
     else if (name.includes('부산') || city.includes('부산')) region = '부산';
     else if (name.includes('대구') || city.includes('대구')) region = '대구';
@@ -31,7 +38,7 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     else if (name.includes('울산') || city.includes('울산')) region = '울산';
     else if (name.includes('인천') || city.includes('인천')) region = '인천';
     else if (name.includes('세종') || city.includes('세종')) region = '세종';
-    // 도 단위 (약어 + 전체 이름 모두 매칭)
+    // 도 단위
     else if (city.includes('경기')) region = '경기';
     else if (city.includes('강원')) region = '강원';
     else if (city.includes('충청북') || city.includes('충북')) region = '충북';
@@ -56,30 +63,39 @@ const regionOrder = [
   '강원', '충북', '충남', '경북', '경남', '전북', '전남', '제주', '기타'
 ];
 
-export default function IntercityClient({ terminals }: Props) {
+export default function IntercityListClient({ terminals, routes }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
 
+  // 검색 필터링
   const filteredTerminals = terminals.filter(t => 
     t.terminalNm.includes(searchTerm) || (t.cityName && t.cityName.includes(searchTerm))
   );
 
-  const groupedTerminals = groupTerminalsByRegion(filteredTerminals);
+  // 중복 제거 (같은 이름의 터미널)
+  const uniqueTerminals = filteredTerminals.reduce<Terminal[]>((acc, terminal) => {
+    if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
+      acc.push(terminal);
+    }
+    return acc;
+  }, []);
+
+  const groupedTerminals = groupTerminalsByRegion(uniqueTerminals);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* 헤더 섹션 */}
-      <div className="bg-slate-600 text-white py-12 px-4 shadow-md">
+      <div className="bg-slate-700 text-white py-12 px-4 shadow-md">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">시외버스 시간표</h1>
-          <p className="text-slate-100 text-lg mb-8">
-            전국 <strong className="text-white">{terminals.length}</strong>개 시외버스 터미널 운행 정보
+          <p className="text-slate-300 text-lg mb-8">
+            전국 <strong className="text-white">{uniqueTerminals.length.toLocaleString()}</strong>개 터미널, <strong className="text-white">{routes.length}</strong>개 노선의 운행 정보를 확인하세요
           </p>
           
           {/* 검색창 */}
           <div className="max-w-xl mx-auto relative">
             <input
               type="text"
-              placeholder="터미널 또는 지역 이름 검색"
+              placeholder="터미널 이름 검색 (예: 이천, 청주)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full py-4 px-6 rounded-full bg-white text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-slate-400 text-lg placeholder-gray-400"
@@ -93,7 +109,7 @@ export default function IntercityClient({ terminals }: Props) {
 
       <div className="max-w-6xl mx-auto px-4 mt-12">
         {/* 검색 결과 없음 */}
-        {filteredTerminals.length === 0 && (
+        {uniqueTerminals.length === 0 && (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">검색 결과가 없습니다.</p>
           </div>
@@ -108,7 +124,7 @@ export default function IntercityClient({ terminals }: Props) {
             return (
               <section key={region} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800 border-b pb-4">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 text-slate-600 text-lg">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-600 text-lg">
                     {region.substring(0, 1)}
                   </span>
                   {region}
@@ -118,28 +134,43 @@ export default function IntercityClient({ terminals }: Props) {
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {regionTerminals.map(terminal => (
-                    <Link
-                      key={terminal.terminalId}
-                      href={`/terminal/${terminal.terminalId}`}
-                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-slate-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-slate-600 transition-colors">
-                          {terminal.terminalNm}
-                        </h3>
-                        <span className="text-xs font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded">
-                          시외
-                        </span>
-                      </div>
-                      {terminal.cityName && (
-                        <p className="text-sm text-gray-600 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                          {terminal.cityName}
-                        </p>
-                      )}
-                    </Link>
-                  ))}
+                  {regionTerminals.map(terminal => {
+                    const routeCount = routes.filter(
+                      r => r.depTerminalId === terminal.terminalId
+                    ).length;
+                    const terminalSlug = createTerminalSlug(terminal.terminalNm);
+
+                    return (
+                      <Link
+                        key={terminal.terminalId}
+                        href={`/시외버스/시간표/${terminalSlug}`}
+                        className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-slate-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-lg font-bold text-gray-900 group-hover:text-slate-600 transition-colors">
+                            {terminal.terminalNm}
+                          </h3>
+                          {routeCount > 0 ? (
+                            <span className="text-xs font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded">
+                              운행중
+                            </span>
+                          ) : (
+                            <span className="text-xs font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                              정보없음
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center text-sm text-gray-600 mt-2">
+                          <svg className="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
+                          {routeCount > 0 ? (
+                            <span><strong className="text-gray-800">{routeCount}</strong>개 노선 운행</span>
+                          ) : (
+                            <span>노선 정보 준비중</span>
+                          )}
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </section>
             );

@@ -87,12 +87,12 @@ export default function ExpressClient({ terminals, routes }: Props) {
           <div className="max-w-xl mx-auto relative">
             <input
               type="text"
-              placeholder="터미널 이름 검색 (예: 서울, 부산)"
+              placeholder="터미널 또는 지역 이름 검색"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-4 px-6 rounded-full text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-400 text-lg placeholder-gray-500"
+              className="w-full py-4 px-6 rounded-full bg-white text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-400 text-lg placeholder-gray-400"
             />
-            <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500">
+            <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
           </div>

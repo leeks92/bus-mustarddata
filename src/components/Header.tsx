@@ -9,14 +9,11 @@ export default function Header() {
             🚌 전국 버스 시간표
           </Link>
           <nav className="flex gap-6">
-            <Link href="/express" className="hover:underline">
+            <Link href="/고속버스/시간표" className="hover:underline">
               고속버스
             </Link>
-            <Link href="/intercity" className="hover:underline">
+            <Link href="/시외버스/시간표" className="hover:underline">
               시외버스
-            </Link>
-            <Link href="/terminal" className="hover:underline">
-              터미널
             </Link>
           </nav>
         </div>

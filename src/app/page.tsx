@@ -108,19 +108,19 @@ export default function HomePage() {
         {/* 버스 유형별 링크 */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <Link
-            href="/express"
+            href="/고속버스/시간표"
             className="group relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Image src="/images/icon-express.png" alt="Express Bus" width={120} height={120} />
             </div>
             <div className="p-8">
-              <div className="inline-block p-3 rounded-lg bg-blue-50 text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div className="inline-block p-3 rounded-lg bg-indigo-50 text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">고속버스 시간표</h3>
               <p className="text-gray-700 mb-4">전국 주요 도시를 연결하는 고속버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-blue-700 font-medium">
+              <div className="flex items-center text-indigo-700 font-medium">
                 바로가기 
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
@@ -128,7 +128,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/intercity"
+            href="/시외버스/시간표"
             className="group relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">

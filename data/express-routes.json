@@ -2,7 +2,7 @@
   {
     "depTerminalId": "NAEK389",
     "depTerminalName": "홍성",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -278,7 +278,7 @@
   {
     "depTerminalId": "NAEK391",
     "depTerminalName": "청양",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -366,7 +366,7 @@
   {
     "depTerminalId": "NAEK393",
     "depTerminalName": "서산",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -866,7 +866,7 @@
   {
     "depTerminalId": "NAEK394",
     "depTerminalName": "태안",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -1082,7 +1082,7 @@
   {
     "depTerminalId": "NAEK395",
     "depTerminalName": "보령",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -1204,7 +1204,7 @@
   {
     "depTerminalId": "NAEK396",
     "depTerminalName": "안면도",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -17506,7 +17506,7 @@
   {
     "depTerminalId": "NAEK312",
     "depTerminalName": "당진",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -19008,7 +19008,7 @@
   {
     "depTerminalId": "NAEK360",
     "depTerminalName": "유성",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -19442,7 +19442,7 @@
   {
     "depTerminalId": "NAEK370",
     "depTerminalName": "논산",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -20092,7 +20092,7 @@
   {
     "depTerminalId": "NAEK401",
     "depTerminalName": "청주시외",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -20310,7 +20310,7 @@
   {
     "depTerminalId": "NAEK420",
     "depTerminalName": "충주",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -21118,7 +21118,7 @@
   {
     "depTerminalId": "NAEK500",
     "depTerminalName": "광주",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -23674,7 +23674,7 @@
   {
     "depTerminalId": "NAEK505",
     "depTerminalName": "목포",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -23966,7 +23966,7 @@
   {
     "depTerminalId": "NAEK510",
     "depTerminalName": "여수",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24254,7 +24254,7 @@
   {
     "depTerminalId": "NAEK520",
     "depTerminalName": "동광양",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24390,7 +24390,7 @@
   {
     "depTerminalId": "NAEK545",
     "depTerminalName": "녹동",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24422,7 +24422,7 @@
   {
     "depTerminalId": "NAEK550",
     "depTerminalName": "무안",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24486,7 +24486,7 @@
   {
     "depTerminalId": "NAEK554",
     "depTerminalName": "보성",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24506,7 +24506,7 @@
   {
     "depTerminalId": "NAEK560",
     "depTerminalName": "영광",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24614,7 +24614,7 @@
   {
     "depTerminalId": "NAEK580",
     "depTerminalName": "장흥",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24690,7 +24690,7 @@
   {
     "depTerminalId": "NAEK582",
     "depTerminalName": "담양",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24790,7 +24790,7 @@
   {
     "depTerminalId": "NAEK585",
     "depTerminalName": "지도",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24810,7 +24810,7 @@
   {
     "depTerminalId": "NAEK590",
     "depTerminalName": "진도",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24882,7 +24882,7 @@
   {
     "depTerminalId": "NAEK595",
     "depTerminalName": "해남",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -24940,7 +24940,7 @@
   {
     "depTerminalId": "NAEK602",
     "depTerminalName": "전주",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -26434,7 +26434,7 @@
   {
     "depTerminalId": "NAEK610",
     "depTerminalName": "군산",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -26742,7 +26742,7 @@
   {
     "depTerminalId": "NAEK615",
     "depTerminalName": "익산",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -26804,7 +26804,7 @@
   {
     "depTerminalId": "NAEK620",
     "depTerminalName": "김제",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -26830,7 +26830,7 @@
   {
     "depTerminalId": "NAEK625",
     "depTerminalName": "남원",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -31338,7 +31338,7 @@
   {
     "depTerminalId": "NAEK399",
     "depTerminalName": "덕산스파",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -31386,7 +31386,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK312",
     "arrTerminalName": "당진",
@@ -31682,7 +31682,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK360",
     "arrTerminalName": "유성",
@@ -31972,7 +31972,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK370",
     "arrTerminalName": "논산",
@@ -32052,7 +32052,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK380",
     "arrTerminalName": "연무대",
@@ -32096,7 +32096,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK388",
     "arrTerminalName": "기지시",
@@ -32158,7 +32158,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK389",
     "arrTerminalName": "홍성",
@@ -32250,7 +32250,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK390",
     "arrTerminalName": "내포",
@@ -32342,7 +32342,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK391",
     "arrTerminalName": "청양",
@@ -32386,7 +32386,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK392",
     "arrTerminalName": "정산",
@@ -32430,7 +32430,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK393",
     "arrTerminalName": "서산",
@@ -32726,7 +32726,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK394",
     "arrTerminalName": "태안",
@@ -32818,7 +32818,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK395",
     "arrTerminalName": "보령",
@@ -32940,7 +32940,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK396",
     "arrTerminalName": "안면도",
@@ -32972,7 +32972,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK397",
     "arrTerminalName": "창기리",
@@ -33004,7 +33004,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK398",
     "arrTerminalName": "예산",
@@ -33054,7 +33054,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK399",
     "arrTerminalName": "덕산스파",
@@ -33104,7 +33104,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK401",
     "arrTerminalName": "청주시외",
@@ -33310,7 +33310,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK405",
     "arrTerminalName": "북청주",
@@ -33564,7 +33564,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK406",
     "arrTerminalName": "북부오창",
@@ -33650,7 +33650,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK407",
     "arrTerminalName": "청주공항",
@@ -33730,7 +33730,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK408",
     "arrTerminalName": "속리산",
@@ -33756,7 +33756,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK409",
     "arrTerminalName": "보은",
@@ -33782,7 +33782,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK420",
     "arrTerminalName": "충주",
@@ -34042,7 +34042,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK422",
     "arrTerminalName": "교통대",
@@ -34080,7 +34080,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK500",
     "arrTerminalName": "광주",
@@ -34532,7 +34532,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK505",
     "arrTerminalName": "목포",
@@ -34630,7 +34630,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK509",
     "arrTerminalName": "여천",
@@ -34716,7 +34716,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK510",
     "arrTerminalName": "여수",
@@ -34802,7 +34802,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK519",
     "arrTerminalName": "구례",
@@ -34828,7 +34828,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK520",
     "arrTerminalName": "광양",
@@ -34884,7 +34884,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK535",
     "arrTerminalName": "강진",
@@ -34922,7 +34922,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK540",
     "arrTerminalName": "고흥",
@@ -34954,7 +34954,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK545",
     "arrTerminalName": "녹동",
@@ -34986,7 +34986,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK550",
     "arrTerminalName": "무안",
@@ -35024,7 +35024,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK552",
     "arrTerminalName": "해제",
@@ -35044,7 +35044,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK554",
     "arrTerminalName": "보성",
@@ -35064,7 +35064,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK555",
     "arrTerminalName": "벌교",
@@ -35084,7 +35084,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK560",
     "arrTerminalName": "영광",
@@ -35152,7 +35152,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK570",
     "arrTerminalName": "영암",
@@ -35172,7 +35172,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK575",
     "arrTerminalName": "완도항",
@@ -35198,7 +35198,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK578",
     "arrTerminalName": "원동",
@@ -35224,7 +35224,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK580",
     "arrTerminalName": "장흥",
@@ -35280,7 +35280,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK582",
     "arrTerminalName": "담양",
@@ -35330,7 +35330,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK583",
     "arrTerminalName": "장성",
@@ -35350,7 +35350,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK585",
     "arrTerminalName": "지도",
@@ -35370,7 +35370,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK586",
     "arrTerminalName": "화순",
@@ -35390,7 +35390,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK587",
     "arrTerminalName": "능주",
@@ -35410,7 +35410,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK588",
     "arrTerminalName": "옥과",
@@ -35430,7 +35430,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK590",
     "arrTerminalName": "진도",
@@ -35462,7 +35462,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK592",
     "arrTerminalName": "남악",
@@ -35482,7 +35482,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK595",
     "arrTerminalName": "해남",
@@ -35520,7 +35520,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK602",
     "arrTerminalName": "전주",
@@ -36068,7 +36068,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK610",
     "arrTerminalName": "군산",
@@ -36376,7 +36376,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK615",
     "arrTerminalName": "익산",
@@ -36438,7 +36438,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK620",
     "arrTerminalName": "김제",
@@ -36464,7 +36464,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK625",
     "arrTerminalName": "남원",
@@ -36514,7 +36514,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK629",
     "arrTerminalName": "태인",
@@ -36534,7 +36534,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "서울호남",
     "arrTerminalId": "NAEK630",
     "arrTerminalName": "정읍",
@@ -36840,7 +36840,7 @@
   {
     "depTerminalId": "NAEK575",
     "depTerminalName": "완도항",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -36886,7 +36886,7 @@
   {
     "depTerminalId": "NAEK405",
     "depTerminalName": "북청주",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "서울호남",
     "schedules": [
       {
@@ -40534,7 +40534,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK421",
     "arrTerminalName": "서충주",
@@ -40764,7 +40764,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK455",
     "arrTerminalName": "증평",
@@ -40850,7 +40850,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK457",
     "arrTerminalName": "괴산",
@@ -40936,7 +40936,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK515",
     "arrTerminalName": "순천",
@@ -41034,7 +41034,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK525",
     "arrTerminalName": "동광양",
@@ -41108,7 +41108,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK581",
     "arrTerminalName": "함평",
@@ -41128,7 +41128,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK634",
     "arrTerminalName": "흥덕",
@@ -41232,7 +41232,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK635",
     "arrTerminalName": "고창",
@@ -41336,7 +41336,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK640",
     "arrTerminalName": "부안",
@@ -41428,7 +41428,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK644",
     "arrTerminalName": "전북강진",
@@ -41454,7 +41454,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK645",
     "arrTerminalName": "순창",
@@ -41480,7 +41480,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK649",
     "arrTerminalName": "봉동",
@@ -41500,7 +41500,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK021",
+    "depTerminalId": "NAEK020",
     "depTerminalName": "센트럴시티(서울)",
     "arrTerminalId": "NAEK650",
     "arrTerminalName": "진안",
@@ -41520,7 +41520,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK200",
     "arrTerminalName": "강릉",
@@ -41564,7 +41564,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK210",
     "arrTerminalName": "동해",
@@ -41632,7 +41632,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK220",
     "arrTerminalName": "삼척",
@@ -41700,7 +41700,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK230",
     "arrTerminalName": "속초",
@@ -41792,7 +41792,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK270",
     "arrTerminalName": "양양",
@@ -41884,7 +41884,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK300",
     "arrTerminalName": "대전복합",
@@ -42042,7 +42042,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK400",
     "arrTerminalName": "청주(고속)",
@@ -42110,7 +42110,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK500",
     "arrTerminalName": "광주(유·스퀘어)",
@@ -42160,7 +42160,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK602",
     "arrTerminalName": "전주",
@@ -42270,7 +42270,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK700",
     "arrTerminalName": "부산",
@@ -42296,7 +42296,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK704",
     "arrTerminalName": "진해",
@@ -42322,7 +42322,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK705",
     "arrTerminalName": "마산",
@@ -42372,7 +42372,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK706",
     "arrTerminalName": "내서",
@@ -42404,7 +42404,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK710",
     "arrTerminalName": "창원",
@@ -42436,7 +42436,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK711",
     "arrTerminalName": "창원역",
@@ -42468,7 +42468,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK722",
     "arrTerminalName": "진주",
@@ -42500,7 +42500,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK723",
     "arrTerminalName": "진주개양",
@@ -42520,7 +42520,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK724",
     "arrTerminalName": "진주혁신",
@@ -42540,7 +42540,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK801",
     "arrTerminalName": "동대구",
@@ -42614,7 +42614,7 @@
     ]
   },
   {
-    "depTerminalId": "NAEK032",
+    "depTerminalId": "NAEK030",
     "depTerminalName": "동서울",
     "arrTerminalId": "NAEK805",
     "arrTerminalName": "서대구",
@@ -43398,7 +43398,7 @@
   {
     "depTerminalId": "NAEK200",
     "depTerminalName": "강릉",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -43840,7 +43840,7 @@
   {
     "depTerminalId": "NAEK300",
     "depTerminalName": "대전복합",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -45064,7 +45064,7 @@
   {
     "depTerminalId": "NAEK400",
     "depTerminalName": "청주(고속)",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -45184,7 +45184,7 @@
   {
     "depTerminalId": "NAEK407",
     "depTerminalName": "청주공항",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "센트럴시티(서울)",
     "schedules": [
       {
@@ -45222,7 +45222,7 @@
   {
     "depTerminalId": "NAEK500",
     "depTerminalName": "광주(유·스퀘어)",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -46478,7 +46478,7 @@
   {
     "depTerminalId": "NAEK503",
     "depTerminalName": "광주비아",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "센트럴시티(서울)",
     "schedules": [
       {
@@ -46612,7 +46612,7 @@
   {
     "depTerminalId": "NAEK503",
     "depTerminalName": "광주비아",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -47056,7 +47056,7 @@
   {
     "depTerminalId": "NAEK602",
     "depTerminalName": "전주",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -47206,7 +47206,7 @@
   {
     "depTerminalId": "NAEK605",
     "depTerminalName": "전주호남제일문",
-    "arrTerminalId": "NAEK021",
+    "arrTerminalId": "NAEK020",
     "arrTerminalName": "센트럴시티(서울)",
     "schedules": [
       {
@@ -47754,7 +47754,7 @@
   {
     "depTerminalId": "NAEK605",
     "depTerminalName": "전주호남제일문",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -48620,7 +48620,7 @@
   {
     "depTerminalId": "NAEK700",
     "depTerminalName": "부산",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -49402,7 +49402,7 @@
   {
     "depTerminalId": "NAEK710",
     "depTerminalName": "창원",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -49612,7 +49612,7 @@
   {
     "depTerminalId": "NAEK711",
     "depTerminalName": "창원역",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -49884,7 +49884,7 @@
   {
     "depTerminalId": "NAEK801",
     "depTerminalName": "동대구",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {
@@ -50278,7 +50278,7 @@
   {
     "depTerminalId": "NAEK805",
     "depTerminalName": "서대구",
-    "arrTerminalId": "NAEK032",
+    "arrTerminalId": "NAEK030",
     "arrTerminalName": "동서울",
     "schedules": [
       {

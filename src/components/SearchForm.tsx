@@ -13,6 +13,31 @@ interface Props {
   intercityTerminals: Terminal[];
 }
 
+// 터미널 이름 정규화 (슬러그용)
+function normalizeTerminalName(name: string): string {
+  return name
+    .replace(/\(.*?\)/g, '')
+    .replace(/\s+/g, '')
+    .replace(/[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318Fa-zA-Z0-9]/g, '')
+    .trim();
+}
+
+// 터미널 슬러그 생성
+function createTerminalSlug(name: string): string {
+  const normalized = normalizeTerminalName(name);
+  if (normalized.endsWith('터미널') || normalized.endsWith('정류장') || normalized.endsWith('정류소')) {
+    return normalized;
+  }
+  return normalized + '터미널';
+}
+
+// 노선 슬러그 생성
+function createRouteSlug(depName: string, arrName: string): string {
+  const dep = normalizeTerminalName(depName);
+  const arr = normalizeTerminalName(arrName);
+  return `${dep}-${arr}`;
+}
+
 export default function SearchForm({ expressTerminals, intercityTerminals }: Props) {
   const router = useRouter();
   const [busType, setBusType] = useState<'express' | 'intercity'>('express');
@@ -54,10 +79,22 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
     
     setError('');
     
+    // 선택된 터미널 이름 찾기
+    const depTerminal = uniqueTerminals.find(t => t.terminalId === departure);
+    const arrTerminal = uniqueTerminals.find(t => t.terminalId === arrival);
+    
+    if (!depTerminal || !arrTerminal) {
+      setError('터미널 정보를 찾을 수 없습니다');
+      return;
+    }
+    
+    // 한글 슬러그로 URL 생성
+    const routeSlug = createRouteSlug(depTerminal.terminalNm, arrTerminal.terminalNm);
+    
     if (busType === 'express') {
-      router.push(`/express/${departure}/${arrival}`);
+      router.push(`/고속버스/시간표/노선/${routeSlug}`);
     } else {
-      router.push(`/intercity/${departure}/${arrival}`);
+      router.push(`/시외버스/시간표/노선/${routeSlug}`);
     }
   };
 
@@ -69,7 +106,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
           onClick={() => handleBusTypeChange('express')}
           className={`flex-1 py-3 px-4 text-center font-bold rounded-l-xl border transition-all ${
             busType === 'express'
-              ? 'bg-blue-600 text-white border-blue-600'
+              ? 'bg-indigo-600 text-white border-indigo-600'
               : 'bg-gray-50 text-gray-600 border-gray-300 hover:bg-gray-100'
           }`}
         >
@@ -100,9 +137,9 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
                 setError('');
               }}
               className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
-                busType === 'express' 
-                  ? 'focus:ring-blue-500 focus:border-blue-500' 
-                  : 'focus:ring-slate-500 focus:border-slate-500'
+            busType === 'express'
+              ? 'focus:ring-indigo-500 focus:border-indigo-500' 
+              : 'focus:ring-slate-500 focus:border-slate-500'
               }`}
             >
               <option value="">터미널 선택</option>
@@ -130,9 +167,9 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
                 setError('');
               }}
               className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
-                busType === 'express' 
-                  ? 'focus:ring-blue-500 focus:border-blue-500' 
-                  : 'focus:ring-slate-500 focus:border-slate-500'
+            busType === 'express'
+              ? 'focus:ring-indigo-500 focus:border-indigo-500' 
+              : 'focus:ring-slate-500 focus:border-slate-500'
               }`}
             >
               <option value="">터미널 선택</option>
@@ -153,7 +190,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
             onClick={handleSearch}
             className={`w-full text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 ${
               busType === 'express'
-                ? 'bg-blue-600 hover:bg-blue-700'
+                ? 'bg-indigo-600 hover:bg-indigo-700'
                 : 'bg-slate-600 hover:bg-slate-700'
             }`}
           >

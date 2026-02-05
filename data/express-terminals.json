@@ -8,15 +8,7 @@
     "terminalNm": "센트럴시티(서울)"
   },
   {
-    "terminalId": "NAEK021",
-    "terminalNm": "센트럴시티(서울)"
-  },
-  {
     "terminalId": "NAEK030",
-    "terminalNm": "동서울(030)"
-  },
-  {
-    "terminalId": "NAEK032",
     "terminalNm": "동서울"
   },
   {
@@ -170,10 +162,6 @@
   {
     "terminalId": "NAEK172",
     "terminalNm": "이천부발(신하리)"
-  },
-  {
-    "terminalId": "NAEK173",
-    "terminalNm": "의정부"
   },
   {
     "terminalId": "NAEK174",
@@ -370,10 +358,6 @@
   {
     "terminalId": "NAEK355",
     "terminalNm": "고대조치원"
-  },
-  {
-    "terminalId": "NAEK358",
-    "terminalNm": "세종연구단지"
   },
   {
     "terminalId": "NAEK360",

@@ -419,37 +419,87 @@ async function main() {
     JSON.stringify(expressRoutes, null, 2)
   );
 
-  // 5. 시외버스 노선 수집 (주요 터미널 간)
+  // 5. 시외버스 노선 수집 (확장된 터미널 목록)
   console.log('\n=== 시외버스 노선 수집 ===');
   console.log('※ 시외버스 API는 당일 배차정보만 제공합니다.');
   
   const intercityRoutes: RouteData[] = [];
+  const intercityRouteSet = new Set<string>(); // 중복 방지
   
-  // 주요 시외버스 터미널 선별 (이름에 '터미널', '종합' 포함된 것 우선)
-  const majorIntercityTerminals = intercityTerminals.filter(t => 
-    t.terminalNm.includes('터미널') || 
-    t.terminalNm.includes('종합') ||
-    t.terminalNm.includes('서울') ||
-    t.terminalNm.includes('부산') ||
-    t.terminalNm.includes('대구') ||
-    t.terminalNm.includes('대전') ||
-    t.terminalNm.includes('광주') ||
-    t.terminalNm.includes('인천')
-  ).slice(0, 100); // 상위 100개 터미널만
+  // 시외버스 터미널 우선순위 점수 계산
+  function getTerminalPriority(t: Terminal): number {
+    let score = 0;
+    
+    // 1순위: 주요 도시 터미널 (가장 높은 점수)
+    if (t.terminalNm.includes('터미널') || t.terminalNm.includes('종합')) score += 100;
+    
+    // 2순위: 광역시/특별시
+    if (t.terminalNm.includes('서울') || t.cityName?.includes('서울')) score += 90;
+    if (t.terminalNm.includes('부산') || t.cityName?.includes('부산')) score += 90;
+    if (t.terminalNm.includes('대구') || t.cityName?.includes('대구')) score += 90;
+    if (t.terminalNm.includes('대전') || t.cityName?.includes('대전')) score += 90;
+    if (t.terminalNm.includes('광주') || t.cityName?.includes('광주')) score += 90;
+    if (t.terminalNm.includes('인천') || t.cityName?.includes('인천')) score += 90;
+    if (t.terminalNm.includes('울산') || t.cityName?.includes('울산')) score += 90;
+    if (t.terminalNm.includes('세종') || t.cityName?.includes('세종')) score += 90;
+    
+    // 3순위: 주요 도시
+    if (t.terminalNm.includes('수원') || t.terminalNm.includes('성남') || 
+        t.terminalNm.includes('고양') || t.terminalNm.includes('용인')) score += 80;
+    if (t.terminalNm.includes('청주') || t.terminalNm.includes('천안') ||
+        t.terminalNm.includes('전주') || t.terminalNm.includes('창원')) score += 80;
+    if (t.terminalNm.includes('포항') || t.terminalNm.includes('경주') ||
+        t.terminalNm.includes('김해') || t.terminalNm.includes('진주')) score += 80;
+    if (t.terminalNm.includes('강릉') || t.terminalNm.includes('춘천') ||
+        t.terminalNm.includes('원주') || t.terminalNm.includes('속초')) score += 80;
+    if (t.terminalNm.includes('여수') || t.terminalNm.includes('순천') ||
+        t.terminalNm.includes('목포') || t.terminalNm.includes('광양')) score += 80;
+    if (t.terminalNm.includes('구미') || t.terminalNm.includes('김천') ||
+        t.terminalNm.includes('안동') || t.terminalNm.includes('영주')) score += 80;
+    
+    // 4순위: 중소 도시 및 읍면 터미널
+    if (t.terminalNm.includes('역') || t.terminalNm.includes('공항')) score += 70;
+    if (t.terminalNm.includes('시외') || t.terminalNm.includes('버스')) score += 60;
+    
+    // 5순위: 도 단위 cityName이 있는 터미널
+    if (t.cityName && (
+        t.cityName.includes('경기도') || t.cityName.includes('강원도') ||
+        t.cityName.includes('충청') || t.cityName.includes('전라') ||
+        t.cityName.includes('경상') || t.cityName.includes('제주')
+    )) score += 50;
+    
+    // 6순위: 서울 내 정류장 (미아초 등)
+    if (t.cityName?.includes('서울특별시')) score += 40;
+    
+    return score;
+  }
   
-  console.log(`주요 시외버스 터미널: ${majorIntercityTerminals.length}개`);
+  // 터미널을 우선순위로 정렬하고 상위 500개 선택
+  const sortedIntercityTerminals = [...intercityTerminals]
+    .map(t => ({ ...t, priority: getTerminalPriority(t) }))
+    .sort((a, b) => b.priority - a.priority)
+    .slice(0, 500);
+  
+  console.log(`시외버스 터미널 (우선순위 상위 500개): ${sortedIntercityTerminals.length}개`);
+  console.log(`상위 10개 터미널: ${sortedIntercityTerminals.slice(0, 10).map(t => t.terminalNm).join(', ')}`);
+  
+  // 도착지 터미널 목록 (더 넓은 범위)
+  const arrivalIntercityTerminals = sortedIntercityTerminals;
   
   let intercityIndex = 0;
-  const totalIntercityTerminals = majorIntercityTerminals.length;
+  const totalIntercityTerminals = sortedIntercityTerminals.length;
   
-  for (const depTerminal of majorIntercityTerminals) {
+  for (const depTerminal of sortedIntercityTerminals) {
     intercityIndex++;
     
-    // 다른 주요 터미널로의 노선 조회
-    for (const arrTerminal of majorIntercityTerminals) {
+    // 다른 터미널로의 노선 조회
+    for (const arrTerminal of arrivalIntercityTerminals) {
       if (depTerminal.terminalId === arrTerminal.terminalId) continue;
       
-      await delay(100);
+      const routeKey = `${depTerminal.terminalId}-${arrTerminal.terminalId}`;
+      if (intercityRouteSet.has(routeKey)) continue;
+      
+      await delay(50); // API 부하 감소를 위해 딜레이 조정
       
       const schedules = await getIntercitySchedules(
         depTerminal.terminalId,
@@ -458,6 +508,7 @@ async function main() {
       );
       
       if (schedules.length > 0) {
+        intercityRouteSet.add(routeKey);
         intercityRoutes.push({
           depTerminalId: depTerminal.terminalId,
           depTerminalName: depTerminal.terminalNm,
@@ -473,8 +524,8 @@ async function main() {
       }
     }
     
-    // 진행 상황 (10개 터미널마다)
-    if (intercityIndex % 10 === 0) {
+    // 진행 상황 (20개 터미널마다)
+    if (intercityIndex % 20 === 0) {
       console.log(`진행: ${intercityIndex}/${totalIntercityTerminals} - 수집된 시외버스 노선: ${intercityRoutes.length}개`);
       
       // 중간 저장
