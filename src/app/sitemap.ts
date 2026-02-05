@@ -13,6 +13,27 @@ export const dynamic = 'force-static';
 
 const BASE_URL = 'https://bus.mustarddata.com';
 
+// 인기 노선 (높은 우선순위 부여)
+const popularRouteNames = [
+  '서울고속버스터미널(경부 영동선)-부산종합버스터미널',
+  '서울고속버스터미널(경부 영동선)-대구동대구터미널',
+  '서울고속버스터미널(경부 영동선)-대전복합터미널',
+  '동서울종합터미널-강릉고속버스터미널',
+  '센트럴시티터미널(호남선)-광주종합버스터미널',
+];
+
+// 주요 터미널 (높은 우선순위 부여)
+const majorTerminalNames = [
+  '서울고속버스터미널',
+  '동서울종합터미널',
+  '센트럴시티터미널',
+  '부산종합버스터미널',
+  '대구동대구터미널',
+  '대전복합터미널',
+  '광주종합버스터미널',
+  '강릉고속버스터미널',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const expressTerminals = getExpressTerminals();
   const intercityTerminals = getIntercityTerminals();
@@ -30,26 +51,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: BASE_URL,
       lastModified: dataLastModified,
-      changeFrequency: 'weekly',
+      changeFrequency: 'daily',
       priority: 1,
     },
     {
       url: `${BASE_URL}/고속버스/시간표`,
       lastModified: dataLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${BASE_URL}/시외버스/시간표`,
       lastModified: dataLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${BASE_URL}/터미널`,
       lastModified: dataLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
   ];
   
@@ -70,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  // 고속버스 터미널 페이지 (중복 제거)
+  // 고속버스 터미널 페이지 (중복 제거, 주요 터미널 우선순위 높임)
   const expressTerminalSlugs = new Set<string>();
   const expressTerminalPages: MetadataRoute.Sitemap = expressTerminals
     .filter(t => {
@@ -79,12 +100,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       expressTerminalSlugs.add(slug);
       return true;
     })
-    .map(t => ({
-      url: `${BASE_URL}/고속버스/시간표/${createTerminalSlug(t.terminalNm)}`,
-      lastModified: dataLastModified,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }));
+    .map(t => {
+      const isMajor = majorTerminalNames.some(name => t.terminalNm.includes(name.replace('터미널', '')));
+      return {
+        url: `${BASE_URL}/고속버스/시간표/${createTerminalSlug(t.terminalNm)}`,
+        lastModified: dataLastModified,
+        changeFrequency: 'daily' as const,
+        priority: isMajor ? 0.9 : 0.8,
+      };
+    });
 
   // 시외버스 터미널 페이지 (중복 제거)
   const intercityTerminalSlugs = new Set<string>();
@@ -102,7 +126,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  // 고속버스 노선 페이지 (중복 제거)
+  // 고속버스 노선 페이지 (중복 제거, 인기 노선 우선순위 높임)
   const expressRouteSlugs = new Set<string>();
   const expressRoutePages: MetadataRoute.Sitemap = expressRoutes
     .filter(route => {
@@ -111,12 +135,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       expressRouteSlugs.add(slug);
       return true;
     })
-    .map(route => ({
-      url: `${BASE_URL}/고속버스/시간표/노선/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
-      lastModified: dataLastModified,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    }));
+    .map(route => {
+      const routeKey = `${route.depTerminalName}-${route.arrTerminalName}`;
+      const isPopular = popularRouteNames.includes(routeKey);
+      return {
+        url: `${BASE_URL}/고속버스/시간표/노선/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
+        lastModified: dataLastModified,
+        changeFrequency: 'daily' as const,
+        priority: isPopular ? 0.85 : 0.7,
+      };
+    });
 
   // 시외버스 노선 페이지 (중복 제거)
   const intercityRouteSlugs = new Set<string>();
@@ -130,8 +158,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map(route => ({
       url: `${BASE_URL}/시외버스/시간표/노선/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
       lastModified: dataLastModified,
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
+      changeFrequency: 'daily' as const,
+      priority: 0.65,
     }));
 
   return [

@@ -372,15 +372,89 @@ export default async function IntercityRoutePage({ params }: Props) {
         </Link>
       </section>
 
-      {/* SEO 텍스트 */}
-      <section className="mt-12 text-sm text-gray-600">
-        <p>
-          {route.depTerminalName}에서 {route.arrTerminalName}까지 시외버스는 하루{' '}
-          {schedules.length}회 운행됩니다. 첫차는 {schedules[0]?.depTime}, 막차는{' '}
-          {schedules[schedules.length - 1]?.depTime}입니다. 요금은{' '}
-          {formatCharge(minCharge)}부터 시작합니다.
-        </p>
+      {/* 관련 노선 추천 (내부 링크 강화) */}
+      <RelatedRoutes
+        currentDepTerminal={route.depTerminalName}
+        currentArrTerminal={route.arrTerminalName}
+      />
+
+      {/* SEO 텍스트 강화 */}
+      <section className="mt-12 bg-gray-100 rounded-lg p-6 text-sm text-gray-700 leading-relaxed">
+        <h2 className="font-bold text-gray-900 mb-3">{route.depTerminalName} → {route.arrTerminalName} 시외버스 안내</h2>
+        <div className="space-y-2">
+          <p>
+            {route.depTerminalName}에서 {route.arrTerminalName}까지 시외버스는 하루 총 <strong>{schedules.length}회</strong> 운행됩니다. 
+            첫차는 <strong>{schedules[0]?.depTime}</strong>에 출발하고, 막차는 <strong>{schedules[schedules.length - 1]?.depTime}</strong>에 출발합니다.
+          </p>
+          <p>
+            요금은 버스 등급에 따라 <strong>{formatCharge(minCharge)}</strong>부터 <strong>{formatCharge(maxCharge)}</strong>까지 다양합니다.
+          </p>
+          <p>
+            예매는 <a href="https://www.bustago.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">버스타고</a> 또는 
+            <a href="https://txbus.t-money.co.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline ml-1">티머니 시외버스</a>에서 
+            온라인으로 가능합니다.
+          </p>
+        </div>
       </section>
     </div>
+  );
+}
+
+// 관련 노선 추천 컴포넌트
+function RelatedRoutes({ currentDepTerminal, currentArrTerminal }: { currentDepTerminal: string; currentArrTerminal: string }) {
+  const allRoutes = getIntercityRoutes();
+  
+  // 같은 출발지에서 다른 도착지로 가는 인기 노선
+  const sameDepRoutes = allRoutes
+    .filter(r => r.depTerminalName === currentDepTerminal && r.arrTerminalName !== currentArrTerminal)
+    .slice(0, 4);
+  
+  // 같은 도착지로 가는 다른 출발지 노선
+  const sameArrRoutes = allRoutes
+    .filter(r => r.arrTerminalName === currentArrTerminal && r.depTerminalName !== currentDepTerminal)
+    .slice(0, 4);
+
+  if (sameDepRoutes.length === 0 && sameArrRoutes.length === 0) return null;
+
+  return (
+    <section className="mt-8">
+      <h2 className="text-xl font-bold mb-4">🔗 관련 노선</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {sameDepRoutes.length > 0 && (
+          <div>
+            <h3 className="font-medium text-gray-700 mb-3">{currentDepTerminal.replace('터미널', '').replace('종합버스', '')}에서 출발하는 다른 노선</h3>
+            <div className="space-y-2">
+              {sameDepRoutes.map((r, idx) => (
+                <Link
+                  key={idx}
+                  href={`/시외버스/시간표/노선/${createRouteSlug(r.depTerminalName, r.arrTerminalName)}`}
+                  className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-slate-300 hover:shadow-sm transition"
+                >
+                  <span className="font-medium text-gray-900">→ {r.arrTerminalName.replace('터미널', '').replace('종합버스', '')}</span>
+                  <span className="text-sm text-gray-500 ml-2">{r.schedules.length}회/일</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+        {sameArrRoutes.length > 0 && (
+          <div>
+            <h3 className="font-medium text-gray-700 mb-3">{currentArrTerminal.replace('터미널', '').replace('종합버스', '')}으로 가는 다른 노선</h3>
+            <div className="space-y-2">
+              {sameArrRoutes.map((r, idx) => (
+                <Link
+                  key={idx}
+                  href={`/시외버스/시간표/노선/${createRouteSlug(r.depTerminalName, r.arrTerminalName)}`}
+                  className="block bg-white border border-gray-200 rounded-lg p-3 hover:border-slate-300 hover:shadow-sm transition"
+                >
+                  <span className="font-medium text-gray-900">{r.depTerminalName.replace('터미널', '').replace('종합버스', '')} →</span>
+                  <span className="text-sm text-gray-500 ml-2">{r.schedules.length}회/일</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

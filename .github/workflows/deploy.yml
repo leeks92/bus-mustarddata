@@ -48,3 +48,25 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Submit to IndexNow
+        if: success()
+        run: |
+          # 주요 URL 목록
+          URLS='[
+            "https://bus.mustarddata.com/",
+            "https://bus.mustarddata.com/고속버스/시간표/",
+            "https://bus.mustarddata.com/시외버스/시간표/",
+            "https://bus.mustarddata.com/터미널/",
+            "https://bus.mustarddata.com/sitemap.xml"
+          ]'
+          
+          # IndexNow API 호출
+          curl -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"host\": \"bus.mustarddata.com\",
+              \"key\": \"95d7b954cbdd0dbfb78b328346fcc866\",
+              \"keyLocation\": \"https://bus.mustarddata.com/95d7b954cbdd0dbfb78b328346fcc866.txt\",
+              \"urlList\": $URLS
+            }" || echo "IndexNow submission failed (non-critical)"

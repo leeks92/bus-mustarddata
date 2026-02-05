@@ -1,12 +1,101 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '페이지를 찾을 수 없습니다',
-  description: '요청하신 페이지가 존재하지 않습니다. 버스 시간표 메인 페이지로 이동해주세요.',
-};
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
+/**
+ * 이전 URL 구조에서 새 URL 구조로 리다이렉트 처리
+ */
+function normalizeTerminalName(name: string): string {
+  return name
+    .replace(/\(.*?\)/g, '') // 괄호 내용 제거
+    .replace(/\s+/g, '') // 공백 제거
+    .replace(/[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318Fa-zA-Z0-9]/g, ''); // 특수문자 제거
+}
+
+function addTerminalSuffix(name: string): string {
+  const normalized = normalizeTerminalName(name);
+  if (normalized.endsWith('터미널') || normalized.endsWith('정류장') || normalized.endsWith('정류소')) {
+    return normalized;
+  }
+  return normalized + '터미널';
+}
+
+function getRedirectUrl(pathname: string): string | null {
+  // /express/... → /고속버스/시간표/...
+  if (pathname.startsWith('/express')) {
+    const subPath = pathname.replace(/^\/express\/?/, '').replace(/\/$/, '');
+    const parts = subPath.split('/').filter(Boolean);
+    
+    if (parts.length === 0) {
+      return '/고속버스/시간표';
+    } else if (parts.length === 1) {
+      const terminal = decodeURIComponent(parts[0]);
+      const slug = addTerminalSuffix(terminal);
+      return `/고속버스/시간표/${encodeURIComponent(slug)}`;
+    } else if (parts.length >= 2) {
+      const dep = normalizeTerminalName(decodeURIComponent(parts[0]));
+      const arr = normalizeTerminalName(decodeURIComponent(parts[1]));
+      return `/고속버스/시간표/노선/${encodeURIComponent(`${dep}-${arr}`)}`;
+    }
+  }
+  
+  // /intercity/... → /시외버스/시간표/...
+  if (pathname.startsWith('/intercity')) {
+    const subPath = pathname.replace(/^\/intercity\/?/, '').replace(/\/$/, '');
+    const parts = subPath.split('/').filter(Boolean);
+    
+    if (parts.length === 0) {
+      return '/시외버스/시간표';
+    } else if (parts.length === 1) {
+      const terminal = decodeURIComponent(parts[0]);
+      const slug = addTerminalSuffix(terminal);
+      return `/시외버스/시간표/${encodeURIComponent(slug)}`;
+    } else if (parts.length >= 2) {
+      const dep = normalizeTerminalName(decodeURIComponent(parts[0]));
+      const arr = normalizeTerminalName(decodeURIComponent(parts[1]));
+      return `/시외버스/시간표/노선/${encodeURIComponent(`${dep}-${arr}`)}`;
+    }
+  }
+  
+  // /terminal/... → /터미널/...
+  if (pathname.startsWith('/terminal')) {
+    const subPath = pathname.replace(/^\/terminal\/?/, '').replace(/\/$/, '');
+    if (subPath) {
+      return `/터미널/${subPath}`;
+    }
+    return '/터미널';
+  }
+  
+  return null;
+}
 
 export default function NotFound() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  useEffect(() => {
+    const redirectUrl = getRedirectUrl(pathname);
+    if (redirectUrl) {
+      setIsRedirecting(true);
+      router.replace(redirectUrl);
+    }
+  }, [pathname, router]);
+
+  if (isRedirecting) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">페이지를 이동하고 있습니다...</p>
+          <p className="text-sm text-gray-400 mt-2">잠시만 기다려주세요</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="text-center max-w-md">
@@ -49,13 +138,13 @@ export default function NotFound() {
           
           <div className="grid grid-cols-2 gap-3">
             <Link
-              href="/express"
+              href="/고속버스/시간표"
               className="block bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition text-sm"
             >
               고속버스 시간표
             </Link>
             <Link
-              href="/intercity"
+              href="/시외버스/시간표"
               className="block bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition text-sm"
             >
               시외버스 시간표
@@ -63,7 +152,7 @@ export default function NotFound() {
           </div>
           
           <Link
-            href="/terminal"
+            href="/터미널"
             className="block bg-gray-50 text-gray-600 py-3 px-6 rounded-lg font-medium hover:bg-gray-100 transition text-sm"
           >
             전체 터미널 목록 보기
@@ -75,9 +164,9 @@ export default function NotFound() {
           <h2 className="text-sm font-medium text-gray-500 mb-4">인기 노선 바로가기</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              { name: '서울 → 부산', href: '/express/NAEK010/NAEK700' },
-              { name: '서울 → 대전', href: '/express/NAEK010/NAEK300' },
-              { name: '서울 → 강릉', href: '/express/NAEK010/NAEK500' },
+              { name: '서울 → 부산', href: '/고속버스/시간표/노선/서울경부터미널-부산터미널' },
+              { name: '서울 → 대전', href: '/고속버스/시간표/노선/서울경부터미널-대전복합터미널' },
+              { name: '서울 → 강릉', href: '/고속버스/시간표/노선/서울경부터미널-강릉터미널' },
             ].map((route) => (
               <Link
                 key={route.href}

@@ -1,19 +1,32 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getExpressTerminals, getIntercityTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
-import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd } from '@/components/JsonLd';
+import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd, ItemListJsonLd, HowToJsonLd, ServiceJsonLd } from '@/components/JsonLd';
 import SearchForm from '@/components/SearchForm';
+import { createRouteSlug } from '@/lib/slugs';
 
 // 인기 노선 (하드코딩 - 추후 트래픽 기반으로 변경 가능)
 const popularRoutes = [
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '부산종합버스터미널' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '대구동대구터미널' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '대전복합터미널' },
-  { dep: '동서울종합터미널', arr: '강릉고속버스터미널' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '강릉고속버스터미널' },
-  { dep: '센트럴시티터미널(호남선)', arr: '광주종합버스터미널' },
-  { dep: '센트럴시티터미널(호남선)', arr: '전주고속버스터미널' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '울산고속버스터미널' },
+  { dep: '서울고속버스터미널(경부 영동선)', arr: '부산종합버스터미널', depShort: '서울', arrShort: '부산' },
+  { dep: '서울고속버스터미널(경부 영동선)', arr: '대구동대구터미널', depShort: '서울', arrShort: '대구' },
+  { dep: '서울고속버스터미널(경부 영동선)', arr: '대전복합터미널', depShort: '서울', arrShort: '대전' },
+  { dep: '동서울종합터미널', arr: '강릉고속버스터미널', depShort: '동서울', arrShort: '강릉' },
+  { dep: '서울고속버스터미널(경부 영동선)', arr: '강릉고속버스터미널', depShort: '서울', arrShort: '강릉' },
+  { dep: '센트럴시티터미널(호남선)', arr: '광주종합버스터미널', depShort: '서울', arrShort: '광주' },
+  { dep: '센트럴시티터미널(호남선)', arr: '전주고속버스터미널', depShort: '서울', arrShort: '전주' },
+  { dep: '서울고속버스터미널(경부 영동선)', arr: '울산고속버스터미널', depShort: '서울', arrShort: '울산' },
+];
+
+// 주요 터미널 목록 (SEO용)
+const majorTerminals = [
+  '서울고속버스터미널',
+  '동서울종합터미널',
+  '센트럴시티터미널',
+  '부산종합버스터미널',
+  '대구동대구터미널',
+  '대전복합터미널',
+  '광주종합버스터미널',
+  '강릉고속버스터미널',
 ];
 
 const BASE_URL = 'https://bus.mustarddata.com';
@@ -25,11 +38,43 @@ const faqItems = [
   },
   {
     question: '버스 예매는 어디서 할 수 있나요?',
-    answer: '고속버스는 고속버스통합예매(KOBUS), 시외버스는 버스타고(bustago.or.kr)에서 예매할 수 있습니다. 터미널 현장에서도 예매 가능합니다.',
+    answer: '고속버스는 고속버스통합예매(KOBUS, www.kobus.co.kr), 시외버스는 버스타고(bustago.or.kr) 또는 티머니 시외버스(txbus.t-money.co.kr)에서 예매할 수 있습니다. 터미널 현장에서도 예매 가능합니다.',
   },
   {
     question: '버스 시간표는 얼마나 자주 업데이트되나요?',
     answer: '본 서비스의 시간표는 매주 업데이트됩니다. 명절이나 공휴일에는 임시 배차가 있을 수 있으므로 공식 예매 사이트에서 최종 확인을 권장합니다.',
+  },
+  {
+    question: '고속버스 요금은 어떻게 되나요?',
+    answer: '고속버스 요금은 노선과 버스 등급(일반, 우등, 프리미엄)에 따라 다릅니다. 예를 들어 서울-부산 구간은 일반 약 23,000원, 우등 약 34,000원, 프리미엄 약 40,000원입니다.',
+  },
+  {
+    question: '버스 예매 취소는 어떻게 하나요?',
+    answer: '예매한 사이트(KOBUS, 버스타고 등)에서 취소할 수 있습니다. 출발 1시간 전까지 무료 취소가 가능하며, 이후에는 수수료가 부과될 수 있습니다.',
+  },
+  {
+    question: '어린이/청소년 할인은 어떻게 받나요?',
+    answer: '만 13세 미만 어린이는 약 50% 할인, 만 13세~18세 청소년은 약 20% 할인이 적용됩니다. 예매 시 생년월일 입력 또는 현장에서 신분증 제시가 필요합니다.',
+  },
+];
+
+// HowTo 스텝 (버스 이용 방법)
+const howToSteps = [
+  {
+    name: '시간표 검색',
+    text: '출발지와 도착지 터미널을 선택하여 버스 시간표를 검색합니다. 원하는 날짜의 운행 시간과 요금을 확인할 수 있습니다.',
+  },
+  {
+    name: '버스 예매',
+    text: '고속버스는 KOBUS(www.kobus.co.kr), 시외버스는 버스타고(bustago.or.kr)에서 온라인 예매합니다. 앱으로도 예매 가능합니다.',
+  },
+  {
+    name: '터미널 방문',
+    text: '출발 30분 전까지 터미널에 도착하여 발권기에서 티켓을 출력하거나 모바일 티켓을 준비합니다.',
+  },
+  {
+    name: '버스 탑승',
+    text: '해당 승강장에서 버스에 탑승합니다. 신분증을 지참하고, 좌석 번호를 확인 후 착석합니다.',
   },
 ];
 
@@ -39,16 +84,37 @@ export default function HomePage() {
   const routes = getExpressRoutes();
   const metadata = getMetadata();
 
+  // ItemList용 인기 노선 데이터
+  const popularRouteItems = popularRoutes.map((route, index) => ({
+    name: `${route.depShort} → ${route.arrShort} 고속버스`,
+    url: `${BASE_URL}/고속버스/시간표/노선/${createRouteSlug(route.dep, route.arr)}`,
+    description: `${route.depShort}에서 ${route.arrShort}까지 고속버스 시간표`,
+    position: index + 1,
+  }));
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* JSON-LD 구조화 데이터 */}
+      {/* JSON-LD 구조화 데이터 - SEO 최적화 */}
       <WebSiteJsonLd
-        name="전국 고속버스·시외버스 시간표"
+        name="전국 고속버스·시외버스 시간표 조회"
         url={BASE_URL}
-        description="전국 고속버스, 시외버스 시간표와 요금 정보를 무료로 조회하세요."
+        description="전국 고속버스, 시외버스 시간표와 요금 정보를 무료로 조회하세요. 서울, 부산, 대구, 대전, 광주, 강릉 등 전국 터미널 운행 정보 제공."
       />
       <OrganizationJsonLd />
       <FAQJsonLd items={faqItems} />
+      <ItemListJsonLd items={popularRouteItems} name="인기 버스 노선" />
+      <HowToJsonLd
+        name="고속버스/시외버스 이용 방법"
+        description="전국 고속버스와 시외버스를 예매하고 이용하는 방법을 안내합니다."
+        steps={howToSteps}
+        totalTime="PT30M"
+      />
+      <ServiceJsonLd
+        name="전국 버스 시간표 서비스"
+        description="전국 고속버스, 시외버스 시간표와 요금 정보를 무료로 제공하는 서비스입니다."
+        provider="MustardData"
+        areaServed={['서울', '부산', '대구', '대전', '광주', '울산', '강릉', '전주', '청주', '천안']}
+      />
       {/* 히어로 섹션 */}
       <section className="relative h-[400px] flex flex-col justify-center items-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -196,22 +262,86 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* FAQ 섹션 */}
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">❓ 자주 묻는 질문</h2>
+          <div className="space-y-4">
+            {faqItems.slice(0, 4).map((faq, index) => (
+              <details key={index} className="bg-white border border-gray-200 rounded-lg group">
+                <summary className="p-4 cursor-pointer font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50">
+                  <span>{faq.question}</span>
+                  <svg className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 pb-4 text-gray-700 text-sm leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* 주요 터미널 링크 (SEO용 내부 링크) */}
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🏢 주요 버스 터미널</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {majorTerminals.map((terminal, index) => (
+              <Link
+                key={index}
+                href={`/터미널/${terminal.replace('터미널', '').replace('종합버스', '')}`}
+                className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-300 hover:shadow-md transition-all text-sm font-medium text-gray-800"
+              >
+                {terminal.replace('터미널', '').replace('종합버스', '')}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* SEO 텍스트 */}
         <section className="mt-16 bg-gray-100 rounded-xl p-6 text-gray-700 text-sm leading-relaxed">
           <h2 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
             <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             전국 버스 시간표 서비스 안내
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-3">
             <p>
               본 서비스는 국토교통부의 공공데이터포털 API를 활용하여 전국 고속버스 및 시외버스의 실시간 운행정보, 시간표, 요금 정보를 제공합니다. 
-              서울고속버스터미널(경부/영동/호남), 동서울터미널 등 전국 주요 터미널의 최신 정보를 쉽고 빠르게 검색할 수 있습니다.
+              서울고속버스터미널(경부/영동/호남), 동서울터미널, 센트럴시티터미널 등 전국 주요 터미널의 최신 정보를 쉽고 빠르게 검색할 수 있습니다.
+            </p>
+            <p>
+              <strong>고속버스</strong>는 고속도로를 이용해 서울-부산, 서울-대구, 서울-대전, 서울-광주 등 주요 도시를 빠르게 연결합니다. 
+              <strong>시외버스</strong>는 일반 국도를 이용해 전국 방방곡곡의 중소도시와 읍면 지역까지 연결하여 더 많은 지역을 커버합니다.
+            </p>
+            <p>
+              버스 등급은 <strong>일반</strong>, <strong>우등</strong>, <strong>프리미엄</strong>으로 구분되며, 등급에 따라 좌석 간격, 편의시설, 요금이 다릅니다. 
+              프리미엄 버스는 1+2 좌석 배열, 개인 모니터, 와이파이 등 고급 서비스를 제공합니다.
             </p>
             <p>
               제공되는 정보는 운수사의 사정에 따라 변경될 수 있으며, 명절이나 공휴일에는 임시 차량이 배치될 수 있습니다. 
-              정확한 예매 및 좌석 확인은 <span className="font-semibold text-gray-900">고속버스통합예매(KOBUS)</span>, <span className="font-semibold text-gray-900">티머니 시외버스</span>, <span className="font-semibold text-gray-900">버스타고</span> 등 공식 예매 사이트 및 앱을 이용해 주시기 바랍니다.
+              정확한 예매 및 좌석 확인은 <a href="https://www.kobus.co.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">고속버스통합예매(KOBUS)</a>, 
+              <a href="https://txbus.t-money.co.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold ml-1">티머니 시외버스</a>, 
+              <a href="https://www.bustago.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold ml-1">버스타고</a> 등 공식 예매 사이트 및 앱을 이용해 주시기 바랍니다.
             </p>
           </div>
+        </section>
+
+        {/* 버스 이용 방법 (HowTo) */}
+        <section className="mt-12 bg-white border border-gray-200 rounded-xl p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">🚌 고속버스/시외버스 이용 방법</h2>
+          <ol className="space-y-3">
+            {howToSteps.map((step, index) => (
+              <li key={index} className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  {index + 1}
+                </span>
+                <div>
+                  <strong className="text-gray-900">{step.name}</strong>
+                  <p className="text-sm text-gray-600 mt-1">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
       </div>
     </div>

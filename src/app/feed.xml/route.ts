@@ -37,8 +37,8 @@ export async function GET() {
   items.push(`
     <item>
       <title><![CDATA[고속버스 시간표 - 전국 고속버스 터미널 및 노선 조회]]></title>
-      <link>${BASE_URL}/express</link>
-      <guid>${BASE_URL}/express</guid>
+      <link>${BASE_URL}/고속버스/시간표</link>
+      <guid>${BASE_URL}/고속버스/시간표</guid>
       <description><![CDATA[전국 고속버스 터미널 목록과 노선 정보를 제공합니다. 터미널을 선택하여 배차 시간표를 확인하세요.]]></description>
       <pubDate>${new Date('2026-02-02').toUTCString()}</pubDate>
     </item>`);
@@ -47,8 +47,8 @@ export async function GET() {
   items.push(`
     <item>
       <title><![CDATA[시외버스 시간표 - 전국 시외버스 터미널 및 노선 조회]]></title>
-      <link>${BASE_URL}/intercity</link>
-      <guid>${BASE_URL}/intercity</guid>
+      <link>${BASE_URL}/시외버스/시간표</link>
+      <guid>${BASE_URL}/시외버스/시간표</guid>
       <description><![CDATA[전국 시외버스 터미널 목록과 노선 정보를 제공합니다. 터미널을 선택하여 배차 시간표를 확인하세요.]]></description>
       <pubDate>${new Date('2026-02-02').toUTCString()}</pubDate>
     </item>`);
@@ -57,8 +57,8 @@ export async function GET() {
   items.push(`
     <item>
       <title><![CDATA[버스 터미널 목록 - 전국 고속/시외버스 터미널]]></title>
-      <link>${BASE_URL}/terminal</link>
-      <guid>${BASE_URL}/terminal</guid>
+      <link>${BASE_URL}/터미널</link>
+      <guid>${BASE_URL}/터미널</guid>
       <description><![CDATA[전국 고속버스, 시외버스 터미널 목록입니다. 터미널별 노선 정보와 시간표를 확인하세요.]]></description>
       <pubDate>${new Date('2026-02-02').toUTCString()}</pubDate>
     </item>`);
