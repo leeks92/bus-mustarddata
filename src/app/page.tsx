@@ -227,7 +227,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={index}
-                  href={`/express/${encodeURIComponent(route.dep)}/${encodeURIComponent(route.arr)}`}
+                  href={`/고속버스/시간표/노선/${encodeURIComponent(createRouteSlug(route.dep, route.arr))}`}
                   className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all group"
                 >
                   <div className="flex items-center justify-between mb-2">

@@ -68,7 +68,9 @@ export async function GET() {
   popularRoutes.forEach(route => {
     const depName = terminalNameMap.get(route.depTerminalId) || route.depTerminalId;
     const arrName = terminalNameMap.get(route.arrTerminalId) || route.arrTerminalId;
-    const url = `${BASE_URL}/express/${route.depTerminalId}/${route.arrTerminalId}`;
+    const depSlug = depName.replace(/\(.*?\)/g, '').replace(/\s+/g, '');
+    const arrSlug = arrName.replace(/\(.*?\)/g, '').replace(/\s+/g, '');
+    const url = `${BASE_URL}/고속버스/시간표/노선/${encodeURIComponent(`${depSlug}-${arrSlug}`)}`;
     
     items.push(`
     <item>
