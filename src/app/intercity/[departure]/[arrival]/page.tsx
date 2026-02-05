@@ -69,7 +69,7 @@ function getGradeBadge(grade: string) {
     return 'bg-purple-100 text-purple-800';
   }
   if (grade.includes('우등')) {
-    return 'bg-teal-100 text-teal-800';
+    return 'bg-slate-100 text-slate-800';
   }
   return 'bg-gray-100 text-gray-800';
 }
@@ -85,7 +85,7 @@ export default async function IntercityRoutePage({ params }: Props) {
         <p className="text-gray-600 mb-6">
           요청하신 노선 정보가 존재하지 않습니다.
         </p>
-        <Link href="/intercity" className="text-teal-600 hover:underline">
+        <Link href="/intercity" className="text-slate-600 hover:underline">
           시외버스 터미널 목록으로 돌아가기
         </Link>
       </div>
@@ -141,11 +141,11 @@ export default async function IntercityRoutePage({ params }: Props) {
 
       {/* 브레드크럼 */}
       <nav className="text-sm text-gray-600 mb-6">
-        <Link href="/" className="hover:text-teal-600">
+        <Link href="/" className="hover:text-slate-600">
           홈
         </Link>
         <span className="mx-2">›</span>
-        <Link href="/intercity" className="hover:text-teal-600">
+        <Link href="/intercity" className="hover:text-slate-600">
           시외버스
         </Link>
         <span className="mx-2">›</span>
@@ -155,7 +155,7 @@ export default async function IntercityRoutePage({ params }: Props) {
       </nav>
 
       {/* 노선 정보 헤더 */}
-      <header className="bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl p-6 mb-8">
+      <header className="bg-gradient-to-r from-slate-500 to-slate-600 text-white rounded-xl p-6 mb-8">
         <div className="flex items-center gap-2 mb-2">
           <span className="bg-white/20 px-2 py-1 rounded text-sm">시외버스</span>
         </div>
@@ -191,8 +191,8 @@ export default async function IntercityRoutePage({ params }: Props) {
       </header>
 
       {/* 예매 링크 */}
-      <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-8">
-        <p className="text-sm text-teal-800">
+      <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-8">
+        <p className="text-sm text-slate-800">
           💡 <strong>예매 안내:</strong> 정확한 좌석 확인과 예매는 공식 사이트를
           이용해 주세요.
         </p>
@@ -201,7 +201,7 @@ export default async function IntercityRoutePage({ params }: Props) {
             href="https://www.bustago.or.kr"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-teal-600 hover:underline text-sm"
+            className="text-slate-600 hover:underline text-sm"
           >
             버스타고 (시외버스 예매) →
           </a>
@@ -253,7 +253,7 @@ export default async function IntercityRoutePage({ params }: Props) {
             {Object.entries(gradeGroups).map(([grade, items]) => (
               <div key={grade} className="bg-white border rounded-lg p-4">
                 <h3 className="font-bold mb-2">{grade}</h3>
-                <p className="text-2xl font-bold text-teal-600">
+                <p className="text-2xl font-bold text-slate-600">
                   {formatCharge(items[0].charge)}
                 </p>
                 <p className="text-sm text-gray-600 mt-1">
@@ -270,7 +270,7 @@ export default async function IntercityRoutePage({ params }: Props) {
         <h2 className="font-bold mb-2">돌아오는 노선</h2>
         <Link
           href={`/intercity/${arrival}/${departure}`}
-          className="text-teal-600 hover:underline"
+          className="text-slate-600 hover:underline"
         >
           {route.arrTerminalName} → {route.depTerminalName} 시간표 보기
         </Link>

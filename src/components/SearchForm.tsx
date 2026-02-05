@@ -79,7 +79,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
           onClick={() => handleBusTypeChange('intercity')}
           className={`flex-1 py-3 px-4 text-center font-bold rounded-r-xl border-t border-r border-b transition-all ${
             busType === 'intercity'
-              ? 'bg-teal-600 text-white border-teal-600'
+              ? 'bg-slate-600 text-white border-slate-600'
               : 'bg-gray-50 text-gray-600 border-gray-300 hover:bg-gray-100'
           }`}
         >
@@ -102,7 +102,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
               className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
                 busType === 'express' 
                   ? 'focus:ring-blue-500 focus:border-blue-500' 
-                  : 'focus:ring-teal-500 focus:border-teal-500'
+                  : 'focus:ring-slate-500 focus:border-slate-500'
               }`}
             >
               <option value="">터미널 선택</option>
@@ -132,7 +132,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
               className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
                 busType === 'express' 
                   ? 'focus:ring-blue-500 focus:border-blue-500' 
-                  : 'focus:ring-teal-500 focus:border-teal-500'
+                  : 'focus:ring-slate-500 focus:border-slate-500'
               }`}
             >
               <option value="">터미널 선택</option>
@@ -154,7 +154,7 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
             className={`w-full text-white py-4 rounded-xl font-bold text-lg transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 ${
               busType === 'express'
                 ? 'bg-blue-600 hover:bg-blue-700'
-                : 'bg-teal-600 hover:bg-teal-700'
+                : 'bg-slate-600 hover:bg-slate-700'
             }`}
           >
             시간표 조회하기

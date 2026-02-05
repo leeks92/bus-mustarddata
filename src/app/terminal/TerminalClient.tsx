@@ -130,8 +130,8 @@ export default function TerminalClient({ expressTerminals, intercityTerminals }:
               onClick={() => setActiveTab('intercity')}
               className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all ${
                 activeTab === 'intercity' 
-                  ? 'bg-teal-600 text-white shadow-md' 
-                  : 'text-gray-600 hover:text-teal-600 hover:bg-teal-50'
+                  ? 'bg-slate-600 text-white shadow-md' 
+                  : 'text-gray-600 hover:text-slate-600 hover:bg-slate-50'
               }`}
             >
               시외버스
@@ -197,13 +197,13 @@ export default function TerminalClient({ expressTerminals, intercityTerminals }:
                     <Link
                       key={`intercity-${terminal.terminalId}`}
                       href={`/terminal/${terminal.terminalId}`}
-                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-teal-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                      className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-slate-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
                     >
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-slate-600 transition-colors">
                           {terminal.terminalNm}
                         </h3>
-                        <span className="text-xs font-semibold bg-teal-100 text-teal-700 px-2 py-1 rounded">
+                        <span className="text-xs font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded">
                           시외
                         </span>
                       </div>

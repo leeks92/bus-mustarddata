@@ -87,7 +87,7 @@ export default function HomePage() {
               <span>고속 터미널 <strong className="text-gray-900 text-lg ml-1">{expressTerminals.length}</strong>개</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="w-2 h-2 rounded-full bg-slate-500"></span>
               <span>시외 터미널 <strong className="text-gray-900 text-lg ml-1">{intercityTerminals.length.toLocaleString()}</strong>개</span>
             </div>
             <div className="flex items-center gap-2">
@@ -135,12 +135,12 @@ export default function HomePage() {
               <Image src="/images/icon-intercity.png" alt="Intercity Bus" width={120} height={120} />
             </div>
             <div className="p-8">
-              <div className="inline-block p-3 rounded-lg bg-teal-50 text-teal-600 mb-4 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+              <div className="inline-block p-3 rounded-lg bg-slate-50 text-slate-600 mb-4 group-hover:bg-slate-600 group-hover:text-white transition-colors">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">시외버스 시간표</h3>
               <p className="text-gray-700 mb-4">전국 방방곡곡을 연결하는 시외버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-teal-700 font-medium">
+              <div className="flex items-center text-slate-700 font-medium">
                 바로가기
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
