@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { createTerminalSlug } from '@/lib/slug-utils';
 
 interface Terminal {
   terminalId: string;
@@ -16,8 +16,10 @@ interface Route {
 }
 
 interface Props {
-  terminals: Terminal[];
-  routes: Route[];
+  expressTerminals: Terminal[];
+  intercityTerminals: Terminal[];
+  expressRoutes: Route[];
+  intercityRoutes: Route[];
 }
 
 // 터미널을 지역별로 그룹화하는 함수
@@ -29,7 +31,6 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     const name = terminal.terminalNm;
     const city = terminal.cityName || '';
 
-    // 광역시/특별시 (cityName에서 "서울특별시", "부산광역시" 등 매칭)
     if (name.includes('서울') || city.includes('서울')) region = '서울';
     else if (name.includes('부산') || city.includes('부산')) region = '부산';
     else if (name.includes('대구') || city.includes('대구')) region = '대구';
@@ -38,7 +39,6 @@ function groupTerminalsByRegion(terminals: Terminal[]) {
     else if (name.includes('울산') || city.includes('울산')) region = '울산';
     else if (name.includes('인천') || city.includes('인천')) region = '인천';
     else if (name.includes('세종') || city.includes('세종')) region = '세종';
-    // 도 단위 (약어 + 전체 이름 모두 매칭)
     else if (city.includes('경기')) region = '경기';
     else if (city.includes('강원')) region = '강원';
     else if (city.includes('충청북') || city.includes('충북')) region = '충북';
@@ -63,34 +63,58 @@ const regionOrder = [
   '강원', '충북', '충남', '경북', '경남', '전북', '전남', '제주', '기타'
 ];
 
-export default function ExpressClient({ terminals, routes }: Props) {
+export default function TerminalListClient({ 
+  expressTerminals, 
+  intercityTerminals, 
+  expressRoutes, 
+  intercityRoutes 
+}: Props) {
+  const [activeTab, setActiveTab] = useState<'express' | 'intercity'>('express');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const currentTerminals = activeTab === 'express' ? expressTerminals : intercityTerminals;
+  const currentRoutes = activeTab === 'express' ? expressRoutes : intercityRoutes;
+
   // 검색 필터링
-  const filteredTerminals = terminals.filter(t => 
+  const filteredTerminals = currentTerminals.filter(t => 
     t.terminalNm.includes(searchTerm) || (t.cityName && t.cityName.includes(searchTerm))
   );
 
-  const groupedTerminals = groupTerminalsByRegion(filteredTerminals);
+  // 중복 제거
+  const uniqueTerminals = filteredTerminals.reduce<Terminal[]>((acc, terminal) => {
+    if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
+      acc.push(terminal);
+    }
+    return acc;
+  }, []);
+
+  const groupedTerminals = groupTerminalsByRegion(uniqueTerminals);
+
+  const getBusTypeUrl = (terminalSlug: string) => {
+    return activeTab === 'express' 
+      ? `/고속버스/시간표/${terminalSlug}`
+      : `/시외버스/시간표/${terminalSlug}`;
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
       {/* 헤더 섹션 */}
-      <div className="bg-indigo-700 text-white py-12 px-4 shadow-md">
+      <div className="bg-blue-600 text-white py-12 px-4 shadow-md">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">고속버스 시간표</h1>
-          <p className="text-indigo-200 text-lg mb-8">
-            전국 <strong className="text-white">{terminals.length}</strong>개 터미널, <strong className="text-white">{routes.length}</strong>개 노선의 운행 정보를 확인하세요
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">전국 버스 터미널</h1>
+          <p className="text-blue-100 text-lg mb-8">
+            고속버스 <strong className="text-white">{expressTerminals.length}</strong>개, 
+            시외버스 <strong className="text-white">{intercityTerminals.length.toLocaleString()}</strong>개 터미널
           </p>
           
           {/* 검색창 */}
           <div className="max-w-xl mx-auto relative">
             <input
               type="text"
-              placeholder="터미널 또는 지역 이름 검색"
+              placeholder="터미널 이름 검색 (예: 서울, 부산)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-4 px-6 rounded-full bg-white text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-400 text-lg placeholder-gray-400"
+              className="w-full py-4 px-6 rounded-full bg-white text-gray-900 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-400 text-lg placeholder-gray-400"
             />
             <div className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -99,9 +123,35 @@ export default function ExpressClient({ terminals, routes }: Props) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 mt-12">
+      <div className="max-w-6xl mx-auto px-4 mt-8">
+        {/* 탭 */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex bg-white rounded-xl p-1 shadow-sm border border-gray-200">
+            <button
+              onClick={() => { setActiveTab('express'); setSearchTerm(''); }}
+              className={`px-6 py-3 rounded-lg font-bold transition-all ${
+                activeTab === 'express'
+                  ? 'bg-indigo-600 text-white shadow-md'
+                  : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50'
+              }`}
+            >
+              🚌 고속버스 ({expressTerminals.length})
+            </button>
+            <button
+              onClick={() => { setActiveTab('intercity'); setSearchTerm(''); }}
+              className={`px-6 py-3 rounded-lg font-bold transition-all ${
+                activeTab === 'intercity'
+                  ? 'bg-slate-600 text-white shadow-md'
+                  : 'text-gray-600 hover:text-slate-600 hover:bg-slate-50'
+              }`}
+            >
+              🚐 시외버스 ({intercityTerminals.length.toLocaleString()})
+            </button>
+          </div>
+        </div>
+
         {/* 검색 결과 없음 */}
-        {filteredTerminals.length === 0 && (
+        {uniqueTerminals.length === 0 && (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">검색 결과가 없습니다.</p>
           </div>
@@ -116,7 +166,9 @@ export default function ExpressClient({ terminals, routes }: Props) {
             return (
               <section key={region} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800 border-b pb-4">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 text-blue-600 text-lg">
+                  <span className={`flex items-center justify-center w-10 h-10 rounded-full text-lg ${
+                    activeTab === 'express' ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100 text-slate-600'
+                  }`}>
                     {region.substring(0, 1)}
                   </span>
                   {region}
@@ -127,22 +179,31 @@ export default function ExpressClient({ terminals, routes }: Props) {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {regionTerminals.map(terminal => {
-                    const routeCount = routes.filter(
+                    const routeCount = currentRoutes.filter(
                       r => r.depTerminalId === terminal.terminalId
                     ).length;
+                    const terminalSlug = createTerminalSlug(terminal.terminalNm);
 
                     return (
                       <Link
                         key={terminal.terminalId}
-                        href={`/terminal/${terminal.terminalId}`}
-                        className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-blue-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                        href={getBusTypeUrl(terminalSlug)}
+                        className={`group block bg-gray-50 hover:bg-white border border-transparent rounded-xl p-5 transition-all duration-200 hover:shadow-md ${
+                          activeTab === 'express' ? 'hover:border-indigo-200' : 'hover:border-slate-200'
+                        }`}
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          <h3 className={`text-lg font-bold text-gray-900 transition-colors ${
+                            activeTab === 'express' ? 'group-hover:text-indigo-600' : 'group-hover:text-slate-600'
+                          }`}>
                             {terminal.terminalNm}
                           </h3>
                           {routeCount > 0 ? (
-                            <span className="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                            <span className={`text-xs font-semibold px-2 py-1 rounded ${
+                              activeTab === 'express' 
+                                ? 'bg-indigo-100 text-indigo-700' 
+                                : 'bg-slate-100 text-slate-700'
+                            }`}>
                               운행중
                             </span>
                           ) : (

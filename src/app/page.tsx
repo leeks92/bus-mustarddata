@@ -181,21 +181,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 지역별 터미널 */}
+        {/* 터미널 찾기 */}
         <section className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📍 지역별 터미널 찾기</h2>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-            {['서울', '경기', '인천', '부산', '대구', '대전', '광주', '울산', '강원', '충북', '충남', '경북', '경남', '전북', '전남', '제주'].map(
-              region => (
-                <Link
-                  key={region}
-                  href={`/terminal?region=${region}`}
-                  className="bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 rounded-lg py-3 text-center text-gray-700 hover:text-blue-700 font-medium transition-all"
-                >
-                  {region}
-                </Link>
-              )
-            )}
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">📍 터미널 찾기</h2>
+          <div className="text-center">
+            <Link
+              href="/터미널"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md hover:shadow-lg"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              전국 버스 터미널 보기
+            </Link>
+            <p className="text-gray-500 mt-4 text-sm">고속버스·시외버스 터미널 목록과 운행 정보를 확인하세요</p>
           </div>
         </section>
 

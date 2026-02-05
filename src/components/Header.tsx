@@ -15,6 +15,9 @@ export default function Header() {
             <Link href="/시외버스/시간표" className="hover:underline">
               시외버스
             </Link>
+            <Link href="/터미널" className="hover:underline">
+              터미널
+            </Link>
           </nav>
         </div>
       </div>

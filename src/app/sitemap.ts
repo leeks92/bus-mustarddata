@@ -45,7 +45,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/터미널`,
+      lastModified: dataLastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
   ];
+  
+  // 터미널 상세 페이지 (통합 - 중복 제거)
+  const allTerminals = [...expressTerminals, ...intercityTerminals];
+  const terminalSlugs = new Set<string>();
+  const terminalPages: MetadataRoute.Sitemap = allTerminals
+    .filter(t => {
+      const slug = createTerminalSlug(t.terminalNm);
+      if (terminalSlugs.has(slug)) return false;
+      terminalSlugs.add(slug);
+      return true;
+    })
+    .map(t => ({
+      url: `${BASE_URL}/터미널/${createTerminalSlug(t.terminalNm)}`,
+      lastModified: dataLastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }));
 
   // 고속버스 터미널 페이지 (중복 제거)
   const expressTerminalSlugs = new Set<string>();
@@ -113,6 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticPages,
+    ...terminalPages,
     ...expressTerminalPages,
     ...intercityTerminalPages,
     ...expressRoutePages,
