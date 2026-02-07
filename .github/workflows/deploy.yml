@@ -55,9 +55,10 @@ jobs:
           # 주요 URL 목록
           URLS='[
             "https://bus.mustarddata.com/",
-            "https://bus.mustarddata.com/고속버스/시간표/",
-            "https://bus.mustarddata.com/시외버스/시간표/",
-            "https://bus.mustarddata.com/터미널/",
+            "https://bus.mustarddata.com/express/schedule/",
+            "https://bus.mustarddata.com/intercity/schedule/",
+            "https://bus.mustarddata.com/airport/schedule/",
+            "https://bus.mustarddata.com/terminal/",
             "https://bus.mustarddata.com/sitemap.xml"
           ]'
           
