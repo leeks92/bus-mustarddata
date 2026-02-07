@@ -6,6 +6,7 @@ import {
   getIntercityTerminals,
   getIntercityRoutes,
   formatCharge,
+  getValidMinCharge,
 } from '@/lib/data';
 import { getTerminalInfo } from '@/lib/terminal-info';
 import { BusStationJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
@@ -63,12 +64,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       '시외버스 예매',
     ],
     alternates: {
-      canonical: `${BASE_URL}/시외버스/시간표/${decodedSlug}`,
+      canonical: `${BASE_URL}/intercity/schedule/${decodedSlug}`,
     },
     openGraph: {
       title: `${terminal.terminalNm} 시외버스 시간표`,
       description: `${terminal.terminalNm} 시외버스 시간표와 요금 정보를 확인하세요.`,
-      url: `${BASE_URL}/시외버스/시간표/${decodedSlug}`,
+      url: `${BASE_URL}/intercity/schedule/${decodedSlug}`,
       type: 'website',
     },
     twitter: {
@@ -92,7 +93,7 @@ export default async function IntercityTerminalPage({ params }: Props) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8 text-center">
         <h1 className="text-2xl font-bold mb-4">터미널을 찾을 수 없습니다</h1>
-        <Link href="/시외버스/시간표" className="text-slate-600 hover:underline">
+        <Link href="/intercity/schedule" className="text-slate-600 hover:underline">
           시외버스 터미널 목록으로 돌아가기
         </Link>
       </div>
@@ -111,8 +112,8 @@ export default async function IntercityTerminalPage({ params }: Props) {
 
   const breadcrumbItems = [
     { name: '홈', url: BASE_URL },
-    { name: '시외버스 시간표', url: `${BASE_URL}/시외버스/시간표` },
-    { name: terminal.terminalNm, url: `${BASE_URL}/시외버스/시간표/${decodedSlug}` },
+    { name: '시외버스 시간표', url: `${BASE_URL}/intercity/schedule` },
+    { name: terminal.terminalNm, url: `${BASE_URL}/intercity/schedule/${decodedSlug}` },
   ];
 
   return (
@@ -122,7 +123,7 @@ export default async function IntercityTerminalPage({ params }: Props) {
         name={terminal.terminalNm}
         address={terminalInfo?.address}
         telephone={terminalInfo?.phone}
-        url={`${BASE_URL}/시외버스/시간표/${decodedSlug}`}
+        url={`${BASE_URL}/intercity/schedule/${decodedSlug}`}
       />
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
@@ -132,7 +133,7 @@ export default async function IntercityTerminalPage({ params }: Props) {
           홈
         </Link>
         <span className="mx-2">›</span>
-        <Link href="/시외버스/시간표" className="hover:text-slate-600">
+        <Link href="/intercity/schedule" className="hover:text-slate-600">
           시외버스 시간표
         </Link>
         <span className="mx-2">›</span>
@@ -213,13 +214,13 @@ export default async function IntercityTerminalPage({ params }: Props) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sortedRoutes.map(route => {
-              const minCharge = Math.min(...route.schedules.map(s => s.charge));
-              const routeSlug = createRouteSlug(terminal.terminalNm, route.arrTerminalName);
+              const minCharge = getValidMinCharge(route.schedules);
+              const routeSlug = createRouteSlug(route.depTerminalName, route.arrTerminalName);
 
               return (
                 <Link
                   key={route.arrTerminalId}
-                  href={`/시외버스/시간표/노선/${routeSlug}`}
+                  href={`/intercity/schedule/route/${routeSlug}`}
                   className="bg-white border rounded-lg p-4 hover:shadow-md hover:border-slate-200 transition"
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -229,7 +230,7 @@ export default async function IntercityTerminalPage({ params }: Props) {
                   <div className="flex justify-between text-sm text-gray-500">
                     <span>{route.schedules.length}회/일</span>
                     <span className="font-medium text-slate-600">
-                      {formatCharge(minCharge)}~
+                      {minCharge > 0 ? `${formatCharge(minCharge)}~` : '요금 미제공'}
                     </span>
                   </div>
                 </Link>

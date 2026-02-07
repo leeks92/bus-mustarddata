@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { createRouteSlug } from '@/lib/slug-utils';
 
 interface Terminal {
   terminalId: string;
@@ -13,29 +14,219 @@ interface Props {
   intercityTerminals: Terminal[];
 }
 
-// 터미널 이름 정규화 (슬러그용)
-function normalizeTerminalName(name: string): string {
-  return name
-    .replace(/\(.*?\)/g, '')
-    .replace(/\s+/g, '')
-    .replace(/[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318Fa-zA-Z0-9]/g, '')
-    .trim();
-}
+// 검색 가능한 커스텀 드롭다운 컴포넌트
+function SearchableSelect({
+  terminals,
+  value,
+  onChange,
+  placeholder,
+  accentColor,
+}: {
+  terminals: Terminal[];
+  value: string;
+  onChange: (id: string) => void;
+  placeholder: string;
+  accentColor: 'indigo' | 'slate';
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [highlightIndex, setHighlightIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
-// 터미널 슬러그 생성
-function createTerminalSlug(name: string): string {
-  const normalized = normalizeTerminalName(name);
-  if (normalized.endsWith('터미널') || normalized.endsWith('정류장') || normalized.endsWith('정류소')) {
-    return normalized;
-  }
-  return normalized + '터미널';
-}
+  const selectedTerminal = terminals.find(t => t.terminalId === value);
 
-// 노선 슬러그 생성
-function createRouteSlug(depName: string, arrName: string): string {
-  const dep = normalizeTerminalName(depName);
-  const arr = normalizeTerminalName(arrName);
-  return `${dep}-${arr}`;
+  // 검색 필터
+  const filtered = query
+    ? terminals.filter(t =>
+        t.terminalNm.toLowerCase().includes(query.toLowerCase())
+      )
+    : terminals;
+
+  // 외부 클릭 시 닫기
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+        setQuery('');
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 하이라이트 인덱스 변경 시 스크롤
+  useEffect(() => {
+    if (listRef.current && isOpen) {
+      const item = listRef.current.children[highlightIndex] as HTMLElement;
+      if (item) {
+        item.scrollIntoView({ block: 'nearest' });
+      }
+    }
+  }, [highlightIndex, isOpen]);
+
+  const open = useCallback(() => {
+    setIsOpen(true);
+    setHighlightIndex(0);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }, []);
+
+  const select = useCallback((id: string) => {
+    onChange(id);
+    setIsOpen(false);
+    setQuery('');
+  }, [onChange]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen) {
+      if (e.key === 'Enter' || e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+      return;
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setHighlightIndex(i => Math.min(i + 1, filtered.length - 1));
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setHighlightIndex(i => Math.max(i - 1, 0));
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (filtered[highlightIndex]) {
+          select(filtered[highlightIndex].terminalId);
+        }
+        break;
+      case 'Escape':
+        setIsOpen(false);
+        setQuery('');
+        break;
+    }
+  };
+
+  const ringColor = accentColor === 'indigo' ? 'ring-indigo-500' : 'ring-slate-500';
+  const borderFocus = accentColor === 'indigo' ? 'border-indigo-400' : 'border-slate-400';
+  const hoverBg = accentColor === 'indigo' ? 'bg-indigo-50' : 'bg-slate-50';
+  const activeBg = accentColor === 'indigo' ? 'bg-indigo-600' : 'bg-slate-600';
+
+  return (
+    <div ref={containerRef} className="relative">
+      {/* 선택 버튼 (닫혀있을 때) */}
+      <button
+        type="button"
+        onClick={open}
+        onKeyDown={handleKeyDown}
+        className={`w-full text-left border rounded-xl p-4 pr-10 transition-all bg-white hover:border-gray-400 ${
+          isOpen ? `ring-2 ${ringColor} ${borderFocus}` : 'border-gray-300'
+        } ${value ? 'text-gray-900' : 'text-gray-400'}`}
+      >
+        <span className="block truncate text-base">
+          {selectedTerminal ? selectedTerminal.terminalNm : placeholder}
+        </span>
+        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg
+            className={`w-5 h-5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+
+      {/* 드롭다운 패널 */}
+      {isOpen && (
+        <div className="absolute z-50 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+          {/* 검색 입력 */}
+          <div className="p-3 border-b border-gray-100">
+            <div className="relative">
+              <svg
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                ref={inputRef}
+                type="text"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setHighlightIndex(0);
+                }}
+                onKeyDown={handleKeyDown}
+                placeholder="터미널 검색..."
+                className="w-full pl-9 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 bg-gray-50 placeholder-gray-400"
+                autoComplete="off"
+              />
+              {query && (
+                <button
+                  onClick={() => {
+                    setQuery('');
+                    inputRef.current?.focus();
+                  }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* 결과 목록 */}
+          <ul ref={listRef} className="max-h-60 overflow-y-auto py-1 overscroll-contain">
+            {filtered.length === 0 ? (
+              <li className="px-4 py-8 text-center text-sm text-gray-400">
+                <svg className="w-8 h-8 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                &apos;{query}&apos; 검색 결과가 없습니다
+              </li>
+            ) : (
+              filtered.map((terminal, idx) => {
+                const isSelected = terminal.terminalId === value;
+                const isHighlighted = idx === highlightIndex;
+                return (
+                  <li
+                    key={terminal.terminalId}
+                    onClick={() => select(terminal.terminalId)}
+                    onMouseEnter={() => setHighlightIndex(idx)}
+                    className={`px-4 py-2.5 cursor-pointer text-sm flex items-center justify-between transition-colors ${
+                      isSelected
+                        ? `${activeBg} text-white`
+                        : isHighlighted
+                          ? `${hoverBg} text-gray-900`
+                          : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span className="truncate">{terminal.terminalNm}</span>
+                    {isSelected && (
+                      <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </li>
+                );
+              })
+            )}
+          </ul>
+
+          {/* 결과 수 */}
+          {query && filtered.length > 0 && (
+            <div className="px-4 py-2 border-t border-gray-100 text-xs text-gray-400">
+              {filtered.length}개 터미널
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function SearchForm({ expressTerminals, intercityTerminals }: Props) {
@@ -48,13 +239,15 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
   // 현재 선택된 버스 유형에 따른 터미널 목록
   const currentTerminals = busType === 'express' ? expressTerminals : intercityTerminals;
 
-  // 이름 기준 중복 제거 (같은 이름의 터미널은 첫 번째만 표시)
-  const uniqueTerminals = currentTerminals.reduce<Terminal[]>((acc, terminal) => {
-    if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
-      acc.push(terminal);
-    }
-    return acc;
-  }, []);
+  // 이름 기준 중복 제거 + 이름순 정렬
+  const uniqueTerminals = currentTerminals
+    .reduce<Terminal[]>((acc, terminal) => {
+      if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
+        acc.push(terminal);
+      }
+      return acc;
+    }, [])
+    .sort((a, b) => a.terminalNm.localeCompare(b.terminalNm, 'ko'));
 
   const handleBusTypeChange = (type: 'express' | 'intercity') => {
     setBusType(type);
@@ -79,7 +272,6 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
     
     setError('');
     
-    // 선택된 터미널 이름 찾기
     const depTerminal = uniqueTerminals.find(t => t.terminalId === departure);
     const arrTerminal = uniqueTerminals.find(t => t.terminalId === arrival);
     
@@ -88,15 +280,16 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
       return;
     }
     
-    // 한글 슬러그로 URL 생성
     const routeSlug = createRouteSlug(depTerminal.terminalNm, arrTerminal.terminalNm);
     
     if (busType === 'express') {
-      router.push(`/고속버스/시간표/노선/${routeSlug}`);
+      router.push(`/express/schedule/route/${routeSlug}`);
     } else {
-      router.push(`/시외버스/시간표/노선/${routeSlug}`);
+      router.push(`/intercity/schedule/route/${routeSlug}`);
     }
   };
+
+  const accentColor = busType === 'express' ? 'indigo' : 'slate';
 
   return (
     <div>
@@ -125,64 +318,26 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="relative">
-          <label className="block text-sm font-bold text-gray-700 mb-2">
-            출발지
-          </label>
-          <div className="relative">
-            <select 
-              value={departure}
-              onChange={(e) => {
-                setDeparture(e.target.value);
-                setError('');
-              }}
-              className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
-            busType === 'express'
-              ? 'focus:ring-indigo-500 focus:border-indigo-500' 
-              : 'focus:ring-slate-500 focus:border-slate-500'
-              }`}
-            >
-              <option value="">터미널 선택</option>
-              {uniqueTerminals.map(t => (
-                <option key={t.terminalId} value={t.terminalId}>
-                  {t.terminalNm}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-            </div>
-          </div>
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">출발지</label>
+          <SearchableSelect
+            terminals={uniqueTerminals}
+            value={departure}
+            onChange={(id) => { setDeparture(id); setError(''); }}
+            placeholder="터미널 검색 또는 선택"
+            accentColor={accentColor}
+          />
         </div>
         
-        <div className="relative">
-          <label className="block text-sm font-bold text-gray-700 mb-2">
-            도착지
-          </label>
-          <div className="relative">
-            <select 
-              value={arrival}
-              onChange={(e) => {
-                setArrival(e.target.value);
-                setError('');
-              }}
-              className={`w-full appearance-none border border-gray-300 rounded-xl p-4 pr-10 text-gray-900 focus:ring-2 transition-colors bg-gray-50 hover:bg-white text-lg ${
-            busType === 'express'
-              ? 'focus:ring-indigo-500 focus:border-indigo-500' 
-              : 'focus:ring-slate-500 focus:border-slate-500'
-              }`}
-            >
-              <option value="">터미널 선택</option>
-              {uniqueTerminals.map(t => (
-                <option key={t.terminalId} value={t.terminalId}>
-                  {t.terminalNm}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-            </div>
-          </div>
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">도착지</label>
+          <SearchableSelect
+            terminals={uniqueTerminals}
+            value={arrival}
+            onChange={(id) => { setArrival(id); setError(''); }}
+            placeholder="터미널 검색 또는 선택"
+            accentColor={accentColor}
+          />
         </div>
 
         <div className="flex items-end">
@@ -205,7 +360,6 @@ export default function SearchForm({ expressTerminals, intercityTerminals }: Pro
           {error}
         </div>
       )}
-
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { createRouteSlug } from '@/lib/slug-utils';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,17 +12,22 @@ export default function Footer() {
             <h3 className="font-bold mb-3 text-gray-900">버스 시간표</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li>
-                <Link href="/고속버스/시간표" className="hover:text-blue-600">
+                <Link href="/express/schedule" className="hover:text-blue-600">
                   고속버스 시간표
                 </Link>
               </li>
               <li>
-                <Link href="/시외버스/시간표" className="hover:text-blue-600">
+                <Link href="/intercity/schedule" className="hover:text-blue-600">
                   시외버스 시간표
                 </Link>
               </li>
               <li>
-                <Link href="/터미널" className="hover:text-blue-600">
+                <Link href="/airport/schedule" className="hover:text-blue-600">
+                  공항버스 시간표
+                </Link>
+              </li>
+              <li>
+                <Link href="/terminal" className="hover:text-blue-600">
                   전국 버스 터미널
                 </Link>
               </li>
@@ -31,22 +37,22 @@ export default function Footer() {
             <h3 className="font-bold mb-3 text-gray-900">인기 노선</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li>
-                <Link href="/고속버스/시간표/노선/서울경부터미널-부산종합터미널" className="hover:text-blue-600">
+                <Link href={`/express/schedule/route/${createRouteSlug('서울경부', '부산')}`} className="hover:text-blue-600">
                   서울 → 부산
                 </Link>
               </li>
               <li>
-                <Link href="/고속버스/시간표/노선/동서울터미널-강릉터미널" className="hover:text-blue-600">
+                <Link href={`/express/schedule/route/${createRouteSlug('동서울', '강릉')}`} className="hover:text-blue-600">
                   동서울 → 강릉
                 </Link>
               </li>
               <li>
-                <Link href="/고속버스/시간표/노선/서울경부터미널-대전복합터미널" className="hover:text-blue-600">
+                <Link href={`/express/schedule/route/${createRouteSlug('서울경부', '대전복합')}`} className="hover:text-blue-600">
                   서울 → 대전
                 </Link>
               </li>
               <li>
-                <Link href="/고속버스/시간표/노선/센트럴시티터미널-광주터미널" className="hover:text-blue-600">
+                <Link href={`/express/schedule/route/${createRouteSlug('서울호남', '광주')}`} className="hover:text-blue-600">
                   서울 → 광주
                 </Link>
               </li>

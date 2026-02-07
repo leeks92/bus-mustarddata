@@ -65,21 +65,39 @@ const regionOrder = [
 
 export default function ExpressListClient({ terminals, routes }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAll, setShowAll] = useState(false);
+
+  // 노선 데이터가 있는 터미널 ID 셋
+  const depTerminalIds = new Set(routes.map(r => r.depTerminalId));
 
   // 검색 필터링
   const filteredTerminals = terminals.filter(t => 
     t.terminalNm.includes(searchTerm) || (t.cityName && t.cityName.includes(searchTerm))
   );
 
-  // 중복 제거 (같은 이름의 터미널)
+  // 중복 제거 (같은 이름의 터미널 - 노선 있는 것을 우선 유지)
   const uniqueTerminals = filteredTerminals.reduce<Terminal[]>((acc, terminal) => {
-    if (!acc.find(t => t.terminalNm === terminal.terminalNm)) {
+    const existing = acc.find(t => t.terminalNm === terminal.terminalNm);
+    if (!existing) {
       acc.push(terminal);
+    } else if (!depTerminalIds.has(existing.terminalId) && depTerminalIds.has(terminal.terminalId)) {
+      // 기존 것에 노선이 없고, 새 것에 노선이 있으면 교체
+      const idx = acc.indexOf(existing);
+      acc[idx] = terminal;
     }
     return acc;
   }, []);
 
-  const groupedTerminals = groupTerminalsByRegion(uniqueTerminals);
+  // 노선 있는 터미널 우선 표시 (검색 중이면 전체 표시)
+  const isSearching = searchTerm.length > 0;
+  const displayTerminals = (isSearching || showAll)
+    ? uniqueTerminals
+    : uniqueTerminals.filter(t => depTerminalIds.has(t.terminalId));
+
+  const hiddenCount = uniqueTerminals.length - uniqueTerminals.filter(t => depTerminalIds.has(t.terminalId)).length;
+  const activeCount = uniqueTerminals.filter(t => depTerminalIds.has(t.terminalId)).length;
+
+  const groupedTerminals = groupTerminalsByRegion(displayTerminals);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-16">
@@ -88,7 +106,7 @@ export default function ExpressListClient({ terminals, routes }: Props) {
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">고속버스 시간표</h1>
           <p className="text-indigo-200 text-lg mb-8">
-            전국 <strong className="text-white">{uniqueTerminals.length}</strong>개 터미널, <strong className="text-white">{routes.length}</strong>개 노선의 운행 정보를 확인하세요
+            전국 <strong className="text-white">{activeCount}</strong>개 터미널, <strong className="text-white">{routes.length}</strong>개 노선의 운행 정보를 확인하세요
           </p>
           
           {/* 검색창 */}
@@ -109,7 +127,7 @@ export default function ExpressListClient({ terminals, routes }: Props) {
 
       <div className="max-w-6xl mx-auto px-4 mt-12">
         {/* 검색 결과 없음 */}
-        {uniqueTerminals.length === 0 && (
+        {displayTerminals.length === 0 && (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">검색 결과가 없습니다.</p>
           </div>
@@ -121,6 +139,9 @@ export default function ExpressListClient({ terminals, routes }: Props) {
             const regionTerminals = groupedTerminals[region];
             if (!regionTerminals || regionTerminals.length === 0) return null;
 
+            // 이 지역에서 노선 있는 터미널 수
+            const activeInRegion = regionTerminals.filter(t => depTerminalIds.has(t.terminalId)).length;
+
             return (
               <section key={region} className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800 border-b pb-4">
@@ -129,43 +150,54 @@ export default function ExpressListClient({ terminals, routes }: Props) {
                   </span>
                   {region}
                   <span className="text-sm font-normal text-gray-500 ml-auto bg-gray-50 px-3 py-1 rounded-full">
-                    {regionTerminals.length}개 터미널
+                    {activeInRegion > 0 ? `${activeInRegion}개 터미널` : `${regionTerminals.length}개 터미널`}
                   </span>
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {regionTerminals.map(terminal => {
+                  {regionTerminals
+                    .sort((a, b) => {
+                      // 노선 있는 터미널을 앞으로
+                      const aHas = depTerminalIds.has(a.terminalId) ? 0 : 1;
+                      const bHas = depTerminalIds.has(b.terminalId) ? 0 : 1;
+                      if (aHas !== bHas) return aHas - bHas;
+                      return a.terminalNm.localeCompare(b.terminalNm);
+                    })
+                    .map(terminal => {
                     const routeCount = routes.filter(
                       r => r.depTerminalId === terminal.terminalId
                     ).length;
                     const terminalSlug = createTerminalSlug(terminal.terminalNm);
+                    const hasRoutes = routeCount > 0;
 
                     return (
                       <Link
                         key={terminal.terminalId}
-                        href={`/고속버스/시간표/${terminalSlug}`}
-                        className="group block bg-gray-50 hover:bg-white border border-transparent hover:border-indigo-200 rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+                        href={`/express/schedule/${terminalSlug}`}
+                        className={`group block rounded-xl p-5 transition-all duration-200 ${
+                          hasRoutes 
+                            ? 'bg-gray-50 hover:bg-white border border-transparent hover:border-indigo-200 hover:shadow-md'
+                            : 'bg-gray-50/50 border border-gray-100 opacity-60 hover:opacity-80'
+                        }`}
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                          <h3 className={`text-lg font-bold transition-colors ${
+                            hasRoutes ? 'text-gray-900 group-hover:text-indigo-600' : 'text-gray-500'
+                          }`}>
                             {terminal.terminalNm}
                           </h3>
-                          {routeCount > 0 ? (
+                          {hasRoutes && (
                             <span className="text-xs font-semibold bg-indigo-100 text-indigo-700 px-2 py-1 rounded">
-                              운행중
-                            </span>
-                          ) : (
-                            <span className="text-xs font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
-                              정보없음
+                              {routeCount}개 노선
                             </span>
                           )}
                         </div>
                         <div className="flex items-center text-sm text-gray-600 mt-2">
                           <svg className="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
-                          {routeCount > 0 ? (
+                          {hasRoutes ? (
                             <span><strong className="text-gray-800">{routeCount}</strong>개 노선 운행</span>
                           ) : (
-                            <span>노선 정보 준비중</span>
+                            <span className="text-gray-400">시간표 준비중</span>
                           )}
                         </div>
                       </Link>
@@ -176,6 +208,31 @@ export default function ExpressListClient({ terminals, routes }: Props) {
             );
           })}
         </div>
+
+        {/* 전체 터미널 보기 토글 */}
+        {!isSearching && hiddenCount > 0 && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-full text-sm text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm"
+            >
+              {showAll ? (
+                <>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path></svg>
+                  운행중인 터미널만 보기
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  시간표 준비중인 터미널 {hiddenCount}개 더보기
+                </>
+              )}
+            </button>
+            {!showAll && (
+              <p className="text-xs text-gray-400 mt-2">시간표 데이터가 아직 수집되지 않은 터미널입니다</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

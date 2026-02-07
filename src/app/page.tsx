@@ -1,32 +1,33 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getExpressTerminals, getIntercityTerminals, getExpressRoutes, getMetadata } from '@/lib/data';
+import { getExpressTerminals, getIntercityTerminals, getExpressRoutes, getIntercityRoutes, getMetadata, getActiveTerminalCount, getAirportBuses } from '@/lib/data';
 import { WebSiteJsonLd, OrganizationJsonLd, FAQJsonLd, ItemListJsonLd, HowToJsonLd, ServiceJsonLd } from '@/components/JsonLd';
 import SearchForm from '@/components/SearchForm';
-import { createRouteSlug } from '@/lib/slugs';
+import { createRouteSlug, createTerminalSlug } from '@/lib/slugs';
+import AdSense from '@/components/AdSense';
 
-// 인기 노선 (하드코딩 - 추후 트래픽 기반으로 변경 가능)
+// 인기 노선 (실제 데이터 터미널 이름 기준)
 const popularRoutes = [
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '부산종합버스터미널', depShort: '서울', arrShort: '부산' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '대구동대구터미널', depShort: '서울', arrShort: '대구' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '대전복합터미널', depShort: '서울', arrShort: '대전' },
-  { dep: '동서울종합터미널', arr: '강릉고속버스터미널', depShort: '동서울', arrShort: '강릉' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '강릉고속버스터미널', depShort: '서울', arrShort: '강릉' },
-  { dep: '센트럴시티터미널(호남선)', arr: '광주종합버스터미널', depShort: '서울', arrShort: '광주' },
-  { dep: '센트럴시티터미널(호남선)', arr: '전주고속버스터미널', depShort: '서울', arrShort: '전주' },
-  { dep: '서울고속버스터미널(경부 영동선)', arr: '울산고속버스터미널', depShort: '서울', arrShort: '울산' },
+  { dep: '서울경부', arr: '부산', depShort: '서울', arrShort: '부산' },
+  { dep: '서울경부', arr: '동대구', depShort: '서울', arrShort: '대구' },
+  { dep: '서울경부', arr: '대전복합', depShort: '서울', arrShort: '대전' },
+  { dep: '동서울', arr: '강릉', depShort: '동서울', arrShort: '강릉' },
+  { dep: '서울경부', arr: '강릉', depShort: '서울', arrShort: '강릉' },
+  { dep: '서울호남', arr: '광주', depShort: '서울', arrShort: '광주' },
+  { dep: '서울호남', arr: '전주', depShort: '서울', arrShort: '전주' },
+  { dep: '서울경부', arr: '울산', depShort: '서울', arrShort: '울산' },
 ];
 
-// 주요 터미널 목록 (SEO용)
+// 주요 터미널 목록 (SEO용 - 실제 데이터 터미널 이름 기준)
 const majorTerminals = [
-  '서울고속버스터미널',
-  '동서울종합터미널',
-  '센트럴시티터미널',
-  '부산종합버스터미널',
-  '대구동대구터미널',
-  '대전복합터미널',
-  '광주종합버스터미널',
-  '강릉고속버스터미널',
+  '서울경부',
+  '동서울',
+  '센트럴시티(서울)',
+  '부산',
+  '동대구',
+  '대전복합',
+  '광주(유·스퀘어)',
+  '강릉',
 ];
 
 const BASE_URL = 'https://bus.mustarddata.com';
@@ -81,13 +82,17 @@ const howToSteps = [
 export default function HomePage() {
   const expressTerminals = getExpressTerminals();
   const intercityTerminals = getIntercityTerminals();
-  const routes = getExpressRoutes();
+  const expressRoutes = getExpressRoutes();
+  const intercityRoutes = getIntercityRoutes();
   const metadata = getMetadata();
+  const activeTerminals = getActiveTerminalCount();
+  const airportBuses = getAirportBuses();
+  const totalRoutes = expressRoutes.length + intercityRoutes.length;
 
   // ItemList용 인기 노선 데이터
   const popularRouteItems = popularRoutes.map((route, index) => ({
     name: `${route.depShort} → ${route.arrShort} 고속버스`,
-    url: `${BASE_URL}/고속버스/시간표/노선/${createRouteSlug(route.dep, route.arr)}`,
+    url: `${BASE_URL}/express/schedule/route/${createRouteSlug(route.dep, route.arr)}`,
     description: `${route.depShort}에서 ${route.arrShort}까지 고속버스 시간표`,
     position: index + 1,
   }));
@@ -149,16 +154,16 @@ export default function HomePage() {
           {/* 통계 */}
           <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-gray-600">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span>고속 터미널 <strong className="text-gray-900 text-lg ml-1">{expressTerminals.length}</strong>개</span>
+              <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+              <span>고속 터미널 <strong className="text-gray-900 text-lg ml-1">{activeTerminals.express}</strong>개</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-slate-500"></span>
-              <span>시외 터미널 <strong className="text-gray-900 text-lg ml-1">{intercityTerminals.length.toLocaleString()}</strong>개</span>
+              <span>시외 터미널 <strong className="text-gray-900 text-lg ml-1">{activeTerminals.intercity}</strong>개</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
-              <span>노선 <strong className="text-gray-900 text-lg ml-1">{routes.length.toLocaleString()}</strong>개</span>
+              <span>노선 <strong className="text-gray-900 text-lg ml-1">{totalRoutes.toLocaleString()}</strong>개</span>
             </div>
             {metadata && (
               <div className="flex items-center gap-2">
@@ -172,21 +177,21 @@ export default function HomePage() {
 
       <div className="max-w-6xl mx-auto px-4 pb-16">
         {/* 버스 유형별 링크 */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <Link
-            href="/고속버스/시간표"
+            href="/express/schedule"
             className="group relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Image src="/images/icon-express.png" alt="Express Bus" width={120} height={120} />
             </div>
-            <div className="p-8">
+            <div className="p-6">
               <div className="inline-block p-3 rounded-lg bg-indigo-50 text-indigo-600 mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">고속버스 시간표</h3>
-              <p className="text-gray-700 mb-4">전국 주요 도시를 연결하는 고속버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-indigo-700 font-medium">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">고속버스 시간표</h3>
+              <p className="text-gray-700 mb-4 text-sm">전국 주요 도시를 연결하는 고속버스 운행정보</p>
+              <div className="flex items-center text-indigo-700 font-medium text-sm">
                 바로가기 
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
@@ -194,19 +199,36 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/시외버스/시간표"
+            href="/intercity/schedule"
             className="group relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
           >
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
               <Image src="/images/icon-intercity.png" alt="Intercity Bus" width={120} height={120} />
             </div>
-            <div className="p-8">
+            <div className="p-6">
               <div className="inline-block p-3 rounded-lg bg-slate-50 text-slate-600 mb-4 group-hover:bg-slate-600 group-hover:text-white transition-colors">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">시외버스 시간표</h3>
-              <p className="text-gray-700 mb-4">전국 방방곡곡을 연결하는 시외버스 운행정보를 확인하세요.</p>
-              <div className="flex items-center text-slate-700 font-medium">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">시외버스 시간표</h3>
+              <p className="text-gray-700 mb-4 text-sm">전국 방방곡곡을 연결하는 시외버스 운행정보</p>
+              <div className="flex items-center text-slate-700 font-medium text-sm">
+                바로가기
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/airport/schedule"
+            className="group relative overflow-hidden bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div className="p-6">
+              <div className="inline-block p-3 rounded-lg bg-sky-50 text-sky-600 mb-4 group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">공항버스 시간표</h3>
+              <p className="text-gray-700 mb-4 text-sm">인천공항 T1·T2 리무진 {airportBuses.length}개 노선</p>
+              <div className="flex items-center text-sky-700 font-medium text-sm">
                 바로가기
                 <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </div>
@@ -227,7 +249,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={index}
-                  href={`/고속버스/시간표/노선/${encodeURIComponent(createRouteSlug(route.dep, route.arr))}`}
+                  href={`/express/schedule/route/${createRouteSlug(route.dep, route.arr)}`}
                   className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:border-blue-300 transition-all group"
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -247,12 +269,15 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* 광고 */}
+        <AdSense slot="" format="horizontal" className="mb-16" />
+
         {/* 터미널 찾기 */}
         <section className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">📍 터미널 찾기</h2>
           <div className="text-center">
             <Link
-              href="/터미널"
+              href="/terminal"
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md hover:shadow-lg"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -282,6 +307,9 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* 광고 */}
+        <AdSense slot="" format="auto" className="mt-16" />
+
         {/* 주요 터미널 링크 (SEO용 내부 링크) */}
         <section className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">🏢 주요 버스 터미널</h2>
@@ -289,10 +317,10 @@ export default function HomePage() {
             {majorTerminals.map((terminal, index) => (
               <Link
                 key={index}
-                href={`/터미널/${terminal.replace('터미널', '').replace('종합버스', '')}`}
+                href={`/terminal/${createTerminalSlug(terminal)}`}
                 className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-300 hover:shadow-md transition-all text-sm font-medium text-gray-800"
               >
-                {terminal.replace('터미널', '').replace('종합버스', '')}
+                {terminal.replace(/\(.*?\)/g, '')}
               </Link>
             ))}
           </div>

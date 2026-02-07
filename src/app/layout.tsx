@@ -108,10 +108,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="google-adsense-account" content="ca-pub-9325661912203986" />
-        {/* 네이버 서치어드바이저 */}
-        <meta name="naver-site-verification" content="ba1ae0526ca8b81db47476c81df03aff8de31f39" />
-        {/* 네이버 SEO 최적화 메타태그 */}
+        <meta name="google-adsense-account" content="ca-pub-3224638013189545" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3224638013189545" crossOrigin="anonymous"></script>
+        {/* 네이버 SEO 최적화 메타태그 (naver-site-verification은 metadata.other에서 설정) */}
         <meta name="NaverBot" content="All" />
         <meta name="NaverBot" content="index,follow" />
         <meta name="Yeti" content="All" />
@@ -126,6 +125,8 @@ export default function RootLayout({
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="dns-prefetch" href="https://www.kobus.co.kr" />
       </head>
       <body className="min-h-screen flex flex-col">

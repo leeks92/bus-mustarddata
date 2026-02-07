@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     '전국 시외버스 터미널 시간표와 요금 정보. 전국 방방곡곡을 연결하는 시외버스 운행 시간표를 확인하세요.',
   alternates: {
-    canonical: 'https://bus.mustarddata.com/시외버스/시간표',
+    canonical: 'https://bus.mustarddata.com/intercity/schedule',
   },
 };
 

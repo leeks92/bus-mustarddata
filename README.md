@@ -1,12 +1,14 @@
-# 전국 고속버스·시외버스 시간표
+# 전국 고속버스·시외버스·공항버스 시간표
 
-전국 고속버스, 시외버스 시간표와 요금 정보를 제공하는 정적 웹사이트입니다.
+전국 고속버스, 시외버스, 공항버스 시간표와 요금 정보를 제공하는 정적 웹사이트입니다.
 
 ## 🚌 주요 기능
 
 - 전국 고속버스 터미널 시간표 조회
-- 전국 시외버스 터미널 시간표 조회  
+- 전국 시외버스 터미널 시간표 조회
+- 공항버스 노선별 시간표 조회
 - 노선별 요금 및 등급 정보
+- 터미널 상세 정보 (주소, 전화번호, 편의시설, 교통 가이드)
 - SEO 최적화된 정적 페이지
 
 ## 🛠️ 기술 스택
@@ -24,15 +26,44 @@ bus-mustarddata/
 ├── src/
 │   ├── app/                    # Next.js App Router 페이지
 │   │   ├── express/           # 고속버스 페이지
-│   │   │   └── [departure]/[arrival]/
+│   │   │   └── schedule/
+│   │   │       ├── [terminal]/     # 터미널별 노선 목록
+│   │   │       └── route/[route]/  # 노선별 시간표
 │   │   ├── intercity/         # 시외버스 페이지
+│   │   │   └── schedule/
+│   │   │       ├── [terminal]/     # 터미널별 노선 목록
+│   │   │       └── route/[route]/  # 노선별 시간표
+│   │   ├── airport/           # 공항버스 페이지
+│   │   │   └── schedule/
+│   │   │       └── [busNumber]/    # 노선별 시간표
 │   │   └── terminal/          # 터미널 상세 페이지
+│   │       └── [terminal]/         # 터미널별 상세 정보
 │   ├── components/            # 공통 컴포넌트
 │   └── lib/                   # 유틸리티 함수
 ├── scripts/                   # 데이터 수집 스크립트
 ├── data/                      # 수집된 버스 데이터 (JSON)
 └── .github/workflows/         # GitHub Actions
 ```
+
+## 📄 페이지 구성
+
+### 메인 페이지
+- `/` - 메인 (검색, 인기 노선, 통계)
+- `/express/schedule` - 고속버스 메인 (지역별 터미널 분류)
+- `/intercity/schedule` - 시외버스 메인 (지역별 터미널 분류)
+- `/airport/schedule` - 공항버스 메인 (지역별 노선 분류)
+- `/terminal` - 터미널 목록 (탭 네비게이션)
+
+### 동적 페이지
+- `/express/schedule/[terminal]` - 고속버스 터미널별 노선 목록
+- `/express/schedule/route/[route]` - 고속버스 노선별 시간표
+- `/intercity/schedule/[terminal]` - 시외버스 터미널별 노선 목록
+- `/intercity/schedule/route/[route]` - 시외버스 노선별 시간표
+- `/airport/schedule/[busNumber]` - 공항버스 노선별 시간표
+- `/terminal/[terminal]` - 터미널 상세 (주소, 전화번호, 편의시설, 교통 가이드)
+
+### 기타 페이지
+- `/not-found` - 404 페이지 (주요 링크 안내)
 
 ## 🚀 시작하기
 
@@ -91,9 +122,13 @@ GitHub Pages를 통해 자동 배포됩니다.
   - 노선별 시간표 조회
   - 요금 정보 조회
 
-- **시외버스정보 서비스** (SuburbsBusInfoService)  
+- **시외버스정보 서비스** (SuburbsBusInfoService)
   - 터미널 목록 조회
   - 노선별 시간표 조회 (당일만 가능)
+
+- **공항버스정보 서비스**
+  - 노선 목록 조회
+  - 노선별 시간표 조회
 
 ## 📝 라이선스
 

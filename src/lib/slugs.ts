@@ -1,37 +1,76 @@
 /**
- * 터미널 ID ↔ 한글 슬러그 매핑
- * SEO 최적화를 위한 URL 슬러그 생성
+ * 터미널 ID ↔ 영문 슬러그 매핑
+ * SEO 최적화를 위한 URL 슬러그 생성 (로마자 변환)
  */
 
 import { getExpressTerminals, getIntercityTerminals } from './data';
+import hangulRomanization from 'hangul-romanization';
 
 // 터미널 이름 정규화 (슬러그용)
 function normalizeTerminalName(name: string): string {
   return name
     .replace(/\(.*?\)/g, '') // 괄호 내용 제거: 센트럴시티(서울) → 센트럴시티
     .replace(/\s+/g, '') // 공백 제거
-    .replace(/[^\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318Fa-zA-Z0-9]/g, '') // 특수문자 제거
     .trim();
 }
 
-// 터미널 이름에서 "터미널" 접미사 추가 (없는 경우)
-function addTerminalSuffix(name: string): string {
+/**
+ * 한글 이름을 영문 slug로 변환
+ * 예: "서울경부" → "seoul-gyeongbu"
+ *     "센트럴시티" → "senteurelsiti"
+ *     "인천공항T1" → "incheongonghang-t1"
+ */
+function toRomanSlug(name: string): string {
   const normalized = normalizeTerminalName(name);
-  if (normalized.endsWith('터미널') || normalized.endsWith('정류장') || normalized.endsWith('정류소')) {
-    return normalized;
+
+  // 영문/숫자와 한글을 분리하여 처리
+  const parts: string[] = [];
+  let current = '';
+  let currentIsHangul = false;
+
+  for (const char of normalized) {
+    const isHangul = /[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F]/.test(char);
+    const isAlphaNum = /[a-zA-Z0-9]/.test(char);
+
+    if (isHangul) {
+      if (!currentIsHangul && current) {
+        parts.push(current.toLowerCase());
+        current = '';
+      }
+      currentIsHangul = true;
+      current += char;
+    } else if (isAlphaNum) {
+      if (currentIsHangul && current) {
+        parts.push(hangulRomanization.convert(current));
+        current = '';
+      }
+      currentIsHangul = false;
+      current += char;
+    }
+    // 특수문자는 무시
   }
-  return normalized + '터미널';
+
+  // 남은 부분 처리
+  if (current) {
+    if (currentIsHangul) {
+      parts.push(hangulRomanization.convert(current));
+    } else {
+      parts.push(current.toLowerCase());
+    }
+  }
+
+  return parts.join('-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
 // 슬러그 생성 (터미널용)
 export function createTerminalSlug(terminalName: string): string {
-  return addTerminalSuffix(terminalName);
+  return toRomanSlug(terminalName);
 }
 
 // 노선 슬러그 생성 (출발-도착)
 export function createRouteSlug(depName: string, arrName: string): string {
-  const dep = normalizeTerminalName(depName);
-  const arr = normalizeTerminalName(arrName);
+  const dep = toRomanSlug(depName);
+  const arr = toRomanSlug(arrName);
   return `${dep}-${arr}`;
 }
 
@@ -156,26 +195,23 @@ export function getAllIntercityTerminalSlugs(): string[] {
   return Array.from(intercityIdToSlugMap!.values());
 }
 
-// 노선 슬러그에서 터미널 ID 추출
+// 노선 슬러그에서 출발/도착 슬러그 추출
+// 로마자 슬러그는 하이픈이 많으므로 터미널 매핑으로 분리
 export function parseRouteSlug(slug: string): { depSlug: string; arrSlug: string } | null {
+  // 하이픈으로 가능한 모든 분리점을 시도
   const parts = slug.split('-');
   if (parts.length < 2) return null;
-  
-  // "서울경부-대전복합" 형태에서 분리
-  // 하이픈이 여러 개일 수 있으므로 마지막 터미널 이름 기준으로 분리
-  // 예: "서울경부터미널-대전복합터미널"
-  const lastTerminalIdx = slug.lastIndexOf('터미널-');
-  if (lastTerminalIdx === -1) {
-    // 터미널 접미사가 없는 경우 단순 분리
-    const midIdx = Math.floor(parts.length / 2);
-    return {
-      depSlug: parts.slice(0, midIdx).join('-'),
-      arrSlug: parts.slice(midIdx).join('-'),
-    };
+
+  // 모든 가능한 분리점에서 양쪽이 모두 유효한 터미널 슬러그인지 확인
+  for (let i = 1; i < parts.length; i++) {
+    const depSlug = parts.slice(0, i).join('-');
+    const arrSlug = parts.slice(i).join('-');
+
+    // 양쪽 모두 유효한 터미널 슬러그인지 확인
+    if (depSlug && arrSlug) {
+      return { depSlug, arrSlug };
+    }
   }
-  
-  return {
-    depSlug: slug.substring(0, lastTerminalIdx + 3), // "터미널" 포함
-    arrSlug: slug.substring(lastTerminalIdx + 4), // "-" 이후
-  };
+
+  return null;
 }

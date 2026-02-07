@@ -43,13 +43,13 @@ export default function NotFound() {
           
           <div className="grid grid-cols-2 gap-3">
             <Link
-              href="/고속버스/시간표"
+              href="/express/schedule"
               className="block bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition text-sm"
             >
               고속버스 시간표
             </Link>
             <Link
-              href="/시외버스/시간표"
+              href="/intercity/schedule"
               className="block bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition text-sm"
             >
               시외버스 시간표
@@ -57,7 +57,7 @@ export default function NotFound() {
           </div>
           
           <Link
-            href="/터미널"
+            href="/terminal"
             className="block bg-gray-50 text-gray-600 py-3 px-6 rounded-lg font-medium hover:bg-gray-100 transition text-sm"
           >
             전체 터미널 목록 보기
@@ -69,9 +69,9 @@ export default function NotFound() {
           <h2 className="text-sm font-medium text-gray-500 mb-4">인기 노선 바로가기</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              { name: '서울 → 부산', href: '/고속버스/시간표/노선/서울경부터미널-부산터미널' },
-              { name: '서울 → 대전', href: '/고속버스/시간표/노선/서울경부터미널-대전복합터미널' },
-              { name: '서울 → 강릉', href: '/고속버스/시간표/노선/서울경부터미널-강릉터미널' },
+              { name: '서울 → 부산', href: '/express/schedule/route/seoulgyeongbu-busan' },
+              { name: '서울 → 대전', href: '/express/schedule/route/seoulgyeongbu-daejeonbokhap' },
+              { name: '서울 → 강릉', href: '/express/schedule/route/seoulgyeongbu-gangneung' },
             ].map((route) => (
               <Link
                 key={route.href}

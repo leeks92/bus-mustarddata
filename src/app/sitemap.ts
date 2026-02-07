@@ -5,6 +5,7 @@ import {
   getExpressRoutes,
   getIntercityRoutes,
   getMetadata,
+  getAirportBuses,
 } from '@/lib/data';
 import { createTerminalSlug, createRouteSlug } from '@/lib/slugs';
 
@@ -13,25 +14,26 @@ export const dynamic = 'force-static';
 
 const BASE_URL = 'https://bus.mustarddata.com';
 
-// 인기 노선 (높은 우선순위 부여)
-const popularRouteNames = [
-  '서울고속버스터미널(경부 영동선)-부산종합버스터미널',
-  '서울고속버스터미널(경부 영동선)-대구동대구터미널',
-  '서울고속버스터미널(경부 영동선)-대전복합터미널',
-  '동서울종합터미널-강릉고속버스터미널',
-  '센트럴시티터미널(호남선)-광주종합버스터미널',
+// 인기 노선 (slug 자동 생성)
+const popularRoutes = [
+  { dep: '서울경부', arr: '부산' },
+  { dep: '서울경부', arr: '동대구' },
+  { dep: '서울경부', arr: '대전복합' },
+  { dep: '동서울', arr: '강릉' },
+  { dep: '서울호남', arr: '광주' },
 ];
+const popularRouteSlugs = popularRoutes.map(r => createRouteSlug(r.dep, r.arr));
 
-// 주요 터미널 (높은 우선순위 부여)
+// 주요 터미널 이름 (실제 데이터 기준)
 const majorTerminalNames = [
-  '서울고속버스터미널',
-  '동서울종합터미널',
-  '센트럴시티터미널',
-  '부산종합버스터미널',
-  '대구동대구터미널',
-  '대전복합터미널',
-  '광주종합버스터미널',
-  '강릉고속버스터미널',
+  '서울경부',
+  '동서울',
+  '센트럴시티(서울)',
+  '부산',
+  '동대구',
+  '대전복합',
+  '광주(유·스퀘어)',
+  '강릉',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -55,22 +57,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${BASE_URL}/고속버스/시간표`,
+      url: `${BASE_URL}/express/schedule`,
       lastModified: dataLastModified,
       changeFrequency: 'daily',
       priority: 0.95,
     },
     {
-      url: `${BASE_URL}/시외버스/시간표`,
+      url: `${BASE_URL}/intercity/schedule`,
       lastModified: dataLastModified,
       changeFrequency: 'daily',
       priority: 0.95,
     },
     {
-      url: `${BASE_URL}/터미널`,
+      url: `${BASE_URL}/terminal`,
       lastModified: dataLastModified,
       changeFrequency: 'daily',
       priority: 0.95,
+    },
+    {
+      url: `${BASE_URL}/airport/schedule`,
+      lastModified: dataLastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
   ];
   
@@ -85,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return true;
     })
     .map(t => ({
-      url: `${BASE_URL}/터미널/${createTerminalSlug(t.terminalNm)}`,
+      url: `${BASE_URL}/terminal/${createTerminalSlug(t.terminalNm)}`,
       lastModified: dataLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
@@ -101,9 +109,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return true;
     })
     .map(t => {
-      const isMajor = majorTerminalNames.some(name => t.terminalNm.includes(name.replace('터미널', '')));
+      const isMajor = majorTerminalNames.includes(t.terminalNm);
       return {
-        url: `${BASE_URL}/고속버스/시간표/${createTerminalSlug(t.terminalNm)}`,
+        url: `${BASE_URL}/express/schedule/${createTerminalSlug(t.terminalNm)}`,
         lastModified: dataLastModified,
         changeFrequency: 'daily' as const,
         priority: isMajor ? 0.9 : 0.8,
@@ -120,7 +128,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return true;
     })
     .map(t => ({
-      url: `${BASE_URL}/시외버스/시간표/${createTerminalSlug(t.terminalNm)}`,
+      url: `${BASE_URL}/intercity/schedule/${createTerminalSlug(t.terminalNm)}`,
       lastModified: dataLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
@@ -136,10 +144,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return true;
     })
     .map(route => {
-      const routeKey = `${route.depTerminalName}-${route.arrTerminalName}`;
-      const isPopular = popularRouteNames.includes(routeKey);
+      const slug = createRouteSlug(route.depTerminalName, route.arrTerminalName);
+      const isPopular = popularRouteSlugs.includes(slug);
       return {
-        url: `${BASE_URL}/고속버스/시간표/노선/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
+        url: `${BASE_URL}/express/schedule/route/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
         lastModified: dataLastModified,
         changeFrequency: 'daily' as const,
         priority: isPopular ? 0.85 : 0.7,
@@ -156,10 +164,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return true;
     })
     .map(route => ({
-      url: `${BASE_URL}/시외버스/시간표/노선/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
+      url: `${BASE_URL}/intercity/schedule/route/${createRouteSlug(route.depTerminalName, route.arrTerminalName)}`,
       lastModified: dataLastModified,
       changeFrequency: 'daily' as const,
       priority: 0.65,
+    }));
+
+  // 공항버스 페이지
+  const airportBuses = getAirportBuses();
+  const airportBusNumbers = new Set<string>();
+  const airportBusPages: MetadataRoute.Sitemap = airportBuses
+    .filter(bus => {
+      if (airportBusNumbers.has(bus.busNumber)) return false;
+      airportBusNumbers.add(bus.busNumber);
+      return true;
+    })
+    .map(bus => ({
+      url: `${BASE_URL}/airport/schedule/${bus.busNumber}`,
+      lastModified: dataLastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
     }));
 
   return [
@@ -169,5 +193,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...intercityTerminalPages,
     ...expressRoutePages,
     ...intercityRoutePages,
+    ...airportBusPages,
   ];
 }
