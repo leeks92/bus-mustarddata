@@ -1,15 +1,34 @@
-name: Scheduled Data Fetch
+name: Fetch Bus Data
 
 on:
   schedule:
-    - cron: '0 18 * * 6' # 매주 일요일 새벽 3시 (KST)
+    # 고속버스 + 공항버스: 매주 일요일 새벽 3시 (KST) = UTC 토요일 18:00
+    - cron: '0 18 * * 6'
+    # 시외버스: 매주 수요일 오전 7시 (KST) = UTC 화요일 22:00
+    # ※ 시외버스 API는 당일 배차정보만 제공하므로 오전 시간대 실행 필수
+    - cron: '0 22 * * 2'
   workflow_dispatch:
+    inputs:
+      target:
+        description: '수집 대상 선택'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - express
+          - intercity
+          - airport
 
 permissions:
   contents: write
 
 jobs:
-  fetch-and-commit:
+  # ===== 고속버스 데이터 수집 =====
+  fetch-express:
+    if: >-
+      github.event_name == 'workflow_dispatch' && (inputs.target == 'all' || inputs.target == 'express') ||
+      github.event_name == 'schedule' && github.event.schedule == '0 18 * * 6'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,21 +43,95 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch bus data
+      - name: Fetch express bus data
         env:
           BUS_API_KEY: ${{ secrets.BUS_API_KEY }}
           BUS_ARR_API_KEY: ${{ secrets.BUS_ARR_API_KEY }}
-        run: npm run fetch-data
+        run: npm run fetch-express
 
       - name: Commit and Push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add data/
-          # 변경사항이 있을 때만 커밋
-          if ! git diff --quiet || ! git diff --staged --quiet; then
-            git commit -m "Update bus data $(date +'%Y-%m-%d')"
-            # remote 변경사항 반영 후 push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update express bus data $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
+            git push
+          fi
+
+  # ===== 시외버스 데이터 수집 =====
+  fetch-intercity:
+    if: >-
+      github.event_name == 'workflow_dispatch' && (inputs.target == 'all' || inputs.target == 'intercity') ||
+      github.event_name == 'schedule' && github.event.schedule == '0 22 * * 2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch intercity bus data
+        env:
+          BUS_API_KEY: ${{ secrets.BUS_API_KEY }}
+        run: npm run fetch-intercity
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update intercity bus data $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
+            git push
+          fi
+
+  # ===== 공항버스 데이터 수집 =====
+  fetch-airport:
+    if: >-
+      github.event_name == 'workflow_dispatch' && (inputs.target == 'all' || inputs.target == 'airport') ||
+      github.event_name == 'schedule' && github.event.schedule == '0 18 * * 6'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch airport bus data
+        env:
+          BUS_API_KEY: ${{ secrets.BUS_API_KEY }}
+        run: npm run fetch-airport
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update airport bus data $(date +'%Y-%m-%d')"
             git pull --rebase origin main
             git push
           fi
